@@ -120,8 +120,9 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
   }
   else
   {
-    int f = i / 19;
+    int f = i / 20;
     int v = (i % 10);
+    int y = (i % 9);
     sCarta *carta = new sCarta;
     carta->figura = new char[15];
     switch (f)
@@ -141,9 +142,9 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
     default:
       break;
     };
-    if (f > 10)
+    if (f >= 10)
     {
-      carta->valor = v + 1;
+      carta->valor = y;
     }else{
       carta->valor = v;
     }
