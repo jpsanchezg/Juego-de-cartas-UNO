@@ -114,14 +114,14 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
 
 void llenarListaCartas(sLista<sCarta *> *baraja, int i)
 {
-  if (i == 40)
+  if (i == 76)
   {
     return;
   }
   else
   {
     int f = i / 10;
-    int v = (i % 10) + 1;
+    int v = (i % 10);
     sCarta *carta = new sCarta;
     carta->figura = new char[15];
     switch (f)
@@ -168,7 +168,7 @@ void menu()
   cout << "2. Ver instrucciones de juego" << endl;
   cout << "3. Imprimir lista de jugadores" << endl;
   cout << "4. Imprimir lista de cartas" << endl;
-  cout << "5. salir"<<endl;
+  cout << "5. salir" << endl;
 }
 
 int main()
@@ -177,32 +177,31 @@ int main()
   sLista<sJugador *> *jugadores = crearLista<sJugador *>();
   sLista<sCarta *> *baraja = crearLista<sCarta *>();
   bool salir = false;
-  int op = 0,numjug=0;
+  int op = 0, numjug = 0;
   ifstream archi;
   string texto;
-llenarListaCartas(baraja, 0);
+  llenarListaCartas(baraja, 0);
   do
   {
     menu();
     cin >> op;
     if (op == 1)
     {
-      
+
       advertencia();
       do
       {
+        //lenar jugadores
         llenarJugadores(jugadores);
         numjug++;
-      } while (numjug>2);
-      
-      
+      } while (numjug > 2);
     }
     if (op == 2)
     {
       archi.open("reglas.txt", ios::in);
       while (!archi.eof())
       {
-        
+
         getline(archi, texto);
         cout << texto << endl;
       }
@@ -210,10 +209,18 @@ llenarListaCartas(baraja, 0);
       Sleep(5000);
       system("cls");
     }
+    if (op == 3)
+    {
+    }
+    if (op == 4)
+    {
+      cout << "IMPRIMIENDO LISTA DE CARTAS QUE VAN A ESTAR EN EN EL JUEGO " << endl;
+      imprimirListaCartas<sCarta *>(baraja);
+    }
+    if (op == 5)
+    {
+      salir = true;
+    }
   } while (salir == false);
-
-  imprimirListaCartas<sCarta *>(baraja);
-  //Crear jugador
-  llenarJugadores(jugadores);
-  //imprimirListaCartas<sJugador *>(jugadores);
+  cout << "JUEGO FINALIZADO EXITOSAMENTE" << endl;
 }
