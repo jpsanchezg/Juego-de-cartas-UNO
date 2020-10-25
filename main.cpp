@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iomanip>
+#include <string>
 #include <windows.h>
 using namespace std;
 
@@ -126,16 +127,16 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
     switch (f)
     {
     case 0:
-      strcpy(carta->figura, "Picas");
+      strcpy(carta->figura, "Azul");
       break;
     case 1:
-      strcpy(carta->figura, "Corazón");
+      strcpy(carta->figura, "Rojo");
       break;
     case 2:
-      strcpy(carta->figura, "Trebol");
+      strcpy(carta->figura, "Amarillo");
       break;
     case 3:
-      strcpy(carta->figura, "Diamante");
+      strcpy(carta->figura, "Verde");
       break;
     default:
       break;
@@ -176,24 +177,32 @@ int main()
   sLista<sJugador *> *jugadores = crearLista<sJugador *>();
   sLista<sCarta *> *baraja = crearLista<sCarta *>();
   bool salir = false;
-  int op = 0;
+  int op = 0,numjug=0;
   ifstream archi;
   string texto;
+llenarListaCartas(baraja, 0);
   do
   {
     menu();
     cin >> op;
     if (op == 1)
     {
-      llenarListaCartas(baraja, 0);
+      
       advertencia();
-      llenarJugadores(jugadores);
+      do
+      {
+        llenarJugadores(jugadores);
+        numjug++;
+      } while (numjug>2);
+      
+      
     }
     if (op == 2)
     {
       archi.open("reglas.txt", ios::in);
       while (!archi.eof())
       {
+        
         getline(archi, texto);
         cout << texto << endl;
       }
@@ -206,5 +215,5 @@ int main()
   imprimirListaCartas<sCarta *>(baraja);
   //Crear jugador
   llenarJugadores(jugadores);
-  imprimirListaCartas<sJugador *>(jugadores);
+  //imprimirListaCartas<sJugador *>(jugadores);
 }
