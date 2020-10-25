@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <string>
 #include <windows.h>
+
 using namespace std;
 
 template <class T>
@@ -114,6 +115,7 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
 
 void llenarListaCartas(sLista<sCarta *> *baraja, int i)
 {
+  int cont = 0;
   if (i == 80)
   {
     return;
@@ -129,6 +131,7 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
     {
     case 0:
       strcpy(carta->figura, "Azul");
+      
       break;
     case 1:
       strcpy(carta->figura, "Rojo");
@@ -142,16 +145,17 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
     default:
       break;
     };
-    if (f >= 10)
+    /*if (f >= 10)
     {
       carta->valor = y;
     }else{
       carta->valor = v+1;
-    }
+    }*/
     
-
+    
     insertarNodo<sCarta *>(baraja, carta);
     llenarListaCartas(baraja, i + 1);
+    cout<<i<<endl;
   }
   return;
 }
