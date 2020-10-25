@@ -114,7 +114,7 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
 
 void llenarListaCartas(sLista<sCarta *> *baraja, int i)
 {
-  if (i == 76)
+  if (i == 80)
   {
     return;
   }
@@ -141,14 +141,13 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
     default:
       break;
     };
-    if (f <= 10)
-    {
-      carta->valor = v;
-    }
     if (f > 10)
     {
       carta->valor = v + 1;
+    }else{
+      carta->valor = v;
     }
+    
 
     insertarNodo<sCarta *>(baraja, carta);
     llenarListaCartas(baraja, i + 1);
