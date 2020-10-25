@@ -120,8 +120,8 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
   }
   else
   {
-    int f = i / 19;
-    int v = (i % 19);
+    int f = i / 20;
+    int v = (i % 10);
     sCarta *carta = new sCarta;
     carta->figura = new char[15];
     switch (f)
@@ -141,7 +141,15 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
     default:
       break;
     };
-    carta->valor = v+1;
+    if (f <= 10)
+    {
+      carta->valor = v;
+    }
+    if (f > 10)
+    {
+      carta->valor = v + 1;
+    }
+
     insertarNodo<sCarta *>(baraja, carta);
     llenarListaCartas(baraja, i + 1);
   }
