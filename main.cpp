@@ -121,7 +121,7 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
   else
   {
     int f = i / 19;
-    int v = (i % 10);
+    int v = (i % 19);
     sCarta *carta = new sCarta;
     carta->figura = new char[15];
     switch (f)
