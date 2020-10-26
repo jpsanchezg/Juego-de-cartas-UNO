@@ -29,7 +29,7 @@ struct sLista
 struct sCarta
 {
   char *figura;
-  int valor;
+  char *valor;
 };
 
 struct sJugador
@@ -113,48 +113,106 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   }
   lista->tam++;
 }
-// se agregan las cartas del 1 al 9 
-void llenarListaCartas(sLista<sCarta *> *baraja, int i, int cont)
+
+void llenarListaCartas(sLista<sCarta *> *baraja, int i)
 {
 
-  if (i == 96)
+  if (i == 72)
   {
     return;
   }
   else
   {
-    int f = i / 24;
-    int v = (i % 13);
-    int y = (i % 10);
+    int f = i / 18;
+    int v = (i % 9);
+    string s;
     sCarta *carta = new sCarta;
     carta->figura = new char[15];
+    carta->valor = new char[2];
     switch (f)
     {
     case 0:
       strcpy(carta->figura, "Azul");
-      cont++;
       break;
     case 1:
       strcpy(carta->figura, "Rojo");
-      cont++;
 
       break;
     case 2:
       strcpy(carta->figura, "Amarillo");
-      cont++;
 
       break;
     case 3:
       strcpy(carta->figura, "Verde");
-      cont++;
+
       break;
     default:
       break;
     };
-    carta->valor = v + 1;
+    s = to_string(v + 1);
+    strcpy(carta->valor, s.c_str());
 
     insertarNodo<sCarta *>(baraja, carta);
-    llenarListaCartas(baraja, i + 1, cont++);
+    llenarListaCartas(baraja, i + 1);
+  }
+  return;
+}
+void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i)
+{
+  if (i == 36)
+  {
+    return;
+  }
+  else
+  {
+    if (i > 28)
+    {
+      string s;
+      sCarta *carta = new sCarta;
+      carta->figura = new char[15];
+      carta->valor = new char[3];
+      if(i<32){
+        strcpy(carta->figura, "CambColor");
+        strcpy(carta->valor, "CC");
+      }else{
+        strcpy(carta->figura, "mas 4");
+        strcpy(carta->valor, "M4");
+      }
+    }
+    else
+    {
+      int f = i / 7;
+      int v = 0;
+      string s;
+      sCarta *carta = new sCarta;
+      carta->figura = new char[15];
+      carta->valor = new char[3];
+      switch (f)
+      {
+      case 0:
+        strcpy(carta->figura, "Azul");
+        break;
+      case 1:
+        strcpy(carta->figura, "Rojo");
+
+        break;
+      case 2:
+        strcpy(carta->figura, "Amarillo");
+
+        break;
+      case 3:
+        strcpy(carta->figura, "Verde");
+
+        break;
+      default:
+        break;
+      };
+      /*s = to_string(v);
+      strcpy(carta->valor, s.c_str());*/
+
+      insertarNodo<sCarta *>(baraja, carta);
+      llenarListaCartasEspeciales(baraja, i + 1);
+    }
   }
   return;
 }
@@ -191,7 +249,7 @@ int main()
   int op = 0, numjug = 0;
   ifstream archi;
   string texto;
-  llenarListaCartas(baraja, 0, 0);
+  llenarListaCartas(baraja, 0);
   do
   {
     menu();
