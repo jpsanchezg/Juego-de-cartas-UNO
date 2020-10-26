@@ -1,7 +1,41 @@
-# Juego-de-cartas-UNO
-Juego de cartas UNO
-<div align="center">
-           <img width="50%" src="assets/logo.jpg" alt="Logo UNO" title="Logo UNO">
-           <p>El Famoso juego UNO que contiene 108 cartas y para poder ganar tienes que tener 1 carta y gritar uno</p>
-           <p>Tiene 25 cartas por color y 8 cartas especiales</p>
-</div>
+<h1 align="center">Juego UNO-PROYECTO PC 2020-3</h1>
+
+<p align="center">
+  <img src="assets/logo/logouno.png" alt="UNO-logo" width="120px" height="120px"/>
+  <br>
+  <i>UNO es un juego de cartas para toda la familia con 108 cartas
+    <br> el que se quede con una sola cartas GANA</i>
+  <br>
+</p>
+
+<hr>
+
+## Documentacion
+
+Para saber mas acerca del juego aca esta la documentacion:
+
+- [Reglas del juego][reglas]
+- [Enunciado del proyecto][enunciado]
+
+
+[contributing]: CONTRIBUTING.md
+[reglas]: assets/documentacion/reglas.pdf
+[changelog]: CHANGELOG.md
+[ng]: https://angular.io
+[documentation]: https://angular.io/docs
+[angularmaterial]: https://material.angular.io/
+[cli]: https://cli.angular.io/
+[enunciado]: assets/documentacion/enunciado.pdf
+[componentstemplates]: https://angular.io/guide/displaying-data
+[forms]: https://angular.io/guide/forms-overview
+[api]: https://angular.io/api
+[angularelements]: https://angular.io/guide/elements
+[ssr]: https://angular.io/guide/universal
+[schematics]: https://angular.io/guide/schematics
+[lazyloading]: https://angular.io/guide/lazy-loading-ngmodules
+[node.js]: https://nodejs.org/
+[npm]: https://www.npmjs.com/get-npm
+[codeofconduct]: CODE_OF_CONDUCT.md
+[twitter]: https://www.twitter.com/angular
+[gitter]: https://gitter.im/angular/angular
+[meetup]: https://www.meetup.com/find/?keywords=angular"
