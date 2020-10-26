@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <string>
 #include <windows.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -113,16 +114,16 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   lista->tam++;
 }
 
-void llenarListaCartas(sLista<sCarta *> *baraja, int i)
+void llenarListaCartas(sLista<sCarta *> *baraja, int i,int cont)
 {
-  int cont = 0;
-  if (i == 80)
+  
+  if (i == 72)
   {
     return;
   }
   else
   {
-    int f = i / 20;
+    int f = i / 18;
     int v = (i % 9);
     int y = (i % 10);
     sCarta *carta = new sCarta;
@@ -131,31 +132,33 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i)
     {
     case 0:
       strcpy(carta->figura, "Azul");
-      
+      cont++;
       break;
     case 1:
       strcpy(carta->figura, "Rojo");
+      cont++;
+      
       break;
     case 2:
       strcpy(carta->figura, "Amarillo");
+      cont++;
+      
       break;
     case 3:
       strcpy(carta->figura, "Verde");
+      cont++;
       break;
     default:
       break;
     };
-    /*if (f >= 10)
-    {
-      carta->valor = y;
-    }else{
-      carta->valor = v+1;
-    }*/
     
+    cout<<cont/10<<endl;
+   
+    carta->valor = v+1;
     
     insertarNodo<sCarta *>(baraja, carta);
-    llenarListaCartas(baraja, i + 1);
-    cout<<i<<endl;
+    llenarListaCartas(baraja, i + 1,cont++);
+    
   }
   return;
 }
@@ -192,7 +195,7 @@ int main()
   int op = 0, numjug = 0;
   ifstream archi;
   string texto;
-  llenarListaCartas(baraja, 0);
+  llenarListaCartas(baraja, 0,0);
   do
   {
     menu();
