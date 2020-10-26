@@ -98,6 +98,17 @@ void imprimirListaCartas(sLista<T> *lista)
   }
 }
 
+template <class I>
+void imprimirListaJugadores(sLista<I> *lista)
+{
+  sNodo<I> *aux = lista->cab;
+  while (aux != NULL)
+  {
+    cout << aux->dato->nombre << " " << aux->dato->apellido << endl;
+    aux = aux->sig;
+  }
+}
+
 template <typename X>
 void insertarNodoInicio(sLista<X> *lista, X persona)
 {
@@ -203,22 +214,22 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
   }
   else
   {
-    cout<<i<<endl;
+    cout << i << endl;
     if (i >= 24)
     {
-      int y=i;
+      int y = i;
       string s;
       sCarta *carta = new sCarta;
       carta->figura = new char[15];
       carta->valor = new char[3];
       //cout<<y<<endl;
-      if (y>=24 && y < 28)
+      if (y >= 24 && y < 28)
       {
-        
+
         strcpy(carta->figura, "CambColor");
         strcpy(carta->valor, "CC");
       }
-      else if(y>=28 && y<32)
+      else if (y >= 28 && y < 32)
       {
         strcpy(carta->figura, "mas 4");
         strcpy(carta->valor, "M4");
@@ -228,10 +239,10 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
     }
     else
     {
-      int o=i;
-      cout<<"hola  "<<o<<endl;
+      int o = i;
+      cout << "hola  " << o << endl;
       int f = i / 6;
-      cout<<f<<endl;
+      cout << f << endl;
       int v = 0;
       string s;
       sCarta *carta = new sCarta;
@@ -265,7 +276,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
       {
         strcpy(carta->valor, "RT");
       }
-      else if(u % 3 == 2)
+      else if (u % 3 == 2)
       {
         strcpy(carta->valor, "BQ");
       }
@@ -278,6 +289,8 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
 void llenarJugadores(sLista<sJugador *> *jugadores)
 {
   sJugador *jugador = new sJugador;
+  jugador->nombre=new char();
+  jugador->apellido=new char();
   cout << "cual es el nombre del jugador" << endl;
   cin >> jugador->nombre;
   cout << "cual es el apellido de: " << jugador->nombre << endl;
@@ -305,7 +318,8 @@ int main()
   sLista<sJugador *> *jugadores = crearLista<sJugador *>();
   sLista<sCarta *> *baraja = crearLista<sCarta *>();
   bool salir = false;
-  int op = 0, numjug = 0;
+  bool nojug = false;
+  int op = 0, numjug = 0, opi = 0;
   ifstream archi;
   string texto;
   llenarListaCartas(baraja, 0, 0);
@@ -322,8 +336,21 @@ int main()
       {
         //lenar jugadores
         llenarJugadores(jugadores);
-        numjug++;
-      } while (numjug > 2);
+
+        cout << "VAS A INGRESAR OTRO JUGADOR?" << endl;
+        cout << "1. si" << endl;
+        cout << "2. no" << endl;
+        cin >> opi;
+        if (opi == 1)
+        {
+          numjug++;
+        }
+        if (opi == 2)
+        {
+          nojug = true;
+        }
+      } while (nojug == false);
+
     }
     if (op == 2)
     {
@@ -340,6 +367,8 @@ int main()
     }
     if (op == 3)
     {
+      cout << "IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO " << endl;
+      imprimirListaJugadores<sJugador *>(jugadores);
     }
     if (op == 4)
     {
