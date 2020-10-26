@@ -113,6 +113,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
             {
                 strcpy(carta->figura, "mas 4");
                 strcpy(carta->valor, "M4");
+                cout<<"hola como estas"<<endl;
             }
             insertarNodo<sCarta *>(baraja, carta);
             llenarListaCartasEspeciales(baraja, i + 1, u);
