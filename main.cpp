@@ -28,7 +28,7 @@ struct sJugador
 
 
 void llenarJugadores(sLista<sJugador *> *jugadores);
-
+void advertencia();
 
 
 void menu()
