@@ -113,18 +113,18 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   }
   lista->tam++;
 }
-
-void llenarListaCartas(sLista<sCarta *> *baraja, int i,int cont)
+// se agregan las cartas del 1 al 9 
+void llenarListaCartas(sLista<sCarta *> *baraja, int i, int cont)
 {
-  
-  if (i == 72)
+
+  if (i == 96)
   {
     return;
   }
   else
   {
-    int f = i / 18;
-    int v = (i % 9);
+    int f = i / 24;
+    int v = (i % 13);
     int y = (i % 10);
     sCarta *carta = new sCarta;
     carta->figura = new char[15];
@@ -137,12 +137,12 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i,int cont)
     case 1:
       strcpy(carta->figura, "Rojo");
       cont++;
-      
+
       break;
     case 2:
       strcpy(carta->figura, "Amarillo");
       cont++;
-      
+
       break;
     case 3:
       strcpy(carta->figura, "Verde");
@@ -151,14 +151,10 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i,int cont)
     default:
       break;
     };
-    
-    cout<<cont/10<<endl;
-   
-    carta->valor = v+1;
-    
+    carta->valor = v + 1;
+
     insertarNodo<sCarta *>(baraja, carta);
-    llenarListaCartas(baraja, i + 1,cont++);
-    
+    llenarListaCartas(baraja, i + 1, cont++);
   }
   return;
 }
@@ -195,7 +191,7 @@ int main()
   int op = 0, numjug = 0;
   ifstream archi;
   string texto;
-  llenarListaCartas(baraja, 0,0);
+  llenarListaCartas(baraja, 0, 0);
   do
   {
     menu();
