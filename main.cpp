@@ -114,7 +114,7 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   lista->tam++;
 }
 
-void llenarListaCartas(sLista<sCarta *> *baraja, int i,int u)
+void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u)
 {
 
   if (i == 76)
@@ -155,15 +155,18 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i,int u)
       strcpy(carta->valor, s.c_str());
 
       insertarNodo<sCarta *>(baraja, carta);
-      llenarListaCartas(baraja, i + 1,u+1);
-    }else{
-      
+      llenarListaCartas(baraja, i + 1, u);
+    }
+    else
+    {
+
       int v = 0;
+      //int g = u/19;
       string s;
       sCarta *carta = new sCarta;
       carta->figura = new char[15];
       carta->valor = new char[2];
-      switch (u/19)
+      switch (u)
       {
       case 0:
         strcpy(carta->figura, "Azul");
@@ -182,17 +185,17 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i,int u)
       default:
         break;
       };
-      cout<<u<<endl;
+
       s = to_string(v);
       strcpy(carta->valor, s.c_str());
 
       insertarNodo<sCarta *>(baraja, carta);
-      llenarListaCartas(baraja, i + 1,u+1);
+      llenarListaCartas(baraja, i + 1, u + 1);
     }
   }
   return;
 }
-/*void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i)
+void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
 {
   if (i == 32)
   {
@@ -200,26 +203,35 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i,int u)
   }
   else
   {
-    if (i > 28)
+    cout<<i<<endl;
+    if (i >= 24)
     {
+      int y=i;
       string s;
       sCarta *carta = new sCarta;
       carta->figura = new char[15];
       carta->valor = new char[3];
-      if (i < 32)
+      //cout<<y<<endl;
+      if (y>=24 && y < 28)
       {
+        
         strcpy(carta->figura, "CambColor");
         strcpy(carta->valor, "CC");
       }
-      else
+      else if(y>=28 && y<32)
       {
         strcpy(carta->figura, "mas 4");
         strcpy(carta->valor, "M4");
       }
+      insertarNodo<sCarta *>(baraja, carta);
+      llenarListaCartasEspeciales(baraja, i + 1, u);
     }
     else
     {
-      int f = i / 7;
+      int o=i;
+      cout<<"hola  "<<o<<endl;
+      int f = i / 6;
+      cout<<f<<endl;
       int v = 0;
       string s;
       sCarta *carta = new sCarta;
@@ -245,14 +257,24 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i,int u)
       default:
         break;
       };
-      strcpy(carta->valor, s.c_str());
-
+      if (u % 3 == 0)
+      {
+        strcpy(carta->valor, "M2");
+      }
+      else if (u % 3 == 1)
+      {
+        strcpy(carta->valor, "RT");
+      }
+      else if(u % 3 == 2)
+      {
+        strcpy(carta->valor, "BQ");
+      }
       insertarNodo<sCarta *>(baraja, carta);
-      llenarListaCartasEspeciales(baraja, i + 1);
+      llenarListaCartasEspeciales(baraja, i + 1, u + 1);
     }
   }
   return;
-}*/
+}
 void llenarJugadores(sLista<sJugador *> *jugadores)
 {
   sJugador *jugador = new sJugador;
@@ -269,7 +291,7 @@ void advertencia()
 
 void menu()
 {
-  cout << "MENE DE JUEGO UNO" << endl;
+  cout << "MENU DE JUEGO UNO" << endl;
   cout << "1. Jugar" << endl;
   cout << "2. Ver instrucciones de juego" << endl;
   cout << "3. Imprimir lista de jugadores" << endl;
@@ -286,7 +308,8 @@ int main()
   int op = 0, numjug = 0;
   ifstream archi;
   string texto;
-  llenarListaCartas(baraja, 0,0);
+  llenarListaCartas(baraja, 0, 0);
+  llenarListaCartasEspeciales(baraja, 0, 0);
   do
   {
     menu();
