@@ -59,7 +59,7 @@ void imprimirListaCartas(sLista<T> *lista)
   sNodo<T> *aux = lista->cab;
   while (aux != NULL)
   {
-    cout << aux->dato->valor << " " << aux->dato->figura << endl;
+    cout << aux->dato->valor << " " << aux->dato->color << endl;
     aux = aux->sig;
   }
 }
