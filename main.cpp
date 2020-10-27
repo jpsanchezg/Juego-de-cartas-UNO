@@ -337,15 +337,19 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
   //pilas simples nodos
+  stack<sCarta*> pila;
   do
   {
     sCarta *cartas = new sCarta;
     cartas->color = baraja->cab->dato->color;
     cartas->valor = baraja->cab->dato->valor;
-    stack<sCarta*> pila;
+    
     pila.push(cartas);
+    
     cout<<"hello there"<<endl;
     cout<<pila.size()<<endl;
+    baraja->cab->sig;
+
     //cout<<pila->valor<<endl;
   } while (baraja != NULL);
 
