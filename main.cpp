@@ -336,6 +336,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << endl;
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
-  stack<sNodo<sCarta>> pila;
-  pila.push(baraja->cab->dato->color); //aca se crea ola pila de cartas para que los jugadores vallan tomando cada carta de este mazo
+  stack<sLista<sCarta>> pila;
+  pila.push(baraja->cab->dato);
+  pila.push(baraja->cab->dato); //aca se crea ola pila de cartas para que los jugadores vallan tomando cada carta de este mazo
 }
