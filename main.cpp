@@ -322,9 +322,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   cartas que van a ir poniendo los jugadores cada ves que les toque y 
   si pasa una ronda se debe volver a barajar dicho mazo
   */
-  stack<char> cartasDelCentro; 
+  stack<char> cartasDelCentro;
 
-  barajarMasoCartas(baraja);   //esta es la baraja del juego la que vamos a usar para los jugadores y juego en si
+  barajarMasoCartas(baraja); //esta es la baraja del juego la que vamos a usar para los jugadores y juego en si
   do
   {
     /* code */
@@ -336,7 +336,18 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << endl;
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
-  stack<sLista<sCarta>> pila;
-  pila.push(baraja->cab->dato);
-  pila.push(baraja->cab->dato); //aca se crea ola pila de cartas para que los jugadores vallan tomando cada carta de este mazo
+  //pilas simples nodos
+  do
+  {
+    sCarta *cartas = new sCarta;
+    cartas->color = baraja->cab->dato->color;
+    cartas->valor = baraja->cab->dato->valor;
+    stack<sCarta*> pila;
+    pila.push(cartas);
+    cout<<"hello there"<<endl;
+    cout<<pila.size()<<endl;
+    //cout<<pila->valor<<endl;
+  } while (baraja != NULL);
+
+
 }
