@@ -104,7 +104,7 @@ int main()
     }
     if (op == 2)
     {
-      archi.open("reglas.txt", ios::in);
+      archi.open("archivos/reglas.txt", ios::in);
       while (!archi.eof())
       {
         getline(archi, texto);
