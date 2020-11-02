@@ -355,7 +355,12 @@ bool encontro=false;
     sNodo<sCarta *> *auxi = new sNodo<sCarta *> ;
     auxi = baraja->cab;
     while (auxi != NULL)
-    {
+    {/*
+  ya se agregan datos a la pila pero la cuestion 
+  es reiniciar la lista para que siempre la busque desde un 
+  principio y no empiece donde estaba por que puede que no llegue al final
+    
+    */
       cout<<"hello there"<<endl;
       if (i == num)
       {
