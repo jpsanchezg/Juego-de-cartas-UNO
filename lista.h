@@ -40,7 +40,4 @@ void insertarNodoInicio(sLista<X> *lista, X persona);
 template <typename T>
 void crearPilas (sNodo<T> nodo);
 
-template <typename X>
-void buscarCarta(sLista<X> *lista, int valor,stack<sCarta*> pila);
-
 #endif // CARTAS_H_INCLUDED

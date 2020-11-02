@@ -86,22 +86,3 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   }
   lista->tam++;
 }
-
-template <typename X>
-void buscarCarta(sLista<X> *lista, int valor, stack<sCarta *>pila)
-{
-  sNodo<X> *aux = lista->cab;
-  int i = 0;
-  while (aux != NULL)
-  {
-    if (i == valor)
-    {
-      pila.push(lista->cab->dato);
-    }
-    else
-    {
-      i++;
-      aux = aux->sig;
-    }
-  }
-}

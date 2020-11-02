@@ -344,15 +344,33 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << endl;
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
+bool encontro=false;
   //pilas simples nodos
   stack<sCarta *> pila;
-  int cartastot = 108;
-  int num = 0;
+  int cartastot = 109;
+  int num = 0, i = 0;
   do
   {
-    num = rand() % cartastot;
-    buscarCarta<sCarta *>(baraja, num, pila);
+    num = rand() %  cartastot;
+    sNodo<sCarta *> *auxi = baraja->cab;
+    while (auxi != NULL)
+    {
+      cout<<"hello there"<<endl;
+      if (i == num)
+      {
+        cout<<"general kenobi"<<endl;
+        pila.push(auxi->dato);
+        encontro = true;
+        i=0;
+      }
+        cout<<" el numero perdido = "<<i<<endl;
+        i++;
+        auxi = auxi->sig;
+      
+    }
+    cout<<"Nuestro numero random es: " <<num<< "  cartas tot= " << cartastot << "    tam pila =" << pila.size() << endl;
     cartastot = cartastot - 1;
-    cout << pila.size() << endl;
+    
+    encontro = false;
   } while (cartastot != 0);
 }
