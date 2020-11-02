@@ -352,7 +352,8 @@ bool encontro=false;
   do
   {
     num = rand() %  cartastot;
-    sNodo<sCarta *> *auxi = baraja->cab;
+    sNodo<sCarta *> *auxi = new sNodo<sCarta *> ;
+    auxi = baraja->cab;
     while (auxi != NULL)
     {
       cout<<"hello there"<<endl;
