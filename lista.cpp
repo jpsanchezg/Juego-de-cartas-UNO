@@ -2,6 +2,7 @@
 #include <string>
 #include <string.h>
 #include "lista.h"
+#include <stack>
 
 using namespace std;
 
@@ -43,13 +44,8 @@ void insertarNodo(sLista<T> *lista, T valor)
   if (listaVacia(lista) == true)
   {
     lista->cab = nodo;
-    lista->cola = nodo;
   }
-  else
-  {
-    lista->cola->sig = nodo;
-    lista->cola = nodo;
-  }
+
   lista->tam++;
 }
 
@@ -90,4 +86,3 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   }
   lista->tam++;
 }
-

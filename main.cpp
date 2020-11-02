@@ -14,6 +14,7 @@
 
 using namespace std;
 
+//estructuras
 struct sCarta
 {
   char *color;
@@ -26,9 +27,7 @@ struct sJugador
   sLista<sCarta *> *cartas;
 };
 
-void llenarJugadores(sLista<sJugador *> *jugadores);
-void advertencia();
-
+//menu
 void menu()
 {
   cout << "MENU DE JUEGO UNO" << endl;
@@ -38,11 +37,18 @@ void menu()
   cout << "4. Imprimir lista de cartas" << endl;
   cout << "5. salir" << endl;
 }
+
+//funciones
 void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u);
 void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u);
 
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int numjug);
 void barajarMasoCartas(sLista<sCarta *> *baraja);
+
+void llenarJugadores(sLista<sJugador *> *jugadores);
+void advertencia();
+
+//Main....
 
 int main()
 {
@@ -68,6 +74,7 @@ int main()
       {
         //lenar jugadores
         opi = 0;
+        numjug++;
         llenarJugadores(jugadores);
 
         cout << "VAS A INGRESAR OTRO JUGADOR?" << endl;
@@ -76,7 +83,8 @@ int main()
         cin >> opi;
         if (opi == 1)
         {
-          numjug++;
+
+          cout << numjug << endl;
         }
         if (opi == 2)
         {
@@ -336,22 +344,39 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << endl;
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
+bool encontro=false;
   //pilas simples nodos
-  stack<sCarta*> pila;
+  stack<sCarta *> pila;
+  int cartastot = 109;
+  int num = 0, i = 0;
   do
   {
-    sCarta *cartas = new sCarta;
-    cartas->color = baraja->cab->dato->color;
-    cartas->valor = baraja->cab->dato->valor;
+    num = rand() %  cartastot;
+    sNodo<sCarta *> *auxi = new sNodo<sCarta *> ;
+    auxi = baraja->cab;
+    while (auxi != NULL)
+    {/*
+  ya se agregan datos a la pila pero la cuestion 
+  es reiniciar la lista para que siempre la busque desde un 
+  principio y no empiece donde estaba por que puede que no llegue al final
     
-    pila.push(cartas);
+    */
+      cout<<"hello there"<<endl;
+      if (i == num)
+      {
+        cout<<"general kenobi"<<endl;
+        pila.push(auxi->dato);
+        encontro = true;
+        i=0;
+      }
+        cout<<" el numero perdido = "<<i<<endl;
+        i++;
+        auxi = auxi->sig;
+      
+    }
+    cout<<"Nuestro numero random es: " <<num<< "  cartas tot= " << cartastot << "    tam pila =" << pila.size() << endl;
+    cartastot = cartastot - 1;
     
-    cout<<"hello there"<<endl;
-    cout<<pila.size()<<endl;
-    baraja->cab->sig;
-
-    //cout<<pila->valor<<endl;
-  } while (baraja != NULL);
-
-
+    encontro = false;
+  } while (cartastot != 0);
 }
