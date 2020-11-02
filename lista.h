@@ -41,6 +41,4 @@ void insertarNodoInicio(sLista<X> *lista, X persona);
 template <typename T>
 void crearPilas (sNodo<T> nodo);
 
-
-
 #endif // CARTAS_H_INCLUDED

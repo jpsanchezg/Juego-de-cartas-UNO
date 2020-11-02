@@ -14,6 +14,7 @@
 
 using namespace std;
 
+//estructuras 
 struct sCarta
 {
   char *color;
@@ -26,9 +27,7 @@ struct sJugador
   sLista<sCarta *> *cartas;
 };
 
-void llenarJugadores(sLista<sJugador *> *jugadores);
-void advertencia();
-
+//menu
 void menu()
 {
   cout << "MENU DE JUEGO UNO" << endl;
@@ -38,11 +37,21 @@ void menu()
   cout << "4. Imprimir lista de cartas" << endl;
   cout << "5. salir" << endl;
 }
+
+
+
+//funciones
 void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u);
 void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u);
 
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int numjug);
 void barajarMasoCartas(sLista<sCarta *> *baraja);
+
+void llenarJugadores(sLista<sJugador *> *jugadores);
+void advertencia();
+
+
+//Main....
 
 int main()
 {
@@ -68,6 +77,7 @@ int main()
       {
         //lenar jugadores
         opi = 0;
+        numjug++;
         llenarJugadores(jugadores);
 
         cout << "VAS A INGRESAR OTRO JUGADOR?" << endl;
@@ -76,7 +86,8 @@ int main()
         cin >> opi;
         if (opi == 1)
         {
-          numjug++;
+          
+          cout<<numjug<<endl;
         }
         if (opi == 2)
         {
@@ -344,7 +355,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
     cartas->color = baraja->cab->dato->color;
     cartas->valor = baraja->cab->dato->valor;
     
-    pila.push(cartas);
+    cout<<cartas->color<<endl;
     baraja->cab->sig;
 
     //cout<<pila->valor<<endl;
