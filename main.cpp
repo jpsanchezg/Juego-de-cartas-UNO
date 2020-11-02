@@ -346,12 +346,13 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << endl;
   //pilas simples nodos
   stack<sCarta *> pila;
+  int cartastot = 108;
+  int num = 0;
   do
   {
-    sCarta *cartas = new sCarta();
-    cartas->color = baraja->cab->dato->color;
-    cartas->valor = baraja->cab->dato->valor;
-    pila.push(baraja->cab->dato);
+    num = rand() % cartastot;
+    buscarCarta<sCarta *>(baraja, num, pila);
+    cartastot = cartastot - 1;
     cout << pila.size() << endl;
-  } while (baraja->cab != NULL);
+  } while (cartastot != 0);
 }
