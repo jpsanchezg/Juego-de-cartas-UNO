@@ -345,6 +345,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
     /* code */
   } while (ganador == false);
 }
+
 void barajarMasoCartas(sLista<sCarta *> *baraja)
 {
   cout << "BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
@@ -374,7 +375,8 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
         }
       }
     }
-    if(i==0){
+    if (i == 0)
+    {
       num = rand() % cartastot;
     }
 
@@ -390,7 +392,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
       auxi = auxi->sig;
     }
     cout << "Nuestro numero random es: " << num << "       cartas tot= " << cartastot << "        tam pila =" << pila.size() << endl;
- 
+
     if (cartastot == 0)
     {
       final = true;
@@ -407,7 +409,7 @@ bool numerosRepetidos(int num, int repetidos[108], int tam)
 {
   int op = 2;
   for (int i = 0; i < tam; i++)
-  { 
+  {
     if (num == repetidos[i])
     {
       return true;
