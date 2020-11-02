@@ -19,6 +19,7 @@ struct sCarta
 {
   char *color;
   char *valor;
+  int numero;
 };
 struct sJugador
 {
@@ -47,6 +48,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja);
 
 void llenarJugadores(sLista<sJugador *> *jugadores);
 void advertencia();
+bool numerosRepetidos(int num, int repetidos[108], int tam);
 
 //Main....
 
@@ -158,6 +160,7 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u)
       sCarta *carta = new sCarta;
       carta->color = new char[15];
       carta->valor = new char[2];
+
       switch (f)
       {
       case 0:
@@ -180,6 +183,7 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u)
       };
       s = to_string(v + 1);
       strcpy(carta->valor, s.c_str());
+      carta->numero = i;
 
       insertarNodo<sCarta *>(baraja, carta);
       llenarListaCartas(baraja, i + 1, u);
@@ -215,6 +219,7 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u)
 
       s = to_string(v);
       strcpy(carta->valor, s.c_str());
+      carta->numero = i;
 
       insertarNodo<sCarta *>(baraja, carta);
       llenarListaCartas(baraja, i + 1, u + 1);
@@ -251,6 +256,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
         strcpy(carta->color, "mas 4");
         strcpy(carta->valor, "M4");
       }
+      carta->numero = i + 76;
       insertarNodo<sCarta *>(baraja, carta);
       llenarListaCartasEspeciales(baraja, i + 1, u);
     }
@@ -295,6 +301,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
       {
         strcpy(carta->valor, "BQ");
       }
+      carta->numero = i + 76;
       insertarNodo<sCarta *>(baraja, carta);
       llenarListaCartasEspeciales(baraja, i + 1, u + 1);
     }
@@ -344,39 +351,67 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << endl;
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
-bool encontro=false;
+  bool final = false;
+  bool repetido = true;
+  int repetidos[108];
   //pilas simples nodos
   stack<sCarta *> pila;
   int cartastot = 109;
   int num = 0, i = 0;
+  sNodo<sCarta *> *auxi = new sNodo<sCarta *>;
+  auxi = baraja->cab;
   do
   {
-    num = rand() %  cartastot;
-    sNodo<sCarta *> *auxi = new sNodo<sCarta *> ;
-    auxi = baraja->cab;
-    while (auxi != NULL)
-    {/*
-  ya se agregan datos a la pila pero la cuestion 
-  es reiniciar la lista para que siempre la busque desde un 
-  principio y no empiece donde estaba por que puede que no llegue al final
-    
-    */
-      cout<<"hello there"<<endl;
-      if (i == num)
+    if (i != 0)
+    {
+      num = rand() % cartastot;
+      while (repetido == true)
       {
-        cout<<"general kenobi"<<endl;
-        pila.push(auxi->dato);
-        encontro = true;
-        i=0;
+        repetido = numerosRepetidos(num, repetidos, i);
+        if (repetido == true)
+        {
+          num = rand() % 109;
+        }
       }
-        cout<<" el numero perdido = "<<i<<endl;
-        i++;
-        auxi = auxi->sig;
-      
     }
-    cout<<"Nuestro numero random es: " <<num<< "  cartas tot= " << cartastot << "    tam pila =" << pila.size() << endl;
-    cartastot = cartastot - 1;
-    
-    encontro = false;
-  } while (cartastot != 0);
+    if(i==0){
+      num = rand() % cartastot;
+    }
+
+    while (auxi != NULL)
+    {
+      if (num == auxi->dato->numero)
+      {
+        repetidos[i];
+        pila.push(auxi->dato);
+        repetidos[i] = num;
+        i++;
+      }
+      auxi = auxi->sig;
+    }
+    cout << "Nuestro numero random es: " << num << "       cartas tot= " << cartastot << "        tam pila =" << pila.size() << endl;
+ 
+    if (cartastot == 0)
+    {
+      final = true;
+    }
+    else
+    {
+      auxi = baraja->cab;
+      cartastot = cartastot - 1;
+      repetido = true;
+    }
+  } while (final == false);
+}
+bool numerosRepetidos(int num, int repetidos[108], int tam)
+{
+  int op = 2;
+  for (int i = 0; i < tam; i++)
+  { 
+    if (num == repetidos[i])
+    {
+      return true;
+    }
+  }
+  return false;
 }

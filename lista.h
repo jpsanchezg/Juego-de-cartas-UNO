@@ -12,6 +12,7 @@ template <class T>
 struct sLista
 {
     sNodo<T> *cab;
+    sNodo<T> *cola;
     int tam;
 };
 

@@ -44,18 +44,22 @@ void insertarNodo(sLista<T> *lista, T valor)
   if (listaVacia(lista) == true)
   {
     lista->cab = nodo;
+    lista->cola = nodo;
   }
-
+  else
+  {
+    lista->cola->sig = nodo;
+    lista->cola = nodo;
+  }
   lista->tam++;
 }
-
 template <class T>
 void imprimirListaCartas(sLista<T> *lista)
 {
   sNodo<T> *aux = lista->cab;
   while (aux != NULL)
   {
-    cout << aux->dato->valor << " " << aux->dato->color << endl;
+    cout << aux->dato->valor << " " << aux->dato->color <<aux->dato->numero<< endl;
     aux = aux->sig;
   }
 }
