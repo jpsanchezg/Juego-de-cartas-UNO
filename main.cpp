@@ -353,5 +353,5 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
     cartas->valor = baraja->cab->dato->valor;
     pila.push(baraja->cab->dato);
     cout << pila.size() << endl;
-  } while (baraja != NULL);
+  } while (baraja->cab != NULL);
 }
