@@ -14,7 +14,7 @@
 
 using namespace std;
 
-//estructuras 
+//estructuras
 struct sCarta
 {
   char *color;
@@ -38,8 +38,6 @@ void menu()
   cout << "5. salir" << endl;
 }
 
-
-
 //funciones
 void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u);
 void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u);
@@ -49,7 +47,6 @@ void barajarMasoCartas(sLista<sCarta *> *baraja);
 
 void llenarJugadores(sLista<sJugador *> *jugadores);
 void advertencia();
-
 
 //Main....
 
@@ -86,8 +83,8 @@ int main()
         cin >> opi;
         if (opi == 1)
         {
-          
-          cout<<numjug<<endl;
+
+          cout << numjug << endl;
         }
         if (opi == 2)
         {
@@ -348,18 +345,13 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
   //pilas simples nodos
-  stack<sCarta*> pila;
+  stack<sCarta *> pila;
   do
   {
-    sCarta *cartas = new sCarta;
+    sCarta *cartas = new sCarta();
     cartas->color = baraja->cab->dato->color;
     cartas->valor = baraja->cab->dato->valor;
-    
-    cout<<cartas->color<<endl;
-    baraja->cab->sig;
-
-    //cout<<pila->valor<<endl;
+    pila.push(baraja->cab->dato);
+    cout << pila.size() << endl;
   } while (baraja != NULL);
-
-
 }
