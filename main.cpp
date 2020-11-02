@@ -344,39 +344,39 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   cout << endl;
   cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
-bool encontro=false;
+  bool encontro = false;
   //pilas simples nodos
   stack<sCarta *> pila;
   int cartastot = 109;
   int num = 0, i = 0;
   do
   {
-    num = rand() %  cartastot;
-    sNodo<sCarta *> *auxi = new sNodo<sCarta *> ;
+    num = rand() % cartastot;
+    sNodo<sCarta *> *auxi = new sNodo<sCarta *>;
     auxi = baraja->cab;
     while (auxi != NULL)
-    {/*
+    { /*
   ya se agregan datos a la pila pero la cuestion 
   es reiniciar la lista para que siempre la busque desde un 
-  principio y no empiece donde estaba por que puede que no llegue al final
+  principio y no empiece donde estaba por que puede que no llegue al final.
+  y la pila
     
     */
-      cout<<"hello there"<<endl;
+      cout << "hello there" << endl;
       if (i == num)
       {
-        cout<<"general kenobi"<<endl;
+        cout << "general kenobi" << endl;
         pila.push(auxi->dato);
         encontro = true;
-        i=0;
+        i = 0;
       }
-        cout<<" el numero perdido = "<<i<<endl;
-        i++;
-        auxi = auxi->sig;
-      
+      cout << " el numero perdido = " << i << endl;
+      i++;
+      auxi = auxi->sig;
     }
-    cout<<"Nuestro numero random es: " <<num<< "  cartas tot= " << cartastot << "    tam pila =" << pila.size() << endl;
+    cout << "Nuestro numero random es: " << num << "  cartas tot= " << cartastot << "    tam pila =" << pila.size() << endl;
     cartastot = cartastot - 1;
-    
+
     encontro = false;
   } while (cartastot != 0);
 }
