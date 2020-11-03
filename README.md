@@ -22,7 +22,7 @@ Para saber mas acerca del juego aca esta la documentacion:
 
 <div>
   <p align="center">
-  <img src="assets/logo/muestra1.png" alt="UNO-logo" width="320px" height="176px"/>
+  <img src="assets/logo/muestra1.png" alt="UNO-logo" width="520px" height="476px"/>
   <br>
   <i>Pantalla principal del juego</i>
   <br>
