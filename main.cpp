@@ -31,12 +31,33 @@ struct sJugador
 //menu
 void menu()
 {
-  cout << "MENU DE JUEGO UNO" << endl;
-  cout << "1. Jugar" << endl;
-  cout << "2. Ver instrucciones de juego" << endl;
-  cout << "3. Imprimir lista de jugadores" << endl;
-  cout << "4. Imprimir lista de cartas" << endl;
-  cout << "5. salir" << endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ......     %%%%%%%%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%...     ,/*        %%%%%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/%%%%%%%.    *%%%%%###%/  ... %%%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%(,.... %%%%&,    ,&%%%%&&&@##%/.... %%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&((,     %%&&*   .%%%%%%%%%%&%&/,.,, %%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%,....   %%%%%&&##,     %%%*    .%%%%%%%%%%&&&,,,,.%%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%..... &((,          %%%&%%*    .@%(/.... %%%%%%%%%&&.,,,,,%%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%((,     &((,    ,       .&%%*.....#/(*,,*,,  %%%%%  ,,,,,,%%%%"<<endl;
+cout<<"                  %%%%%%  ..,%%%%%%%&((,     &((,    .(**  .... (*,,,,.&////*,,,,*,,,,,,,,,/&%%%%%"<<endl;
+cout<<"                  %%%%#*,   .,%%%%%%%&##,     &##,  .,.(((#/*,,,,,,,,,,.&&(###(((/,,,*//#&&%%%%%%%"<<endl;
+cout<<"                  %%%&%#,,   ,/%%%%%%&&##,     &#%,..., &&###%#/,,,,,*,*.%&&&&%%%%%&&&&&%%%%%%%%%%"<<endl;
+cout<<"                  %%%%&##,..  ,(%%%%%%&&%%*. ,..&%%,,,,, %%&&&%%%%//,,,,,,%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%&##,..  .(%%%%%%&&%&/,,,,/&%%,,,,, %%%%&&&&%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%%&##*,....%%%%%%%&&%,,,,,*&&%%*,,,,.%%%%%%%&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%%%&#//,,,,, %%%%%  ,,,,,,%%&&%%/(%%&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%%%%&/((/,,,,,,,,,,,,,,*&%%%%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%%%%%&&##%///,,,,*///&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%%%%%%%&&&&%&&%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
+cout<<endl;
+  cout << "                                             MENU DE JUEGO UNO" << endl;
+  cout << "                                             [1] Jugar" << endl;
+  cout << "                                             [2] Ver instrucciones de juego" << endl;
+  cout << "                                             [3] Imprimir lista de jugadores" << endl;
+  cout << "                                             [4] Imprimir lista de cartas" << endl;
+  cout << "                                             [5] salir" << endl;
 }
 
 //funciones
@@ -67,7 +88,8 @@ int main()
   do
   {
     menu();
-    cin >> op;
+    cout<<"                                             OPCION:  ";cin >> op;
+    
     if (op == 1)
     {
 
@@ -79,10 +101,10 @@ int main()
         numjug++;
         llenarJugadores(jugadores);
 
-        cout << "VAS A INGRESAR OTRO JUGADOR?" << endl;
-        cout << "1. si" << endl;
-        cout << "2. no" << endl;
-        cin >> opi;
+        cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
+        cout << "                                             1. si" << endl;
+        cout << "                                             2. no" << endl;
+        cout<<"                                             ";cin >> opi;
         if (opi == 1)
         {
 
@@ -90,10 +112,10 @@ int main()
         }
         if (opi == 2)
         {
-          cout << "QUIERES COMENZAR A JUGAR?" << endl;
-          cout << "1. si" << endl;
-          cout << "2. no" << endl;
-          cin >> opi;
+          cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
+          cout << "                                             1. si" << endl;
+          cout << "                                             2. no" << endl;
+          cout<<"                                             ";cin >> opi;
           if (opi == 1)
           {
             if (numjug >= 2)
@@ -102,7 +124,7 @@ int main()
             }
             else
             {
-              cout << "NO PUEDES JUGAR, TIENES QUE SER 2 O MAS PERSONAS PARA PODER JUGAR" << endl;
+              cout << "                                             NO PUEDES JUGAR, TIENES QUE SER 2 O MAS PERSONAS PARA PODER JUGAR" << endl;
             }
           }
           else
@@ -126,12 +148,12 @@ int main()
     }
     if (op == 3)
     {
-      cout << "IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO " << endl;
+      cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO " << endl;
       imprimirListaJugadores<sJugador *>(jugadores);
     }
     if (op == 4)
     {
-      cout << "IMPRIMIENDO LISTA DE CARTAS QUE VAN A ESTAR EN EN EL JUEGO " << endl;
+      cout << "                                             IMPRIMIENDO LISTA DE CARTAS QUE VAN A ESTAR EN EN EL JUEGO " << endl;
       imprimirListaCartas<sCarta *>(baraja);
     }
     if (op == 5)
@@ -139,7 +161,7 @@ int main()
       salir = true;
     }
   } while (salir == false);
-  cout << "JUEGO FINALIZADO EXITOSAMENTE" << endl;
+  cout << "                                             JUEGO FINALIZADO EXITOSAMENTE" << endl;
 }
 
 //Llenar cartas normales del 1 al 9
@@ -315,22 +337,22 @@ void llenarJugadores(sLista<sJugador *> *jugadores)
   sJugador *jugador = new sJugador;
   jugador->nombre = new char();
   jugador->apellido = new char();
-  cout << "cual es el nombre del jugador" << endl;
-  cin >> jugador->nombre;
-  cout << "cual es el apellido de: " << jugador->nombre << endl;
-  cin >> jugador->apellido;
+  cout << "                                             cual es el nombre del jugador" << endl;
+  cout<<"                                             ";cin >> jugador->nombre;
+  cout << "                                             cual es el apellido de: " << jugador->nombre << endl;
+  cout<<"                                             ";cin >> jugador->apellido;
   insertarNodo<sJugador *>(jugadores, jugador);
 }
 void advertencia()
 {
-  cout << "Antes de jugar tienes que ingresar minimo 2 jugadores" << endl;
+  cout << "                                             Antes de jugar tienes que ingresar minimo 2 jugadores" << endl;
 }
 
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int numjug)
 {
-  cout << "VA A COMENZAR EL JUEGO PREPARENCE JUGADORES" << endl;
+  cout << "                                             VA A COMENZAR EL JUEGO PREPARENCE JUGADORES" << endl;
 
-  cout << "SE VAN A REPARTIR LAS CARTAS" << endl;
+  cout << "                                             SE VAN A REPARTIR LAS CARTAS" << endl;
 
   bool ganador = false;
   /*
@@ -348,9 +370,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
 
 void barajarMasoCartas(sLista<sCarta *> *baraja)
 {
-  cout << "BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
+  cout << "                                             BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
   cout << endl;
-  cout << "REPARTIENDO CARTAS A LOS JUGADORES" << endl;
+  cout << "                                             REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
   bool final = false;
   bool repetido = true;
