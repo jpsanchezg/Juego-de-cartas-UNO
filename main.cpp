@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <iomanip>
 #include <string>
-#include <windows.h>
+//#include <windows.h>
 #include <cstdlib>
 #include "lista.cpp"
 #include <stack>
@@ -20,6 +20,7 @@ struct sCarta
   char *color;
   char *valor;
 };
+
 struct sJugador
 {
   char *nombre;
@@ -41,12 +42,28 @@ void menu()
 //funciones
 void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u);
 void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u);
+/*Funciones encargadas de llenar la lista de cartas de manera ordenada al insertar nodos que corresponden 
+a las cartas del juego. Para esto, las funciones reciben la lista baraja (vacía) y dos valores de tipo entero.
+Las funciones no retornan ningún valor.*/
 
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int numjug);
+/*Función encargada de ejecutar el juego UNO. Para esto, la función recibe la lista baraja 
+(llena), la lista de jugadores y un valor de tipo entero que representa la cantidad de jugadores.
+Las función no retornan ningún valor.*/
+
 void barajarMasoCartas(sLista<sCarta *> *baraja);
+/*Función encargada de barajar las cartas. Para esto, las función recibe la lista baraja 
+(llena). Las función no retornan ningún valor.*/
 
 void llenarJugadores(sLista<sJugador *> *jugadores);
-void advertencia();
+/*Función encargada de llenar la lista de jugadores al insertar nodos que representan a cada jugador
+del juego. Para esto, la función recibe la lista jugadores (vacía). Las función no retornan ningún valor.*/
+
+void repartir_cartas(sLista<sJugador *>* jugadores,sLista<sCarta*>* baraja, sNodo<sJugador*>* nodoJugador);
+/*Función encargada de repartir las cartas ya barajadas entre los jugadores. Para esto, la función 
+recibe la lista jugadores (llena), la lista cartas (llena), y un nodo de tipo sJugador. 
+La función no retornan ningún valor.*/
+
 
 //Main....
 
@@ -379,4 +396,19 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
 
     encontro = false;
   } while (cartastot != 0);
+}
+
+void repartir_cartas(sLista<sJugador *>* jugadores,sLista<sCarta*>* baraja, sNodo<sJugador*>* nodoJugador){
+    while (nodoJugador -> dato -> cartas -> tam < 7){
+      sNodo<sCarta*>* nodoCarta = baraja -> cab;
+      if (nodoJugador == NULL){
+          nodoJugador = jugadores -> cab;
+          insertarNodo<sCarta*>(nodoJugador -> dato -> cartas,nodoCarta -> dato);
+      }
+      else{
+          insertarNodo<sCarta*>(nodoJugador -> dato -> cartas,nodoCarta -> dato);  
+      }
+      nodoJugador = nodoJugador -> sig;
+      nodoCarta.pop();
+    }
 }
