@@ -18,6 +18,17 @@ Para saber mas acerca del juego aca esta la documentacion:
 - [Enunciado del proyecto][enunciado]
 
 
+## Imagenes de muestra
+
+<div>
+  <p align="center">
+  <img src="assets/logo/muestra1.png" alt="UNO-logo" width="320px" height="176px"/>
+  <br>
+  <i>Pantalla principal del juego</i>
+  <br>
+</p>
+</div>
+
 [contributing]: CONTRIBUTING.md
 [reglas]: assets/documentacion/reglas.pdf
 [changelog]: CHANGELOG.md
