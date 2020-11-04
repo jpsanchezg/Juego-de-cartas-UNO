@@ -35,8 +35,8 @@ void imprimirListaCartas(sLista<T> *lista);
 template <class I>
 void imprimirListaJugadores(sLista<I> *lista);
 
-template <class I>
-void imprimirListaJugadoresDeCartas(sLista<I> *lista);
+template <class I,class J>
+void imprimirListaJugadoresCarta(sLista<I> *lista);
 
 template <typename X>
 void insertarNodoInicio(sLista<X> *lista, X persona);

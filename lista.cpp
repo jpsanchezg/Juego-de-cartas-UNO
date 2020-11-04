@@ -59,34 +59,51 @@ void imprimirListaCartas(sLista<T> *lista)
   sNodo<T> *aux = lista->cab;
   while (aux != NULL)
   {
-    cout << aux->dato->valor << " " << aux->dato->color <<aux->dato->numero<< endl;
+    cout << aux->dato->valor << " " << aux->dato->color << aux->dato->numero << endl;
     aux = aux->sig;
   }
 }
 
 template <class I>
-void imprimirListaJugadores(sLista<I> *lista)
+void imprimirListaJugadoresCarta(sLista<I> *lista)
 {
   sNodo<I> *aux = lista->cab;
   while (aux != NULL)
   {
-    cout << aux->dato->nombre << " " << aux->dato->apellido<<"" << endl;
+    cout << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
     aux = aux->sig;
   }
 }
-template <class I>
-void imprimirListaJugadoresDeCartas(sLista<I> *lista)
+
+template <class I,class J>
+void imprimirListaJugadoresCarta(sLista<I> *lista)
 {
   sNodo<I> *aux = lista->cab;
   while (aux != NULL)
   {
-    while(aux->dato->cartas != NULL)
-    {
-      cout<<aux->dato->cartas->color<<" " <<endl;
+    cout << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
+    sNodo<J> *auxcarta = aux->dato->cartas->cab;
+    while(auxcarta != NULL){
+      cout << auxcarta->dato->numero<<endl;
+      auxcarta= auxcarta->sig;
     }
     aux = aux->sig;
   }
 }
+
+/*template <class U>
+void imprimirListaJugadoresDeCartas(sLista<U> *lista)
+{
+  sNodo<U> *aux = lista->cab;
+  while (aux != NULL)
+  {
+    cout << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
+    while(aux->dato->cartas->cab != NULL){
+      cout << aux->dato->cartas->cab->dato->numero<<endl;
+    }
+    aux = aux->sig;
+  }
+}*/
 
 template <typename X>
 void insertarNodoInicio(sLista<X> *lista, X persona)
