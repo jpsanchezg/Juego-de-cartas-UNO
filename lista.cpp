@@ -70,7 +70,20 @@ void imprimirListaJugadores(sLista<I> *lista)
   sNodo<I> *aux = lista->cab;
   while (aux != NULL)
   {
-    cout << aux->dato->nombre << " " << aux->dato->apellido << endl;
+    cout << aux->dato->nombre << " " << aux->dato->apellido<<"" << endl;
+    aux = aux->sig;
+  }
+}
+template <class I>
+void imprimirListaJugadoresDeCartas(sLista<I> *lista)
+{
+  sNodo<I> *aux = lista->cab;
+  while (aux != NULL)
+  {
+    while(aux->dato->cartas != NULL)
+    {
+      cout<<aux->dato->cartas->color<<" " <<endl;
+    }
     aux = aux->sig;
   }
 }

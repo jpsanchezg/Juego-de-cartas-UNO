@@ -31,27 +31,27 @@ struct sJugador
 //menu
 void menu()
 {
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ......     %%%%%%%%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%...     ,/*        %%%%%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/%%%%%%%.    *%%%%%###%/  ... %%%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%(,.... %%%%&,    ,&%%%%&&&@##%/.... %%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&((,     %%&&*   .%%%%%%%%%%&%&/,.,, %%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%,....   %%%%%&&##,     %%%*    .%%%%%%%%%%&&&,,,,.%%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%..... &((,          %%%&%%*    .@%(/.... %%%%%%%%%&&.,,,,,%%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%((,     &((,    ,       .&%%*.....#/(*,,*,,  %%%%%  ,,,,,,%%%%"<<endl;
-cout<<"                  %%%%%%  ..,%%%%%%%&((,     &((,    .(**  .... (*,,,,.&////*,,,,*,,,,,,,,,/&%%%%%"<<endl;
-cout<<"                  %%%%#*,   .,%%%%%%%&##,     &##,  .,.(((#/*,,,,,,,,,,.&&(###(((/,,,*//#&&%%%%%%%"<<endl;
-cout<<"                  %%%&%#,,   ,/%%%%%%&&##,     &#%,..., &&###%#/,,,,,*,*.%&&&&%%%%%&&&&&%%%%%%%%%%"<<endl;
-cout<<"                  %%%%&##,..  ,(%%%%%%&&%%*. ,..&%%,,,,, %%&&&%%%%//,,,,,,%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%&##,..  .(%%%%%%&&%&/,,,,/&%%,,,,, %%%%&&&&%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%%&##*,....%%%%%%%&&%,,,,,*&&%%*,,,,.%%%%%%%&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%%%&#//,,,,, %%%%%  ,,,,,,%%&&%%/(%%&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%%%%&/((/,,,,,,,,,,,,,,*&%%%%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%%%%%&&##%///,,,,*///&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%%%%%%%&&&&%&&%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<"                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"<<endl;
-cout<<endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ......     %%%%%%%%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%...     ,/*        %%%%%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/%%%%%%%.    *%%%%%###%/  ... %%%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%(,.... %%%%&,    ,&%%%%&&&@##%/.... %%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&((,     %%&&*   .%%%%%%%%%%&%&/,.,, %%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%,....   %%%%%&&##,     %%%*    .%%%%%%%%%%&&&,,,,.%%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%..... &((,          %%%&%%*    .@%(/.... %%%%%%%%%&&.,,,,,%%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%((,     &((,    ,       .&%%*.....#/(*,,*,,  %%%%%  ,,,,,,%%%%" << endl;
+  cout << "                  %%%%%%  ..,%%%%%%%&((,     &((,    .(**  .... (*,,,,.&////*,,,,*,,,,,,,,,/&%%%%%" << endl;
+  cout << "                  %%%%#*,   .,%%%%%%%&##,     &##,  .,.(((#/*,,,,,,,,,,.&&(###(((/,,,*//#&&%%%%%%%" << endl;
+  cout << "                  %%%&%#,,   ,/%%%%%%&&##,     &#%,..., &&###%#/,,,,,*,*.%&&&&%%%%%&&&&&%%%%%%%%%%" << endl;
+  cout << "                  %%%%&##,..  ,(%%%%%%&&%%*. ,..&%%,,,,, %%&&&%%%%//,,,,,,%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%&##,..  .(%%%%%%&&%&/,,,,/&%%,,,,, %%%%&&&&%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%%&##*,....%%%%%%%&&%,,,,,*&&%%*,,,,.%%%%%%%&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%%%&#//,,,,, %%%%%  ,,,,,,%%&&%%/(%%&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%%%%&/((/,,,,,,,,,,,,,,*&%%%%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%%%%%&&##%///,,,,*///&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%%%%%%%&&&&%&&%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << endl;
   cout << "                                             MENU DE JUEGO UNO" << endl;
   cout << "                                             [1] Jugar" << endl;
   cout << "                                             [2] Ver instrucciones de juego" << endl;
@@ -60,16 +60,23 @@ cout<<endl;
   cout << "                                             [5] salir" << endl;
 }
 
-//funciones
+//FUNCIONES
+
+//Funciones de llenado de cartas y jugadores
 void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u);
 void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u);
 
+//Funciones de logica de juego
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int numjug);
-void barajarMasoCartas(sLista<sCarta *> *baraja);
-
+void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> pila);
+void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> pila);
 void llenarJugadores(sLista<sJugador *> *jugadores);
-void advertencia();
+
+//Validacion de numeros repetidos
 bool numerosRepetidos(int num, int repetidos[108], int tam);
+
+//Estetica
+void advertencia();
 
 //Main....
 
@@ -88,8 +95,9 @@ int main()
   do
   {
     menu();
-    cout<<"                                             OPCION:  ";cin >> op;
-    
+    cout << "                                             OPCION:  ";
+    cin >> op;
+
     if (op == 1)
     {
 
@@ -104,7 +112,8 @@ int main()
         cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
         cout << "                                             1. si" << endl;
         cout << "                                             2. no" << endl;
-        cout<<"                                             ";cin >> opi;
+        cout << "                                             ";
+        cin >> opi;
         if (opi == 1)
         {
 
@@ -115,7 +124,8 @@ int main()
           cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
           cout << "                                             1. si" << endl;
           cout << "                                             2. no" << endl;
-          cout<<"                                             ";cin >> opi;
+          cout << "                                             ";
+          cin >> opi;
           if (opi == 1)
           {
             if (numjug >= 2)
@@ -338,9 +348,11 @@ void llenarJugadores(sLista<sJugador *> *jugadores)
   jugador->nombre = new char();
   jugador->apellido = new char();
   cout << "                                             cual es el nombre del jugador" << endl;
-  cout<<"                                             ";cin >> jugador->nombre;
+  cout << "                                             ";
+  cin >> jugador->nombre;
   cout << "                                             cual es el apellido de: " << jugador->nombre << endl;
-  cout<<"                                             ";cin >> jugador->apellido;
+  cout << "                                             ";
+  cin >> jugador->apellido;
   insertarNodo<sJugador *>(jugadores, jugador);
 }
 void advertencia()
@@ -348,6 +360,7 @@ void advertencia()
   cout << "                                             Antes de jugar tienes que ingresar minimo 2 jugadores" << endl;
 }
 
+//Funcion principal del juego aca esta toda la logica del juego
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int numjug)
 {
   cout << "                                             VA A COMENZAR EL JUEGO PREPARENCE JUGADORES" << endl;
@@ -360,15 +373,14 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   si pasa una ronda se debe volver a barajar dicho mazo
   */
   stack<char> cartasDelCentro;
+  stack<sCarta *> pila;
+  barajarMasoCartas(baraja, pila); //esta es la baraja del juego la que vamos a usar para los jugadores y juego en si
+  //repartir_cartas(jugadores,pila);
+  imprimirListaJugadoresDeCartas<sJugador *>(jugadores);
 
-  barajarMasoCartas(baraja); //esta es la baraja del juego la que vamos a usar para los jugadores y juego en si
-  do
-  {
-    /* code */
-  } while (ganador == false);
 }
 
-void barajarMasoCartas(sLista<sCarta *> *baraja)
+void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> pila)
 {
   cout << "                                             BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
   cout << endl;
@@ -377,8 +389,6 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
   bool final = false;
   bool repetido = true;
   int repetidos[108];
-  //pilas simples nodos
-  stack<sCarta *> pila;
   int cartastot = 109;
   int num = 0, i = 0;
   sNodo<sCarta *> *auxi = new sNodo<sCarta *>;
@@ -413,18 +423,16 @@ void barajarMasoCartas(sLista<sCarta *> *baraja)
       }
       auxi = auxi->sig;
     }
-    cout << "Nuestro numero random es: " << num << "       cartas tot= " << cartastot << "        tam pila =" << pila.size() << endl;
 
+    auxi = baraja->cab;
+    cartastot = cartastot - 1;
+    repetido = true;
     if (cartastot == 0)
     {
       final = true;
     }
-    else
-    {
-      auxi = baraja->cab;
-      cartastot = cartastot - 1;
-      repetido = true;
-    }
+
+    //cout << "Nuestro numero random es: " << num << "       cartas tot= " << cartastot << "        tam pila =" << pila.size() << endl;
   } while (final == false);
 }
 bool numerosRepetidos(int num, int repetidos[108], int tam)
@@ -438,4 +446,23 @@ bool numerosRepetidos(int num, int repetidos[108], int tam)
     }
   }
   return false;
+}
+void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> pila)
+{
+  sNodo<sJugador *> *nodoJugador = jugadores->cab;
+  while (nodoJugador->dato->cartas->tam < 7)
+  {
+    if (nodoJugador == NULL)
+    {
+      nodoJugador = jugadores->cab;
+      insertarNodo<sCarta *>(nodoJugador->dato->cartas, pila.top());
+      pila.pop();
+    }
+    else
+    {
+      insertarNodo<sCarta *>(nodoJugador->dato->cartas, pila.top());
+      pila.pop();
+    }
+    nodoJugador = nodoJugador->sig;
+  }
 }
