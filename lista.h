@@ -6,6 +6,7 @@ struct sNodo
 {
     T dato;
     sNodo<T> *sig;
+    sNodo<T> *atrs;
 };
 
 template <class T>
@@ -33,10 +34,13 @@ template <class T>
 void imprimirListaCartas(sLista<T> *lista);
 
 template <class I>
-void imprimirListaJugadores(sLista<I> *lista);
+void imprimirListaJugadoresCabezas(sLista<I> *lista);
 
 template <class I,class J>
 void imprimirListaJugadoresCarta(sLista<I> *lista);
+
+template <class I>
+void imprimirListaJugadoresColas (sLista<I> *lista);
 
 template <typename X>
 void insertarNodoInicio(sLista<X> *lista, X persona);

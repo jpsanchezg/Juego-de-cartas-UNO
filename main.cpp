@@ -117,7 +117,6 @@ int main()
         if (opi == 1)
         {
 
-          cout << numjug << endl;
         }
         if (opi == 2)
         {
@@ -159,7 +158,7 @@ int main()
     if (op == 3)
     {
       cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO " << endl;
-      imprimirListaJugadores<sJugador *>(jugadores);
+      imprimirListaJugadoresColas<sJugador *>(jugadores);
     }
     if (op == 4)
     {
