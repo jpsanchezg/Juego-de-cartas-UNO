@@ -1,2 +1,1 @@
-
-//Funcion llenar jugadores
+insertarNodoInicio

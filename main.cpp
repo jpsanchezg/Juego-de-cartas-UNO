@@ -116,7 +116,6 @@ int main()
         cin >> opi;
         if (opi == 1)
         {
-
         }
         if (opi == 2)
         {
@@ -157,8 +156,11 @@ int main()
     }
     if (op == 3)
     {
-      cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO " << endl;
+      cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ATRAS " << endl;
       imprimirListaJugadoresColas<sJugador *>(jugadores);
+      cout << endl;
+      cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ADELANTE " << endl;
+      imprimirListaJugadoresCabezas<sJugador *>(jugadores);
     }
     if (op == 4)
     {
@@ -353,7 +355,7 @@ void llenarJugadores(sLista<sJugador *> *jugadores)
   cout << "                                             ";
   cin >> jugador->apellido;
   jugador->cartas = crearLista<sCarta *>();
-  insertarNodo<sJugador *>(jugadores, jugador);
+  insertarNodoInicio<sJugador *>(jugadores, jugador);
 }
 void advertencia()
 {
@@ -368,23 +370,37 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   cout << "                                             SE VAN A REPARTIR LAS CARTAS" << endl;
 
   bool ganador = false;
+  bool sentido = false; // si el sentido es FALSE va a la derecha si es TRUE va a la izquierda
   /*
   cartas que van a ir poniendo los jugadores cada ves que les toque y 
   si pasa una ronda se debe volver a barajar dicho mazo
   */
-  stack<char> cartasDelCentro;
+  stack<sCarta *> cartasDelCentro;
   stack<sCarta *> pila;
-  barajarMasoCartas(baraja, pila); //esta es la baraja del juego la que vamos a usar para los jugadores y juego en si
+  barajarMasoCartas(baraja, pila);
   repartir_cartas(jugadores, pila);
   cout << "                                             JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
   do
   {
-    /* code */
+    if (sentido == false)
+    {
+
+    }
+    if (sentido == true)
+    {
+      
+    }
   } while (ganador == false);
 
   imprimirListaJugadoresCarta<sJugador *, sCarta *>(jugadores);
 }
 
+//Funcion barajar cartastot
+/*
+En esta funcion hay un pequeño bug de repetidos con el numero 108
+toca mirarlo super bien el por que repite el numero 108 4 veces 
+
+*/
 void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
 {
   cout << "                                             BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
@@ -439,6 +455,8 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
     }
   } while (final == false);
 }
+
+//Funcion que mira los numeros repetidos que saca el numero random
 bool numerosRepetidos(int num, int repetidos[108], int tam)
 {
   int op = 2;
@@ -451,6 +469,8 @@ bool numerosRepetidos(int num, int repetidos[108], int tam)
   }
   return false;
 }
+
+//Funcion de repartir cartas
 void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila)
 {
   int i = 0;
