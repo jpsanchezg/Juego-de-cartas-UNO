@@ -13,6 +13,7 @@ template <class T>
 struct sLista
 {
     sNodo<T> *cab;
+    sNodo<T> *cola;
     int tam;
 };
 
@@ -27,7 +28,7 @@ template <class T>
 sNodo<T> *crearNodo(T dato);
 
 template <class T>
-void insertarNodo(sLista<T> *lista, T valor);
+void insertarNodoCartas(sLista<T> *lista, T valor);
 
 template <class T>
 void imprimirListaCartas(sLista<T> *lista);
@@ -41,8 +42,11 @@ void imprimirListaJugadoresCarta(sLista<I> *lista);
 template <class T>
 void imprimirListaJugadoresColas(sLista<T> *lista);
 
+template <typename V>
+void insertarNodojugador(sLista<V> *lista, V valor);
+
 template <typename X>
-void insertarNodoInicio(sLista<X> *lista, X persona);
+void insertarNodoFinal(sLista<X> *lista, X valor);
 
 template <typename T>
 void crearPilas (sNodo<T> nodo);

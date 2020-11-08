@@ -70,7 +70,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u);
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int numjug);
 void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila);
 void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila);
-void llenarJugadores(sLista<sJugador *> *jugadores);
+void llenarJugadores(sLista<sJugador *> *jugadores, int numjug);
 
 //Validacion de numeros repetidos
 bool numerosRepetidos(int num, int repetidos[108], int tam);
@@ -102,45 +102,60 @@ int main()
     {
 
       advertencia();
-      do
-      {
-        //lenar jugadores
-        opi = 0;
-        numjug++;
-        llenarJugadores(jugadores);
+      //if (numjug == 0)
+      //{
+        do
+        {
+          //lenar jugadores
+          opi = 0;
+          numjug++;
+          llenarJugadores(jugadores, numjug);
 
-        cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
-        cout << "                                             1. si" << endl;
-        cout << "                                             2. no" << endl;
-        cout << "                                             ";
-        cin >> opi;
-        if (opi == 1)
-        {
-        }
-        if (opi == 2)
-        {
-          cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
+          cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
           cout << "                                             1. si" << endl;
           cout << "                                             2. no" << endl;
           cout << "                                             ";
           cin >> opi;
           if (opi == 1)
           {
-            if (numjug >= 2)
+          }
+          if (opi == 2)
+          {
+            cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
+            cout << "                                             1. si" << endl;
+            cout << "                                             2. no" << endl;
+            cout << "                                             ";
+            cin >> opi;
+            if (opi == 1)
             {
-              comenzarJuego(baraja, jugadores, numjug);
+              if (numjug >= 2)
+              {
+                comenzarJuego(baraja, jugadores, numjug);
+              }
+              else
+              {
+                cout << "                                             NO PUEDES JUGAR, TIENES QUE SER 2 O MAS PERSONAS PARA PODER JUGAR" << endl;
+              }
             }
             else
             {
-              cout << "                                             NO PUEDES JUGAR, TIENES QUE SER 2 O MAS PERSONAS PARA PODER JUGAR" << endl;
+              nojug = true;
             }
           }
-          else
-          {
-            nojug = true;
-          }
+        } while (nojug == false);
+      //}
+      /*if (numjug > 0 )
+      {
+        cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
+        cout << "                                             1. si" << endl;
+        cout << "                                             2. no" << endl;
+        cout << "                                             ";
+        cin >> opi;
+        if (opi == 1)
+        {
+          comenzarJuego(baraja, jugadores, numjug);
         }
-      } while (nojug == false);
+      }*/
     }
     if (op == 2)
     {
@@ -218,7 +233,7 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u)
       strcpy(carta->valor, s.c_str());
       carta->numero = i;
 
-      insertarNodo<sCarta *>(baraja, carta);
+      insertarNodoCartas<sCarta *>(baraja, carta);
       llenarListaCartas(baraja, i + 1, u);
     }
     else
@@ -253,7 +268,7 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u)
       strcpy(carta->valor, s.c_str());
       carta->numero = i;
 
-      insertarNodo<sCarta *>(baraja, carta);
+      insertarNodoCartas<sCarta *>(baraja, carta);
       llenarListaCartas(baraja, i + 1, u + 1);
     }
   }
@@ -289,7 +304,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
         strcpy(carta->valor, "M4");
       }
       carta->numero = i + 76;
-      insertarNodo<sCarta *>(baraja, carta);
+      insertarNodoCartas<sCarta *>(baraja, carta);
       llenarListaCartasEspeciales(baraja, i + 1, u);
     }
     else
@@ -334,7 +349,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
         strcpy(carta->valor, "BQ");
       }
       carta->numero = i + 76;
-      insertarNodo<sCarta *>(baraja, carta);
+      insertarNodoCartas<sCarta *>(baraja, carta);
       llenarListaCartasEspeciales(baraja, i + 1, u + 1);
     }
   }
@@ -354,14 +369,15 @@ void llenarJugadores(sLista<sJugador *> *jugadores, int numjug)
   cout << "                                             ";
   cin >> jugador->apellido;
   jugador->cartas = crearLista<sCarta *>();
-  if (numjug == 0)
+  /*if (numjug == 1)
   {
     insertarNodo<sJugador *>(jugadores, jugador);
   }
   else
   {
     insertarNodoFinal<sJugador *>(jugadores, jugador);
-  }
+  }*/
+  insertarNodojugador<sJugador *>(jugadores, jugador);
 }
 void advertencia()
 {
@@ -386,18 +402,19 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   barajarMasoCartas(baraja, pila);
   repartir_cartas(jugadores, pila);
   cout << "                                             JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
-  do
+  //imprimirListaJugadoresCarta<sJugador *, sCarta *>(jugadores);
+  /*do
   {
     if (sentido == false)
     {
-      /*while(jugadores != NULL){
+      while(jugadores != NULL){
 
-      }*/
+      }
     }
     if (sentido == true)
     {
     }
-  } while (ganador == false);
+  } while (ganador == false);*/
 
   imprimirListaJugadoresCarta<sJugador *, sCarta *>(jugadores);
 }
@@ -417,7 +434,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
   bool final = false;
   bool repetido = true;
   int repetidos[108];
-  int cartastot = 109;
+  int cartastot = 108;
   int num = 0, i = 0;
   sNodo<sCarta *> *auxi;
   auxi = baraja->cab;
@@ -431,7 +448,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
         repetido = numerosRepetidos(num, repetidos, i);
         if (repetido == true)
         {
-          num = rand() % 109;
+          num = rand() % 108;
         }
       }
     }
@@ -491,12 +508,12 @@ void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila)
       carta = pila.top();
       if (jugador->dato->cartas->cab == NULL)
       {
-        insertarNodo<sCarta *>(jugador->dato->cartas, carta);
+        insertarNodoCartas<sCarta *>(jugador->dato->cartas, carta);
         pila.pop();
       }
       else
       {
-        insertarNodo<sCarta *>(jugador->dato->cartas, carta);
+        insertarNodoCartas<sCarta *>(jugador->dato->cartas, carta);
         pila.pop();
       }
     }
