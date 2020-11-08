@@ -355,7 +355,7 @@ void llenarJugadores(sLista<sJugador *> *jugadores)
   cout << "                                             ";
   cin >> jugador->apellido;
   jugador->cartas = crearLista<sCarta *>();
-  insertarNodoInicio<sJugador *>(jugadores, jugador);
+  insertarNodo<sJugador *>(jugadores, jugador);
 }
 void advertencia()
 {
@@ -384,6 +384,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   {
     if (sentido == false)
     {
+      /*while(jugadores != NULL){
+
+      }*/
 
     }
     if (sentido == true)

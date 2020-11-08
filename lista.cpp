@@ -42,13 +42,28 @@ template <class T>
 void insertarNodo(sLista<T> *lista, T valor)
 {
   sNodo<T> *nodo = crearNodo(valor);
+  sNodo<T> *p = NULL;
   if (listaVacia(lista) == true)
   {
     lista->cab = nodo;
     lista->cola = nodo;
+    nodo->atrs = NULL;
   }
   else
   {
+    p = lista->cab;
+    while (p->sig != NULL)
+      p = p->sig;
+    p->sig = nodo;
+    nodo->atrs = p;
+    /*if (nodo != NULL)
+    {
+      lista->cola->sig = nodo;
+    }
+    nodo->sig = nodo;
+    lista->cab->sig = nodo;
+    lista->cab = nodo;*/
+    lista->cola->atrs = nodo;
     lista->cola->sig = nodo;
     lista->cola = nodo;
   }
@@ -98,24 +113,10 @@ void imprimirListaJugadoresColas(sLista<T> *lista)
   sNodo<T> *aux = lista->cola;
   while (aux != NULL)
   {
-    cout << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
+    cout << " 222 " << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
     aux = aux->atrs;
   }
 }
-
-/*template <class U>
-void imprimirListaJugadoresDeCartas(sLista<U> *lista)
-{
-  sNodo<U> *aux = lista->cab;
-  while (aux != NULL)
-  {
-    cout << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
-    while(aux->dato->cartas->cab != NULL){
-      cout << aux->dato->cartas->cab->dato->numero<<endl;
-    }
-    aux = aux->sig;
-  }
-}*/
 
 template <typename X>
 void insertarNodoInicio(sLista<X> *lista, X persona)
@@ -129,12 +130,9 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   else
   {
     nodo->sig = lista->cab;
-    nodo->atrs = NULL;
-    if (lista->cab != NULL)
-    {
-      lista->cab->atrs = nodo;
-    }
     lista->cab = nodo;
+    nodo->atrs = lista->cola;
+    lista->cola = nodo;
   }
   lista->tam++;
 }
