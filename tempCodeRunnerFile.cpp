@@ -1,1 +1,1 @@
-insertarNodoInicio
+< endl;

@@ -342,7 +342,7 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
 }
 
 //Funcion llenar jugadores
-void llenarJugadores(sLista<sJugador *> *jugadores)
+void llenarJugadores(sLista<sJugador *> *jugadores, int numjug)
 {
   sJugador *jugador = new sJugador;
   jugador->nombre = new char();
@@ -354,7 +354,14 @@ void llenarJugadores(sLista<sJugador *> *jugadores)
   cout << "                                             ";
   cin >> jugador->apellido;
   jugador->cartas = crearLista<sCarta *>();
-  insertarNodo<sJugador *>(jugadores, jugador);
+  if (numjug == 0)
+  {
+    insertarNodo<sJugador *>(jugadores, jugador);
+  }
+  else
+  {
+    insertarNodoFinal<sJugador *>(jugadores, jugador);
+  }
 }
 void advertencia()
 {
@@ -386,11 +393,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
       /*while(jugadores != NULL){
 
       }*/
-
     }
     if (sentido == true)
     {
-      
     }
   } while (ganador == false);
 
