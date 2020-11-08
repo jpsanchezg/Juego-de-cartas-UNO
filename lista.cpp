@@ -76,7 +76,7 @@ void imprimirListaJugadoresCabezas(sLista<I> *lista)
   }
 }
 
-template <class I,class J>
+template <class I, class J>
 void imprimirListaJugadoresCarta(sLista<I> *lista)
 {
   sNodo<I> *aux = lista->cab;
@@ -84,9 +84,10 @@ void imprimirListaJugadoresCarta(sLista<I> *lista)
   {
     cout << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
     sNodo<J> *auxcarta = aux->dato->cartas->cab;
-    while(auxcarta != NULL){
-      cout << auxcarta->dato->numero<<endl;
-      auxcarta= auxcarta->sig;
+    while (auxcarta != NULL)
+    {
+      cout << auxcarta->dato->numero << endl;
+      auxcarta = auxcarta->sig;
     }
     aux = aux->sig;
   }
@@ -99,7 +100,6 @@ void imprimirListaJugadoresColas(sLista<T> *lista)
   {
     cout << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
     aux = aux->atrs;
-
   }
 }
 
@@ -123,18 +123,18 @@ void insertarNodoInicio(sLista<X> *lista, X persona)
   sNodo<X> *nodo = crearNodo<X>(persona);
   if (listaVacia<X>(lista) == true)
   {
-    lista->cab= nodo;
+    lista->cab = nodo;
     lista->cola = nodo;
   }
   else
   {
-    /*nodo->atrs = nodo;
     nodo->sig = lista->cab;
-    lista->cab->sig->atrs = nodo;    
-    lista->cab->sig = nodo;*/
-    nodo->sig= lista->cab;
-    nodo->atrs= lista->cab->atrs;
-    lista->cab->atrs->sig
+    nodo->atrs = NULL;
+    if (lista->cab != NULL)
+    {
+      lista->cab->atrs = nodo;
+    }
+    lista->cab = nodo;
   }
   lista->tam++;
 }
