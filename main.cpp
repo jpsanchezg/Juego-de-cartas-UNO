@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <iomanip>
 #include <string>
-#include <windows.h>
+//#include <windows.h>
 #include <cstdlib>
 #include "lista.cpp"
 #include <stack>
@@ -92,11 +92,11 @@ int main()
   string texto;
   llenarListaCartas(baraja, 0, 0);
   llenarListaCartasEspeciales(baraja, 0, 0);
-  do
+  /*do
   {
-    menu();
-    cout << "                                             OPCION:  ";
-    cin >> op;
+    /*menu();
+    //cout << "                                             OPCION:  ";
+    //cin >> op;
 
     if (op == 1)
     {
@@ -143,7 +143,7 @@ int main()
           }
         }
       } while (nojug == false);
-      //}
+      //}*/
       /*if (numjug > 0 )
       {
         cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
@@ -155,9 +155,9 @@ int main()
         {
           comenzarJuego(baraja, jugadores, numjug);
         }
-      }*/
-    }
-    if (op == 2)
+      }
+    }*/
+    /*if (op == 2)
     {
       archi.open("archivos/reglas.txt", ios::in);
       while (!archi.eof())
@@ -166,18 +166,18 @@ int main()
         cout << texto << endl;
       }
       archi.close();
-      Sleep(5000);
+      //Sleep(5000);
       system("cls");
-    }
-    if (op == 3)
+    }*/
+    /*if (op == 3)
     {
       cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ATRAS " << endl;
       imprimirListaJugadoresColas<sJugador *>(jugadores);
       cout << endl;
       cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ADELANTE " << endl;
       imprimirListaJugadoresCabezas<sJugador *>(jugadores);
-    }
-    if (op == 4)
+    }*/
+    /*if (op == 4)
     {
       cout << "                                             IMPRIMIENDO LISTA DE CARTAS QUE VAN A ESTAR EN EN EL JUEGO " << endl;
       imprimirListaCartas<sCarta *>(baraja);
@@ -187,7 +187,9 @@ int main()
       salir = true;
     }
   } while (salir == false);
-  cout << "                                             JUEGO FINALIZADO EXITOSAMENTE" << endl;
+  cout << "                                             JUEGO FINALIZADO EXITOSAMENTE" << endl;*/
+  stack<sCarta *> pila;
+  barajarMasoCartas(baraja, pila);
 }
 
 //Llenar cartas normales del 1 al 9
@@ -479,6 +481,21 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   } while (ganador == false);
 }
 
+//Funcion que verifica los numeros no estén repetidos
+bool repetidoNum(int* arreglo, int num, int tam){
+    if (tam == 0){
+        return false;
+    }
+    else{
+        for(int i =0; i < tam; i++){
+            if (num == arreglo[i]){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 //Funcion barajar cartastot
 /*
 En esta funcion hay un pequeño bug de repetidos con el numero 108
@@ -492,67 +509,35 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
   cout << "                                             REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
   bool final = false;
-  bool repetido = true;
-  int repetidos[108];
-  int cartastot = 108;
-  int num = 0, i = 0;
   sNodo<sCarta *> *auxi;
   auxi = baraja->cab;
-  do
-  {
-    if (i != 0)
-    {
-      num = rand() % cartastot;
-      while (repetido == true)
-      {
-        repetido = numerosRepetidos(num, repetidos, i);
-        if (repetido == true)
-        {
-          num = rand() % 108;
-        }
+  int numeros[108];
+  int num;
+  int insertados = 0;
+  bool repetido;
+  int cartastot = 108;
+    
+  while (insertados != 108){
+      num = rand() % 108;
+      repetido = repetidoNum(numeros, num, insertados);
+      if (repetido == false){
+        numeros[insertados] = num;
+        insertados++;
       }
     }
-    if (i == 0)
-    {
-      num = rand() % cartastot;
+  int agregado = 0;
+  while (agregado != 108){
+    if(numeros[agregado] == auxi->dato->numero){
+      pila.push(auxi->dato);
+      agregado++;
+      auxi = baraja->cab;
     }
-
-    while (auxi != NULL)
-    {
-      if (num == auxi->dato->numero)
-      {
-        repetidos[i];
-
-        pila.push(auxi->dato);
-        repetidos[i] = num;
-        i++;
-      }
+    else{
       auxi = auxi->sig;
     }
-
-    auxi = baraja->cab;
-    cartastot = cartastot - 1;
-    repetido = true;
-    if (cartastot == 0)
-    {
-      final = true;
-    }
-  } while (final == false);
-}
-
-//Funcion que mira los numeros repetidos que saca el numero random
-bool numerosRepetidos(int num, int repetidos[108], int tam)
-{
-  int op = 2;
-  for (int i = 0; i < tam; i++)
-  {
-    if (num == repetidos[i])
-    {
-      return true;
-    }
   }
-  return false;
-}
+} 
+
 
 //Funcion de repartir cartas
 void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila)
