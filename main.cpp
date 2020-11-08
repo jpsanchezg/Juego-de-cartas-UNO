@@ -104,45 +104,45 @@ int main()
       advertencia();
       //if (numjug == 0)
       //{
-        do
-        {
-          //lenar jugadores
-          opi = 0;
-          numjug++;
-          llenarJugadores(jugadores, numjug);
+      do
+      {
+        //lenar jugadores
+        opi = 0;
+        numjug++;
+        llenarJugadores(jugadores, numjug);
 
-          cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
+        cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
+        cout << "                                             1. si" << endl;
+        cout << "                                             2. no" << endl;
+        cout << "                                             ";
+        cin >> opi;
+        if (opi == 1)
+        {
+        }
+        if (opi == 2)
+        {
+          cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
           cout << "                                             1. si" << endl;
           cout << "                                             2. no" << endl;
           cout << "                                             ";
           cin >> opi;
           if (opi == 1)
           {
-          }
-          if (opi == 2)
-          {
-            cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
-            cout << "                                             1. si" << endl;
-            cout << "                                             2. no" << endl;
-            cout << "                                             ";
-            cin >> opi;
-            if (opi == 1)
+            if (numjug >= 2)
             {
-              if (numjug >= 2)
-              {
-                comenzarJuego(baraja, jugadores, numjug);
-              }
-              else
-              {
-                cout << "                                             NO PUEDES JUGAR, TIENES QUE SER 2 O MAS PERSONAS PARA PODER JUGAR" << endl;
-              }
+              comenzarJuego(baraja, jugadores, numjug);
             }
             else
             {
-              nojug = true;
+              cout << "                                             NO PUEDES JUGAR, TIENES QUE SER 2 O MAS PERSONAS PARA PODER JUGAR" << endl;
             }
           }
-        } while (nojug == false);
+          else
+          {
+            nojug = true;
+          }
+        }
+      } while (nojug == false);
       //}
       /*if (numjug > 0 )
       {
@@ -397,26 +397,86 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   cartas que van a ir poniendo los jugadores cada ves que les toque y 
   si pasa una ronda se debe volver a barajar dicho mazo
   */
+  char *color;
   stack<sCarta *> cartasDelCentro;
   stack<sCarta *> pila;
+  sLista<sJugador *> *auxi1;
+  sLista<sJugador *> *auxi2;
   barajarMasoCartas(baraja, pila);
   repartir_cartas(jugadores, pila);
+  int numcarta = 0, ronda = 0, comecartas = 0;
+  bool bloqueo = false;
   cout << "                                             JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
   //imprimirListaJugadoresCarta<sJugador *, sCarta *>(jugadores);
-  /*do
+  do
   {
-    if (sentido == false)
+    auxi2 = jugadores;
+    while (sentido == false)
     {
-      while(jugadores != NULL){
+        bloqueo = false;
+        cout << "                                               JUGADOR " << auxi2->cab->dato->nombre << " ES SU TURNO " << endl;
+        cout << "                                               QUE CARTA QUIERE SACAR" << endl;
+        cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
 
-      }
+        while (auxi2->cab->dato->cartas->cab != NULL)
+        {
+          cout << "                                               Carta: " << auxi2->cab->dato->cartas->cab->dato->color << "     Valor: " << auxi2->cab->dato->cartas->cab->dato->valor << " Numero: " << auxi2->cab->dato->cartas->cab->dato->numero << endl;
+          auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
+        }
+        cout << "                                                                 " << endl;
+        cin >> numcarta;
+        while (auxi2->cab->dato->cartas->cab != NULL)
+        {
+          if (numcarta == auxi2->cab->dato->cartas->cab->dato->numero)
+          {
+            if (ronda == 0)
+            {
+              cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
+              color = auxi2->cab->dato->cartas->cab->dato->color;
+              delete auxi2->cab->dato->cartas->cab->dato;
+            }
+            else
+            {
+              if (auxi2->cab->dato->cartas->cab->dato->color == color)
+              {
+                if (auxi2->cab->dato->cartas->cab->dato->valor == "M2")
+                {
+                  comecartas = comecartas + 2;
+                }
+                if (auxi2->cab->dato->cartas->cab->dato->valor == "BQ")
+                {
+                  bloqueo = true;
+                }
+                if (auxi2->cab->dato->cartas->cab->dato->valor == "RT")
+                {
+                  sentido = true;
+                }
+              }
+              cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
+              delete auxi2->cab->dato->cartas->cab->dato;
+
+              if (auxi2->cab->dato->cartas->cab->dato->valor == "M4")
+              {
+                comecartas = comecartas + 4;
+              }
+              if (auxi2->cab->dato->cartas->cab->dato->color != color && auxi2->cab->dato->cartas->cab->dato->valor != "M4" && auxi2->cab->dato->cartas->cab->dato->valor != "CC" && auxi2->cab->dato->cartas->cab->dato->valor != "BQ")
+              {
+                cout << "                                               NO PUEDES PONER ESTA CAERTA, NO SON DEL MISMO COLOR" << endl;
+              }
+            }
+          }
+          ronda++;
+          auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
+        }
+        if(bloqueo == true){
+          auxi2->cab = auxi2->cab->sig;
+        }
+        auxi2->cab = auxi2->cab->sig;
     }
-    if (sentido == true)
+    while (sentido == true)
     {
     }
-  } while (ganador == false);*/
-
-  imprimirListaJugadoresCarta<sJugador *, sCarta *>(jugadores);
+  } while (ganador == false);
 }
 
 //Funcion barajar cartastot
