@@ -8,27 +8,6 @@ using namespace std;
 
 
 template <class T>
-bool listaVacia(sLista<T> *lista);
-/*Función encargada de definir si una lista está vacía. Para esto, la función recibe una lista.
-La función retorna una variable de tipo bool; true si está vacía y false si no está vacía.*/
-template <class T>
-void insertarNodo(sLista<T> *lista, T valor);
-/*Función encargada de insertar un nodo en la lista dada. Para esto, la función recibe una lista y 
-y el dato que contendrá el nodo. La función no retorna ningún elemento.*/
-template <class T>
-void imprimirListaCartas(sLista<T> *lista);
-/*Función que imprime la lista dada. Para esto, la función recibe una lista. 
-La función no retorna ningún elemento.*/
-template <class I>
-void imprimirListaJugadores(sLista<I> *lista);
-/*Función que imprime la lista dada. Para esto, la función recibe una lista. 
-La función no retorna ningún elemento.*/
-template <class X>
-void insertarNodoInicio(sLista<X> *lista, X persona);
-/*Función encargada de insertar un nodo al inicio de la lista dada. Para esto, la función recibe una lista y 
-y el dato que contendrá el nodo. La función no retorna ningún elemento.*/
-
-template <class T>
 sLista<T> *crearLista()
 {
   sLista<T> *lista = new sLista<T>;
