@@ -9,6 +9,7 @@
 #include <windows.h>
 #include <cstdlib>
 #include "lista.cpp"
+
 #include <stack>
 #include <queue>
 
@@ -73,7 +74,7 @@ void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila);
 void llenarJugadores(sLista<sJugador *> *jugadores, int numjug);
 
 //Validacion de numeros repetidos
-bool numerosRepetidos(int num, int repetidos[108], int tam);
+bool numerosRepetidos(int *arreglo, int num, int tam);
 
 //Estetica
 void advertencia();
@@ -413,65 +414,66 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
     auxi2 = jugadores;
     while (sentido == false)
     {
-        bloqueo = false;
-        cout << "                                               JUGADOR " << auxi2->cab->dato->nombre << " ES SU TURNO " << endl;
-        cout << "                                               QUE CARTA QUIERE SACAR" << endl;
-        cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
+      bloqueo = false;
+      cout << "                                               JUGADOR " << auxi2->cab->dato->nombre << " ES SU TURNO " << endl;
+      cout << "                                               QUE CARTA QUIERE SACAR" << endl;
+      cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
 
-        while (auxi2->cab->dato->cartas->cab != NULL)
+      while (auxi2->cab->dato->cartas->cab != NULL)
+      {
+        cout << "                                               Carta: " << auxi2->cab->dato->cartas->cab->dato->color << "     Valor: " << auxi2->cab->dato->cartas->cab->dato->valor << " Numero: " << auxi2->cab->dato->cartas->cab->dato->numero << endl;
+        auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
+      }
+      cout << "                                                                 " << endl;
+      cin >> numcarta;
+      while (auxi2->cab->dato->cartas->cab != NULL)
+      {
+        if (numcarta == auxi2->cab->dato->cartas->cab->dato->numero)
         {
-          cout << "                                               Carta: " << auxi2->cab->dato->cartas->cab->dato->color << "     Valor: " << auxi2->cab->dato->cartas->cab->dato->valor << " Numero: " << auxi2->cab->dato->cartas->cab->dato->numero << endl;
-          auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
-        }
-        cout << "                                                                 " << endl;
-        cin >> numcarta;
-        while (auxi2->cab->dato->cartas->cab != NULL)
-        {
-          if (numcarta == auxi2->cab->dato->cartas->cab->dato->numero)
+          if (ronda == 0)
           {
-            if (ronda == 0)
+            cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
+            color = auxi2->cab->dato->cartas->cab->dato->color;
+            delete auxi2->cab->dato->cartas->cab->dato;
+          }
+          else
+          {
+            if (auxi2->cab->dato->cartas->cab->dato->color == color)
             {
-              cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
-              color = auxi2->cab->dato->cartas->cab->dato->color;
-              delete auxi2->cab->dato->cartas->cab->dato;
+              if (auxi2->cab->dato->cartas->cab->dato->valor == "M2")
+              {
+                comecartas = comecartas + 2;
+              }
+              if (auxi2->cab->dato->cartas->cab->dato->valor == "BQ")
+              {
+                bloqueo = true;
+              }
+              if (auxi2->cab->dato->cartas->cab->dato->valor == "RT")
+              {
+                sentido = true;
+              }
             }
-            else
-            {
-              if (auxi2->cab->dato->cartas->cab->dato->color == color)
-              {
-                if (auxi2->cab->dato->cartas->cab->dato->valor == "M2")
-                {
-                  comecartas = comecartas + 2;
-                }
-                if (auxi2->cab->dato->cartas->cab->dato->valor == "BQ")
-                {
-                  bloqueo = true;
-                }
-                if (auxi2->cab->dato->cartas->cab->dato->valor == "RT")
-                {
-                  sentido = true;
-                }
-              }
-              cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
-              delete auxi2->cab->dato->cartas->cab->dato;
+            cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
+            delete auxi2->cab->dato->cartas->cab->dato;
 
-              if (auxi2->cab->dato->cartas->cab->dato->valor == "M4")
-              {
-                comecartas = comecartas + 4;
-              }
-              if (auxi2->cab->dato->cartas->cab->dato->color != color && auxi2->cab->dato->cartas->cab->dato->valor != "M4" && auxi2->cab->dato->cartas->cab->dato->valor != "CC" && auxi2->cab->dato->cartas->cab->dato->valor != "BQ")
-              {
-                cout << "                                               NO PUEDES PONER ESTA CAERTA, NO SON DEL MISMO COLOR" << endl;
-              }
+            if (auxi2->cab->dato->cartas->cab->dato->valor == "M4")
+            {
+              comecartas = comecartas + 4;
+            }
+            if (auxi2->cab->dato->cartas->cab->dato->color != color && auxi2->cab->dato->cartas->cab->dato->valor != "M4" && auxi2->cab->dato->cartas->cab->dato->valor != "CC" && auxi2->cab->dato->cartas->cab->dato->valor != "BQ")
+            {
+              cout << "                                               NO PUEDES PONER ESTA CAERTA, NO SON DEL MISMO COLOR" << endl;
             }
           }
-          ronda++;
-          auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
         }
-        if(bloqueo == true){
-          auxi2->cab = auxi2->cab->sig;
-        }
+        ronda++;
+        auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
+      }
+      if (bloqueo == true)
+      {
         auxi2->cab = auxi2->cab->sig;
+      }
+      auxi2->cab = auxi2->cab->sig;
     }
     while (sentido == true)
     {
@@ -480,11 +482,6 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
 }
 
 //Funcion barajar cartastot
-/*
-En esta funcion hay un pequeño bug de repetidos con el numero 108
-toca mirarlo super bien el por que repite el numero 108 4 veces 
-
-*/
 void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
 {
   cout << "                                             BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
@@ -492,66 +489,61 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
   cout << "                                             REPARTIENDO CARTAS A LOS JUGADORES" << endl;
   cout << endl;
   bool final = false;
-  bool repetido = true;
-  int repetidos[108];
-  int cartastot = 108;
-  int num = 0, i = 0;
   sNodo<sCarta *> *auxi;
   auxi = baraja->cab;
-  do
+  int numeros[108];
+  int num;
+  srand(time(NULL));
+  int insertados = 0;
+  bool repetido;
+  int cartastot = 108;
+
+  while (insertados != 108)
   {
-    if (i != 0)
+    num = rand() % 108;
+    repetido = numerosRepetidos(numeros, num, insertados);
+    if (repetido == false)
     {
-      num = rand() % cartastot;
-      while (repetido == true)
-      {
-        repetido = numerosRepetidos(num, repetidos, i);
-        if (repetido == true)
-        {
-          num = rand() % 108;
-        }
-      }
+      numeros[insertados] = num;
+      insertados++;
+      //cout<<num<<endl;
     }
-    if (i == 0)
+  }
+  int agregado = 0;
+  while (agregado != 108)
+  {
+    if (numeros[agregado] == auxi->dato->numero)
     {
-      num = rand() % cartastot;
+      pila.push(auxi->dato);
+      //cout  << "        cont pila = " << pila.top()->numero<< "        tam pila = " << pila.size() << endl;
+      agregado++;
+      auxi = baraja->cab;
     }
-
-    while (auxi != NULL)
+    else
     {
-      if (num == auxi->dato->numero)
-      {
-        repetidos[i];
-
-        pila.push(auxi->dato);
-        repetidos[i] = num;
-        i++;
-      }
       auxi = auxi->sig;
     }
-
-    auxi = baraja->cab;
-    cartastot = cartastot - 1;
-    repetido = true;
-    if (cartastot == 0)
-    {
-      final = true;
-    }
-  } while (final == false);
+  }
 }
 
 //Funcion que mira los numeros repetidos que saca el numero random
-bool numerosRepetidos(int num, int repetidos[108], int tam)
+bool numerosRepetidos(int *arreglo, int num, int tam)
 {
-  int op = 2;
-  for (int i = 0; i < tam; i++)
+  if (tam == 0)
   {
-    if (num == repetidos[i])
-    {
-      return true;
-    }
+    return false;
   }
-  return false;
+  else
+  {
+    for (int i = 0; i < tam; i++)
+    {
+      if (num == arreglo[i])
+      {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 //Funcion de repartir cartas
