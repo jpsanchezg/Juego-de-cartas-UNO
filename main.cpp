@@ -249,7 +249,6 @@ void llenarListaCartas(sLista<sCarta *> *baraja, int i, int u)
       default:
         break;
       };
-
       s = to_string(v);
       strcpy(carta->valor, s.c_str());
       carta->numero = i;
