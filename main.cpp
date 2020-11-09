@@ -72,6 +72,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
 void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila);
 void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila);
 void llenarJugadores(sLista<sJugador *> *jugadores, int numjug);
+void comerCartasJugador(sLista<sJugador *> *jugadores, stack<sCarta *> &pila, int cartasAcomer);
 
 //Validacion de numeros repetidos
 bool numerosRepetidos(int *arreglo, int num, int tam);
@@ -405,80 +406,123 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   sLista<sJugador *> *auxi2;
   barajarMasoCartas(baraja, pila);
   repartir_cartas(jugadores, pila);
-  int numcarta = 0, ronda = 0, comecartas = 0;
+  int numcarta = 0, cartasCentro = 0, comecartas = 0;
   bool bloqueo = false;
-  cout << "                                             JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
+  bool aceptada = false;
+  int opcc = 0;
+  cout << "                                                JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
   //imprimirListaJugadoresCarta<sJugador *, sCarta *>(jugadores);
+  auxi2 = jugadores;
   do
   {
-    auxi2 = jugadores;
-    while (sentido == false)
+    bloqueo = false;
+    aceptada = false;
+    do
     {
-      bloqueo = false;
-      cout << "                                               JUGADOR " << auxi2->cab->dato->nombre << " ES SU TURNO " << endl;
-      cout << "                                               QUE CARTA QUIERE SACAR" << endl;
-      cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
-
-      while (auxi2->cab->dato->cartas->cab != NULL)
+      aceptada = false;
+      while (auxi2->cab != NULL)
       {
-        cout << "                                               Carta: " << auxi2->cab->dato->cartas->cab->dato->color << "     Valor: " << auxi2->cab->dato->cartas->cab->dato->valor << " Numero: " << auxi2->cab->dato->cartas->cab->dato->numero << endl;
-        auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
-      }
-      cout << "                                                                 " << endl;
-      cin >> numcarta;
-      while (auxi2->cab->dato->cartas->cab != NULL)
-      {
-        if (numcarta == auxi2->cab->dato->cartas->cab->dato->numero)
+        cout << "                                               JUGADOR " << auxi2->cab->dato->nombre << " ES SU TURNO " << endl;
+        cout << "                                               QUE CARTA QUIERE SACAR" << endl;
+        cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
+        do
         {
-          if (ronda == 0)
+          while (auxi2->cab->dato->cartas->cab != NULL)
           {
-            cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
-            color = auxi2->cab->dato->cartas->cab->dato->color;
-            delete auxi2->cab->dato->cartas->cab->dato;
+            cout << "                                               Carta: " << auxi2->cab->dato->cartas->cab->dato->color << "     Valor: " << auxi2->cab->dato->cartas->cab->dato->valor << " Numero: " << auxi2->cab->dato->cartas->cab->dato->numero << endl;
+            auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
           }
-          else
+          cout << "                                                  CARTA QUE VAS A SACAR ES: ";
+          cin >> numcarta;
+
+          while (auxi2->cab->dato->cartas->cab != NULL)
           {
-            if (auxi2->cab->dato->cartas->cab->dato->color == color)
+            if (numcarta == auxi2->cab->dato->cartas->cab->dato->numero)
             {
-              if (auxi2->cab->dato->cartas->cab->dato->valor == "M2")
+              if (cartasCentro == 0)
               {
-                comecartas = comecartas + 2;
+                color = auxi2->cab->dato->cartas->cab->dato->color;
               }
-              if (auxi2->cab->dato->cartas->cab->dato->valor == "BQ")
+              if (auxi2->cab->dato->cartas->cab->dato->valor == "CC")
               {
-                bloqueo = true;
+                cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
+                cout << "                                               [1] ROJO" << endl;
+                cout << "                                               [2] AMARILLO" << endl;
+                cout << "                                               [3] AZUL" << endl;
+                cout << "                                               [4] VERDE" << endl;
+                cout << "                                               ESCOGE UNA OPCION:";
+                cin >> opcc;
+                if (opcc == 1)
+                {
+                  strcpy(color,"Rojo");
+                }
+                if (opcc == 2)
+                {
+                  strcpy(color,"Amarillo");
+                }
+                if (opcc == 3)
+                {
+                  strcpy(color,"Azul");
+                }
+                if (opcc == 4)
+                {
+                  strcpy(color,"Verde");
+                }
+              }
+              if (auxi2->cab->dato->cartas->cab->dato->color == color)
+              {
+                if (auxi2->cab->dato->cartas->cab->dato->valor == "M2")
+                {
+                  comecartas = comecartas + 2;
+                  comerCartasJugador(jugadores, pila,comecartas);
+                }
+              }
+              if (auxi2->cab->dato->cartas->cab->dato->valor == "M4")
+              {
+                comecartas = comecartas + 4;
+                comerCartasJugador(jugadores, pila,comecartas);
+              }
+              if (auxi2->cab->dato->cartas->cab->dato->color == color)
+              {
+                cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
+                delete auxi2->cab->dato->cartas->cab->dato;
+                aceptada = true;
+              }
+              if (auxi2->cab->dato->cartas->cab->dato->color != color)
+              {
+                cout << "                                               NO PUEDES PONER ESTA CARTA YA QUE NO ES DEL MISMO COLOR ESCOGE OTRA" << endl;
               }
               if (auxi2->cab->dato->cartas->cab->dato->valor == "RT")
               {
-                sentido = true;
+                if (sentido == false)
+                {
+                  cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
+                  delete auxi2->cab->dato->cartas->cab->dato;
+                  sentido = true;
+                  aceptada = true;
+                }
+                if (sentido == true)
+                {
+                  cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
+                  delete auxi2->cab->dato->cartas->cab->dato;
+                  sentido = false;
+                  aceptada = true;
+                }
               }
             }
-            cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
-            delete auxi2->cab->dato->cartas->cab->dato;
-
-            if (auxi2->cab->dato->cartas->cab->dato->valor == "M4")
-            {
-              comecartas = comecartas + 4;
-            }
-            if (auxi2->cab->dato->cartas->cab->dato->color != color && auxi2->cab->dato->cartas->cab->dato->valor != "M4" && auxi2->cab->dato->cartas->cab->dato->valor != "CC" && auxi2->cab->dato->cartas->cab->dato->valor != "BQ")
-            {
-              cout << "                                               NO PUEDES PONER ESTA CAERTA, NO SON DEL MISMO COLOR" << endl;
-            }
           }
-        }
-        ronda++;
-        auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
-      }
-      if (bloqueo == true)
-      {
+        }while (aceptada == false);
         auxi2->cab = auxi2->cab->sig;
       }
-      auxi2->cab = auxi2->cab->sig;
-    }
-    while (sentido == true)
-    {
-    }
-  } while (ganador == false);
+    } while (sentido == false);
+    cout<<"LA CARTA QUE ESTA EN EL CENTRO ES: "<<" COLOR: "<<cartasDelCentro.top()->color<<"VALOR: "<<cartasDelCentro.top()->valor<<endl;
+
+  } while (ganador != true);
+}
+
+//Funcion de comer cartas
+void comerCartasJugador(sLista<sJugador *> *jugadores, stack<sCarta *> &pila, int cartasAcomer)
+{
 }
 
 //Funcion barajar cartastot
