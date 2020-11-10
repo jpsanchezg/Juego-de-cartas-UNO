@@ -127,3 +127,15 @@ void insertarNodoFinal(sLista<X> *lista, X valor)
   sNodo<X> *nodo = crearNodo(valor);
   sNodo<X> *aux = lista->cab;
 }
+
+template<typename T>
+void imprimirCartasJugador(sLista<T> *auxi2)
+{
+  sNodo<T> *cartas;
+  cartas = auxi2->cab;
+  while (cartas != NULL)
+  {
+    cout << "                                               Carta: " << cartas->dato->color << "     Valor: " << cartas->dato->valor << " Numero: " << cartas->dato->numero << endl;
+    cartas = cartas->sig;
+  }
+}

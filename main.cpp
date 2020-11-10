@@ -73,6 +73,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila);
 void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila);
 void llenarJugadores(sLista<sJugador *> *jugadores, int numjug);
 void comerCartasJugador(sLista<sJugador *> *jugadores, stack<sCarta *> &pila, int cartasAcomer);
+void imprimirCartasJugador(sLista<sJugador *> *auxi2);
 
 //Validacion de numeros repetidos
 bool numerosRepetidos(int *arreglo, int num, int tam);
@@ -403,7 +404,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   stack<sCarta *> cartasDelCentro;
   stack<sCarta *> pila;
   sLista<sJugador *> *auxi1;
-  sLista<sJugador *> *auxi2;
+  sLista<sCarta *> *auxi2;
   barajarMasoCartas(baraja, pila);
   repartir_cartas(jugadores, pila);
   int numcarta = 0, cartasCentro = 0, comecartas = 0;
@@ -412,7 +413,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   int opcc = 0;
   cout << "                                                JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
   //imprimirListaJugadoresCarta<sJugador *, sCarta *>(jugadores);
-  auxi2 = jugadores;
+  //auxi2 = jugadores;
   do
   {
     bloqueo = false;
@@ -420,30 +421,42 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
     do
     {
       aceptada = false;
-      while (auxi2->cab != NULL)
+      while (jugadores->cab != NULL)
       {
-        cout << "                                               JUGADOR " << auxi2->cab->dato->nombre << " ES SU TURNO " << endl;
+        cout << "                                               JUGADOR " << jugadores->cab->dato->nombre << " ES SU TURNO " << endl;
         cout << "                                               QUE CARTA QUIERE SACAR" << endl;
         cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
+        if (jugadores->cab->dato->cartas->cab == NULL)
+        {
+          cout << "hello theresssss  " << jugadores->cab->dato->cartas->cab->dato->color << endl;
+        }
+        auxi2 = jugadores->cab->dato->cartas;
+        imprimirCartasJugador<sCarta *>(auxi2);
+        if (jugadores->cab->dato->cartas->cab == NULL)
+        {
+          cout << "hello there" << endl;
+          cout<<endl;
+        }
+        imprimirCartasJugador<sCarta *>(auxi2);
         do
         {
-          while (auxi2->cab->dato->cartas->cab != NULL)
-          {
-            cout << "                                               Carta: " << auxi2->cab->dato->cartas->cab->dato->color << "     Valor: " << auxi2->cab->dato->cartas->cab->dato->valor << " Numero: " << auxi2->cab->dato->cartas->cab->dato->numero << endl;
-            auxi2->cab->dato->cartas->cab = auxi2->cab->dato->cartas->cab->sig;
-          }
           cout << "                                                  CARTA QUE VAS A SACAR ES: ";
           cin >> numcarta;
-
-          while (auxi2->cab->dato->cartas->cab != NULL)
+          if (jugadores->cab->dato->cartas->cab == NULL)
           {
-            if (numcarta == auxi2->cab->dato->cartas->cab->dato->numero)
+            cout << "hello there" << endl;
+          }
+          while (jugadores->cab->dato->cartas->cab != NULL)
+          {
+            cout << "aca entre yo" << endl;
+            if (numcarta == jugadores->cab->dato->cartas->cab->dato->numero)
             {
               if (cartasCentro == 0)
               {
-                color = auxi2->cab->dato->cartas->cab->dato->color;
+                color = jugadores->cab->dato->cartas->cab->dato->color;
+                aceptada = true;
               }
-              if (auxi2->cab->dato->cartas->cab->dato->valor == "CC")
+              if (jugadores->cab->dato->cartas->cab->dato->valor == "CC")
               {
                 cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
                 cout << "                                               [1] ROJO" << endl;
@@ -454,68 +467,71 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                 cin >> opcc;
                 if (opcc == 1)
                 {
-                  strcpy(color,"Rojo");
+                  strcpy(color, "Rojo");
                 }
                 if (opcc == 2)
                 {
-                  strcpy(color,"Amarillo");
+                  strcpy(color, "Amarillo");
                 }
                 if (opcc == 3)
                 {
-                  strcpy(color,"Azul");
+                  strcpy(color, "Azul");
                 }
                 if (opcc == 4)
                 {
-                  strcpy(color,"Verde");
+                  strcpy(color, "Verde");
                 }
               }
-              if (auxi2->cab->dato->cartas->cab->dato->color == color)
+              if (jugadores->cab->dato->cartas->cab->dato->color == color)
               {
-                if (auxi2->cab->dato->cartas->cab->dato->valor == "M2")
+                if (jugadores->cab->dato->cartas->cab->dato->valor == "M2")
                 {
                   comecartas = comecartas + 2;
-                  comerCartasJugador(jugadores, pila,comecartas);
+                  comerCartasJugador(jugadores, pila, comecartas);
                 }
               }
-              if (auxi2->cab->dato->cartas->cab->dato->valor == "M4")
+              if (jugadores->cab->dato->cartas->cab->dato->valor == "M4")
               {
                 comecartas = comecartas + 4;
-                comerCartasJugador(jugadores, pila,comecartas);
+                comerCartasJugador(jugadores, pila, comecartas);
               }
-              if (auxi2->cab->dato->cartas->cab->dato->color == color)
+              if (jugadores->cab->dato->cartas->cab->dato->color == color)
               {
-                cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
-                delete auxi2->cab->dato->cartas->cab->dato;
+                cartasDelCentro.push(jugadores->cab->dato->cartas->cab->dato);
+                delete jugadores->cab->dato->cartas->cab->dato;
                 aceptada = true;
               }
-              if (auxi2->cab->dato->cartas->cab->dato->color != color)
+              if (jugadores->cab->dato->cartas->cab->dato->color != color)
               {
                 cout << "                                               NO PUEDES PONER ESTA CARTA YA QUE NO ES DEL MISMO COLOR ESCOGE OTRA" << endl;
               }
-              if (auxi2->cab->dato->cartas->cab->dato->valor == "RT")
+              if (jugadores->cab->dato->cartas->cab->dato->valor == "RT")
               {
                 if (sentido == false)
                 {
-                  cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
-                  delete auxi2->cab->dato->cartas->cab->dato;
+                  cartasDelCentro.push(jugadores->cab->dato->cartas->cab->dato);
+                  delete jugadores->cab->dato->cartas->cab->dato;
                   sentido = true;
                   aceptada = true;
                 }
                 if (sentido == true)
                 {
-                  cartasDelCentro.push(auxi2->cab->dato->cartas->cab->dato);
-                  delete auxi2->cab->dato->cartas->cab->dato;
+                  cartasDelCentro.push(jugadores->cab->dato->cartas->cab->dato);
+                  delete jugadores->cab->dato->cartas->cab->dato;
                   sentido = false;
                   aceptada = true;
                 }
               }
             }
           }
-        }while (aceptada == false);
-        auxi2->cab = auxi2->cab->sig;
+        } while (aceptada == false);
+        cartasCentro++;
+        jugadores->cab = jugadores->cab->sig;
       }
+      cout << sentido << endl;
     } while (sentido == false);
-    cout<<"LA CARTA QUE ESTA EN EL CENTRO ES: "<<" COLOR: "<<cartasDelCentro.top()->color<<"VALOR: "<<cartasDelCentro.top()->valor<<endl;
+    cout << "LA CARTA QUE ESTA EN EL CENTRO ES: "
+         << " COLOR: " << cartasDelCentro.top()->color << "VALOR: " << cartasDelCentro.top()->valor << endl;
 
   } while (ganador != true);
 }
