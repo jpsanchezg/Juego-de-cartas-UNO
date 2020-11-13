@@ -119,6 +119,7 @@ void insertarNodojugador(sLista<V> *lista, V valor)
   if (lista->cab != NULL)
     lista->cab->atrs = new_node;
   lista->cab = new_node;
+  lista->cola = new_node;
 }
 
 template <typename X>
