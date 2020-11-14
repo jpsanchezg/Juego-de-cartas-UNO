@@ -530,31 +530,31 @@ void comerCartasJugador(sLista<sJugador *> *jugadores, stack<sCarta *> &pila, in
 bool validarjugadas(sLista<sJugador *> *jugadores, stack<sCarta *> &cartasCentro)
 {
 }
+
+//Funcion de eliminar carta
 void eliminarCarta(sLista<sCarta *> *&cartasJug, int numcarta)
 {
-  sLista<sCarta *> *aux;
-  aux = cartasJug;
-  while (aux->cab != NULL)
+  if (cartasJug->cab != NULL)
   {
-    cout << "hellothere" << endl;
-    if (aux->cab->dato->numero == numcarta)
+    sNodo<sCarta *> *auxborrar;
+    sNodo<sCarta *> *ante = NULL;
+    auxborrar = cartasJug->cab;
+    while ((auxborrar != NULL) && (auxborrar->dato->numero != numcarta))
     {
-      cout << " la carta se va a eliminar y luego se va a imprimir dicha lista ok broaso" << endl;
-      delete aux->cab->dato;
+      ante = auxborrar;
+      auxborrar = auxborrar->sig;
     }
-    aux->cab = aux->cab->sig;
+    if (ante == NULL)
+    {
+      cartasJug->cab = cartasJug->cab->sig;
+      delete auxborrar;
+    }
+    else
+    {
+      ante->sig = auxborrar->sig;
+      delete auxborrar;
+    }
   }
-  //cartasJug = aux;
-  if(aux->cab == NULL)
-  {
-    cout<<"la lista quedo vacia"<<endl;
-  }
-  cout << endl;
-  cout << endl;
-  cout << " IMPRIMIENDO CARTAS NUEVAS CON LA ELIMINADA OK BRO" << endl;
-  cout << endl;
-  cout << endl;
-  imprimirCartasJugador<sCarta *>(cartasJug);
 }
 
 //Funcion barajar cartastot
