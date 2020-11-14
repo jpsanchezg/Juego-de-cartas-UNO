@@ -548,6 +548,8 @@ void comerCartasJugador(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila
     }
   }
 }
+
+//Funcion validar jugadas
 bool validarjugadas(sLista<sJugador *> *jugadores, stack<sCarta *> &cartasCentro)
 {
   return false;
