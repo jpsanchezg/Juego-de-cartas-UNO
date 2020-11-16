@@ -10,10 +10,8 @@
 #include <cstdlib>
 #include "lista.cpp"
 
-
 #include <queue>
 #include <stack>
-
 
 using namespace std;
 
@@ -76,10 +74,9 @@ void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila);
 void llenarJugadores(sLista<sJugador *> *jugadores, int numjug);
 void comerCartasJugador(sLista<sCarta *> *jugadores, stack<sCarta *> &pila, int cartasAcomer);
 void imprimirCartasJugador(sLista<sJugador *> *auxi2);
-bool validarjugadas(sLista<sJugador *> *jugadores, stack<sCarta *> &cartasCentro);
+bool validarjugadas(sNodo<sCarta *> *cartaJugadores, char *color);
 void eliminarCarta(sLista<sCarta *> *&cartasJug, int numcarta);
 sNodo<sCarta *> *BuscarCartas(sLista<sCarta *> *auxi2, int numcarta);
-void eliminarcartadelalista(sNodo<sCarta *> *cartas, sLista<sCarta *> *&auxi2);
 
 //Validacion de numeros repetidos
 bool numerosRepetidos(int *arreglo, int num, int tam);
@@ -393,6 +390,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   cout << "                                             SE VAN A REPARTIR LAS CARTAS" << endl;
 
   bool ganador = false;
+  bool cartavalidada;
   bool sentido = false; // si el sentido es FALSE va a la derecha si es TRUE va a la izquierda
   char *color;
   stack<sCarta *> cartasDelCentro;
@@ -407,6 +405,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   bool aceptada = false;
   int opcc = 0;
   char *colordelacartajugador;
+  int opcart = 0;
   cout << "                                                JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
   do
   {
@@ -429,36 +428,216 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
         cout << "                                               JUGADOR " << auxi1->cab->dato->nombre << " ES SU TURNO " << endl;
         cout << "                                               QUE CARTA QUIERE SACAR" << endl;
         cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
-
-        imprimirCartasJugador<sCarta *>(auxi1->cab->dato->cartas);
+        cout << endl;
+        cout << "                                                SI NO TIENES CARTAS PON EL 109 PARA SACAR UNA CARTA DE LA BARAJA DE CARTAS" << endl;
+        cout << endl;
         do
         {
+          imprimirCartasJugador<sCarta *>(auxi1->cab->dato->cartas);
           cout << "                                                  CARTA QUE VAS A SACAR ES: ";
           cin >> numcarta;
           //auxi1->cab->dato->cartas->cab = jugadores->cab->dato->cartas->cab;
-          cartajug = BuscarCartas(auxi1->cab->dato->cartas, numcarta);
-          cout << cartajug->dato->color << endl;
-          colordelacartajugador = cartajug->dato->color;
-          if (cartasCentro == 0)
-          {
-            cartasDelCentro.push(cartajug->dato);
-            eliminarCarta(auxi1->cab->dato->cartas, numcarta);
-            imprimirCartasJugador<sCarta *>(auxi1->cab->dato->cartas);
-            color = cartajug->dato->color;
-            cout << color << endl;
-            
-            aceptada = true;
 
-          }
-          if (cartasCentro > 0)
+          if (numcarta == 109)
           {
-            if (strcmp(colordelacartajugador, color) == 0)
+            comerCartasJugador(auxi1->cab->dato->cartas, pila, 1);
+          }
+          else
+          {
+            cartajug = BuscarCartas(auxi1->cab->dato->cartas, numcarta);
+            colordelacartajugador = cartajug->dato->color;
+            if (cartasCentro == 0)
             {
-              cartasDelCentro.push(cartajug->dato);
-              eliminarCarta(auxi1->cab->dato->cartas, numcarta);
-              //eliminarcartadelalista(cartajug, auxi1->cab->dato->cartas);
-              imprimirCartasJugador<sCarta *>(auxi1->cab->dato->cartas);
-              aceptada = true;
+              if (cartajug->dato->valor == "CC")
+              {
+                cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
+                cout << "                                               [1] ROJO" << endl;
+                cout << "                                               [2] AMARILLO" << endl;
+                cout << "                                               [3] AZUL" << endl;
+                cout << "                                               [4] VERDE" << endl;
+                cout << "                                               ESCOGE UNA OPCION:";
+                cin >> opcc;
+                switch (opcc)
+                {
+                case 1:
+                  strcpy(color, "Rojo");
+                  cartajug->dato->color = color;
+                  break;
+
+                case 2:
+                  strcpy(color, "Amarillo");
+                  cartajug->dato->color = color;
+                  break;
+
+                case 3:
+                  strcpy(color, "Azul");
+                  cartajug->dato->color = color;
+                  break;
+
+                case 4:
+                  strcpy(color, "Verde");
+                  cartajug->dato->color = color;
+                  break;
+                }
+                cartasDelCentro.push(cartajug->dato);
+                eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                aceptada = true;
+              }
+              if (cartajug->dato->valor == "M2")
+              {
+                color = cartajug->dato->color;
+                cartasDelCentro.push(cartajug->dato);
+                eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                auxi1->cab = auxi1->cab->sig;
+                cout<<auxi1->cab->sig<<endl;
+                comecartas = 2;
+                comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                aceptada = true;
+              }
+              if (cartajug->dato->valor >= 0)
+              {
+                cartasDelCentro.push(cartajug->dato);
+                eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                color = cartajug->dato->color;
+                aceptada = true;
+              }
+            }
+            if (cartasCentro > 0)
+            {
+              cout<<endl;
+              cout<<"VALOR DE LA CARTAS ES: "<<cartajug->dato->valor<<endl;
+              if (cartajug->dato->valor == "CC")
+              {
+                cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
+                cout << "                                               [1] ROJO" << endl;
+                cout << "                                               [2] AMARILLO" << endl;
+                cout << "                                               [3] AZUL" << endl;
+                cout << "                                               [4] VERDE" << endl;
+                cout << "                                               ESCOGE UNA OPCION:";
+                cin >> opcc;
+                switch (opcc)
+                {
+                case 1:
+                  strcpy(color, "Rojo");
+                  cartajug->dato->color = color;
+                  break;
+
+                case 2:
+                  strcpy(color, "Amarillo");
+                  cartajug->dato->color = color;
+                  break;
+
+                case 3:
+                  strcpy(color, "Azul");
+                  cartajug->dato->color = color;
+                  break;
+
+                case 4:
+                  strcpy(color, "Verde");
+                  cartajug->dato->color = color;
+                  break;
+                }
+                cartasDelCentro.push(cartajug->dato);
+                eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+              }
+              cartavalidada = validarjugadas(cartajug, color);
+              if (cartavalidada == true)
+              {
+                if (cartajug->dato->valor == "RT")
+                {
+                  if (!sentido)
+                  {
+                    cartasDelCentro.push(cartajug->dato);
+                    eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                    sentido = true;
+                    aceptada = true;
+                  }
+                  if (sentido)
+                  {
+                    cartasDelCentro.push(cartajug->dato);
+                    eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                    sentido = false;
+                    aceptada = true;
+                  }
+                }
+                if (cartajug->dato->valor == "M2")
+                {
+                  cartasDelCentro.push(cartajug->dato);
+                  eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                  auxi1->cab = auxi1->cab->sig;
+                  comecartas = 2;
+                  comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                  aceptada = true;
+                }
+                if (cartajug->dato->valor >= 0)
+                {
+                  cartasDelCentro.push(cartajug->dato);
+                  eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                  aceptada = true;
+                }
+              }
+
+              if (cartajug->dato->valor == "M4")
+              {
+                cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
+                cout << "                                               [1] ROJO" << endl;
+                cout << "                                               [2] AMARILLO" << endl;
+                cout << "                                               [3] AZUL" << endl;
+                cout << "                                               [4] VERDE" << endl;
+                cout << "                                               ESCOGE UNA OPCION:";
+                cin >> opcc;
+                switch (opcc)
+                {
+                case 1:
+                  strcpy(color, "Rojo");
+                  cartajug->dato->color = color;
+                  cartasDelCentro.push(cartajug->dato);
+                  eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                  auxi1->cab = auxi1->cab->sig;
+                  comecartas = 2;
+                  comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                  aceptada = true;
+                  break;
+
+                case 2:
+                  strcpy(color, "Amarillo");
+                  cartajug->dato->color = color;
+                  cartasDelCentro.push(cartajug->dato);
+                  eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                  auxi1->cab = auxi1->cab->sig;
+                  comecartas = 2;
+                  comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                  aceptada = true;
+                  break;
+
+                case 3:
+                  strcpy(color, "Azul");
+                  cartajug->dato->color = color;
+                  cartasDelCentro.push(cartajug->dato);
+                  eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                  auxi1->cab = auxi1->cab->sig;
+                  comecartas = 2;
+                  comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                  aceptada = true;
+                  break;
+
+                case 4:
+                  strcpy(color, "Verde");
+                  cartajug->dato->color = color;
+                  cartasDelCentro.push(cartajug->dato);
+                  eliminarCarta(auxi1->cab->dato->cartas, numcarta);
+                  auxi1->cab = auxi1->cab->sig;
+                  comecartas = 2;
+                  comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                  aceptada = true;
+                  break;
+                }
+              }
+
+              else
+              {
+                cout << "la carta es invalida por el color que tomaste escoge otra...." << endl;
+              }
             }
           }
 
@@ -541,34 +720,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                 aceptada = true;
               }
               
-              if (auxi1->cab->dato->cartas->cab->dato->valor == "CC")
-              {
-                cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
-                cout << "                                               [1] ROJO" << endl;
-                cout << "                                               [2] AMARILLO" << endl;
-                cout << "                                               [3] AZUL" << endl;
-                cout << "                                               [4] VERDE" << endl;
-                cout << "                                               ESCOGE UNA OPCION:";
-                cin >> opcc;
-                switch (opcc)
-                {
-                case 1:
-                  strcpy(color, "Rojo");
-                  break;
-
-                case 2:
-                  strcpy(color, "Amarillo");
-                  break;
-
-                case 3:
-                  strcpy(color, "Azul");
-                  break;
-
-                case 4:
-                  strcpy(color, "Verde");
-                  break;
-                }
-              }
+              
         }
         auxi1->cab->dato->cartas->cab = auxi1->cab->dato->cartas->cab->sig;
       
@@ -612,32 +764,36 @@ void comerCartasJugador(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila
 }
 
 //Funcion validar jugadas
-bool validarjugadas(sLista<sJugador *> *jugadores, stack<sCarta *> &cartasCentro)
+bool validarjugadas(sNodo<sCarta *> *cartaJugadores, char *color)
 {
-  return false;
+  if (strcmp(cartaJugadores->dato->color, color) == 0)
+  {
+    return true;
+  }
+  else
+  {
+    return false;
+  }
 }
 
 //Funcion de eliminar carta del jugador
 void eliminarCarta(sLista<sCarta *> *&cartasJug, int numcarta)
 {
-  cout<<"hello there 5453453"<<endl;
   sNodo<sCarta *> *temp;
   temp = cartasJug->cab;
-  if(cartasJug->cab->dato->numero == numcarta){
+  if (cartasJug->cab->dato->numero == numcarta)
+  {
     cartasJug->cab = cartasJug->cab->sig;
-    cout<<"hello there"<<endl;
-    delete(temp);
-
+    delete (temp);
   }
-  else{
-    cout<<"hello there 2"<<endl;
-    while((temp->sig)->dato->numero != numcarta){
-      cout<<"hello there 3"<<endl;
+  else
+  {
+    while ((temp->sig)->dato->numero != numcarta)
+    {
       temp = temp->sig;
     }
-    cout<<"hello there 5"<<endl;
-    delete(temp->sig);
-    temp->sig =(temp->sig)->sig;
+    delete (temp->sig);
+    temp->sig = (temp->sig)->sig;
   }
 }
 
@@ -747,21 +903,4 @@ sNodo<sCarta *> *BuscarCartas(sLista<sCarta *> *auxi2, int numcarta)
     cartas = cartas->sig;
   }
   return NULL;
-}
-void eliminarcartadelalista(sNodo<sCarta *> *cartas, sLista<sCarta *> *&auxi2)
-{
-  sNodo<sCarta *> *carta = auxi2->cab;
-  while (carta != NULL)
-  {
-    if (cartas->dato->numero == carta->dato->numero)
-    {
-      cout<<"yo eentre aca"<<endl;
-      
-      auxi2->tam--;
-    }
-    carta = carta->sig;
-  }
-  auxi2->cab = carta;
-  imprimirCartasJugador<sCarta *>(auxi2);
-  
 }
