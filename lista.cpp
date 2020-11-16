@@ -98,9 +98,10 @@ void imprimirListaJugadoresColas(sLista<T> *lista)
 {
   sNodo<T> *aux;
   sNodo<T> *aux2 = lista->cab;
-  while(aux2 != NULL){
-    aux=aux2;
-    aux2=aux2->sig;
+  while (aux2 != NULL)
+  {
+    aux = aux2;
+    aux2 = aux2->sig;
   }
   while (aux != NULL)
   {
@@ -129,7 +130,7 @@ void insertarNodoFinal(sLista<X> *lista, X valor)
   sNodo<X> *aux = lista->cab;
 }
 
-template<typename T>
+template <typename T>
 void imprimirCartasJugador(sLista<T> *auxi2)
 {
   sNodo<T> *cartas;
@@ -140,3 +141,4 @@ void imprimirCartasJugador(sLista<T> *auxi2)
     cartas = cartas->sig;
   }
 }
+
