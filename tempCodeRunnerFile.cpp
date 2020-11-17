@@ -1,1 +1,1 @@
-colordelacartajugador
+BuscarSiguienteJugador

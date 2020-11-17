@@ -76,8 +76,9 @@ void comerCartasJugador(sLista<sCarta *> *jugadores, stack<sCarta *> &pila, int 
 void imprimirCartasJugador(sLista<sJugador *> *auxi2);
 bool validarjugadas(sNodo<sCarta *> *cartaJugadores, char *color);
 void eliminarCarta(sLista<sCarta *> *&cartasJug, int numcarta);
-sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug, char *color);
+sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug);
 sNodo<sCarta *> *BuscarCartas(sLista<sCarta *> *auxi2, int numcarta);
+sNodo<sJugador *> *BuscarSiguienteJugador(sLista<sJugador *> *&jugadores);
 
 //Validacion de numeros repetidos
 bool numerosRepetidos(int *arreglo, int num, int tam);
@@ -399,9 +400,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   sLista<sJugador *> *auxi1;
   sLista<sCarta *> *auxi2;
   sNodo<sCarta *> *cartajug;
+  sNodo<sJugador *> *Nodojugador;
   barajarMasoCartas(baraja, pila);
   repartir_cartas(jugadores, pila);
-  cout << "tam de la baraja de cartas a tomar es: " << pila.size() << endl;
   int numcarta = 0, cartasCentro = 0, comecartas = 0;
   bool bloqueo = false;
   bool aceptada = false;
@@ -455,9 +456,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
             {
               if (strcmp(cartajug->dato->valor, "CC") == 0)
               {
-                cartajug = CambioDeColor(cartajug, color);
+                cartajug = CambioDeColor(cartajug);
+                color = cartajug->dato->color;
                 cartasDelCentro.push(cartajug->dato);
-                cout << "hello there " << endl;
                 eliminarCarta(auxi1->cab->dato->cartas, numcarta);
                 aceptada = true;
               }
@@ -466,23 +467,24 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                 color = cartajug->dato->color;
                 cartasDelCentro.push(cartajug->dato);
                 eliminarCarta(auxi1->cab->dato->cartas, numcarta);
-                auxi1->cab = auxi1->cab->sig;
-                cout << auxi1->cab->dato->nombre << endl;
                 comecartas = 2;
-                comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                Nodojugador = BuscarSiguienteJugador(auxi1);
+                comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                 aceptada = true;
               }
               if (strcmp(cartajug->dato->valor, "M4") == 0)
               {
-                cartajug = CambioDeColor(cartajug, color);
+                cartajug = CambioDeColor(cartajug);
+                color = cartajug->dato->color;
                 cartasDelCentro.push(cartajug->dato);
                 eliminarCarta(auxi1->cab->dato->cartas, numcarta);
-                auxi1->cab = auxi1->cab->sig;
+                //auxi1->cab = auxi1->cab->sig->dato-;
                 comecartas = 4;
-                comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                Nodojugador = BuscarSiguienteJugador(auxi1);
+                comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                 aceptada = true;
               }
-              if (cartajug->dato->valor >= 0)
+              if (!aceptada)
               {
                 cartasDelCentro.push(cartajug->dato);
                 eliminarCarta(auxi1->cab->dato->cartas, numcarta);
@@ -518,9 +520,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                 {
                   cartasDelCentro.push(cartajug->dato);
                   eliminarCarta(auxi1->cab->dato->cartas, numcarta);
-                  auxi1->cab = auxi1->cab->sig;
                   comecartas = 2;
-                  comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                  Nodojugador = BuscarSiguienteJugador(auxi1);
+                  comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                   aceptada = true;
                 }
                 cartasDelCentro.push(cartajug->dato);
@@ -530,24 +532,22 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
 
               if (strcmp(cartajug->dato->valor, "CC") == 0)
               {
-                cartajug = CambioDeColor(cartajug, color);
-                cout << "el color que eleji fue: " << cartajug->dato->color << endl;
+                cartajug = CambioDeColor(cartajug);
+                strcpy(color, cartajug->dato->color);
                 cartasDelCentro.push(cartajug->dato);
-                cout << "El tama del centro es: " << cartasDelCentro.size() << endl;
                 eliminarCarta(auxi1->cab->dato->cartas, numcarta);
-                cout << "aca se esta rompiendo" << endl;
                 aceptada = true;
               }
 
               if (strcmp(cartajug->dato->valor, "M4") == 0)
               {
-                cartajug = CambioDeColor(cartajug, color);
-                cout << "hola como estas" << endl;
+                cartajug = CambioDeColor(cartajug);
+                color = cartajug->dato->color;
                 cartasDelCentro.push(cartajug->dato);
                 eliminarCarta(auxi1->cab->dato->cartas, numcarta);
-                auxi1->cab = auxi1->cab->sig;
                 comecartas = 4;
-                comerCartasJugador(auxi1->cab->dato->cartas, pila, comecartas);
+                Nodojugador = BuscarSiguienteJugador(auxi1);
+                comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                 aceptada = true;
               }
               if (!cartavalidada && !aceptada)
@@ -558,10 +558,10 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
           }
         } while (!aceptada);
 
-        auxi1->cab = auxi1->cab->sig;
         cout << "                                               LA CARTA QUE ESTA EN EL CENTRO ES: "
              << " COLOR: " << cartasDelCentro.top()->color << " VALOR: " << cartasDelCentro.top()->valor << " taman: " << cartasDelCentro.size() << endl;
         cout << endl;
+        auxi1->cab = auxi1->cab->sig;
         cartasCentro++;
       }
       auxi1->cab = auxi1->cola;
@@ -719,23 +719,25 @@ void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila)
     jugador = jugador->sig;
   }
 }
+
+//funcion que busca la carta corresponiente al numero que se le puso
 sNodo<sCarta *> *BuscarCartas(sLista<sCarta *> *auxi2, int numcarta)
 {
-  cout << "estoy aca " << numcarta << endl;
   sNodo<sCarta *> *cartas;
   cartas = auxi2->cab;
   while (cartas != NULL)
   {
     if (cartas->dato->numero == numcarta)
     {
-      cout << "estoy aca 3" << endl;
       return cartas;
     }
     cartas = cartas->sig;
   }
   return NULL;
 }
-sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug, char *color)
+
+//Funcion que cambia de color cuando toca la carta mas 4 y cambio de color
+sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug)
 {
   int op = 0;
   cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
@@ -748,25 +750,35 @@ sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug, char *color)
   switch (op)
   {
   case 1:
-    strcpy(color, "Rojo");
-    strcpy(cartaJug->dato->color, color);
+    strcpy(cartaJug->dato->color, "Rojo");
     return cartaJug;
     break;
   case 2:
-    strcpy(color, "Amarillo");
-    strcpy(cartaJug->dato->color, color);
+    strcpy(cartaJug->dato->color, "Amarillo");
+
     return cartaJug;
     break;
   case 3:
-    strcpy(color, "Azul");
-    strcpy(cartaJug->dato->color, color);
+    strcpy(cartaJug->dato->color, "Azul");
     return cartaJug;
     break;
   case 4:
-    strcpy(color, "Verde");
-    strcpy(cartaJug->dato->color, color);
+    strcpy(cartaJug->dato->color, "Verde");
     return cartaJug;
     break;
+  }
+  return NULL;
+}
+sNodo<sJugador *> *BuscarSiguienteJugador(sLista<sJugador *> *&jugadores)
+{
+  if (jugadores->cab->sig == NULL)
+  {
+    cout << "el siguiente es null pendejo" << endl;
+    return jugadores->cola;
+  }
+  else
+  {
+    return jugadores->cab->sig;
   }
   return NULL;
 }
