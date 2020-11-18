@@ -94,15 +94,15 @@ void imprimirListaJugadoresCarta(sLista<I> *lista)
   }
 }
 template <class T>
-void imprimirListaJugadoresColas(sLista<T> *lista)
+void imprimirListaJugadoresColas(sNodo<T> *lista)
 {
-  sNodo<T> *aux;
-  sNodo<T> *aux2 = lista->cab;
+  sNodo<T> *aux = lista;
+  /*sNodo<T> *aux2 = lista->cab;
   while (aux2 != NULL)
   {
     aux = aux2;
     aux2 = aux2->sig;
-  }
+  }*/
   while (aux != NULL)
   {
     cout << " 222 " << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;

@@ -180,7 +180,7 @@ int main()
     if (op == 3)
     {
       cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ATRAS " << endl;
-      imprimirListaJugadoresColas<sJugador *>(jugadores);
+      //imprimirListaJugadoresColas<sJugador *>(jugadores);
       cout << endl;
       cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ADELANTE " << endl;
       imprimirListaJugadoresCabezas<sJugador *>(jugadores);
@@ -299,10 +299,8 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
       sCarta *carta = new sCarta;
       carta->color = new char[15];
       carta->valor = new char[3];
-      //cout<<y<<endl;
       if (y >= 24 && y < 28)
       {
-
         strcpy(carta->color, "CambColor");
         strcpy(carta->valor, "CC");
       }
@@ -397,7 +395,8 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   char *color;
   stack<sCarta *> cartasDelCentro;
   stack<sCarta *> pila;
-  sNodo<sJugador *> *auxi1;
+  sNodo<sJugador *> *normalJugadores;
+  sNodo<sJugador *> *reversaJugadores;
   sLista<sCarta *> *auxi2;
   sNodo<sCarta *> *cartajug;
 
@@ -406,6 +405,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   int numcarta = 0, cartasCentro = 0, comecartas = 0;
   bool bloqueo = false;
   bool aceptada = false;
+  bool sentidonuevo;
   int opcc = 0;
   char *colordelacartajugador;
   int opcart = 0;
@@ -414,16 +414,13 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
   {
 
     aceptada = false;
-    auxi1 = jugadores->cab;
-    if (sentido == false)
-    {
-      auxi1 = jugadores->cab;
-      cout << "Hola aca ando yo con mis panas todo tranquilo" << endl;
-      while (auxi1 != NULL)
+    normalJugadores = jugadores->cab;
+    //if (sentido == false)
+    //{
+      normalJugadores = jugadores->cab;
+      while (normalJugadores != NULL)
       {
-
-        //aceptada = false;
-        cout << "                                               JUGADOR " << auxi1->dato->nombre << " ES SU TURNO " << endl;
+        cout << "                                               JUGADOR " << normalJugadores->dato->nombre << " ES SU TURNO " << endl;
         cout << "                                               QUE CARTA QUIERE SACAR" << endl;
         cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
         cout << endl;
@@ -432,20 +429,21 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
         do
         {
           sNodo<sJugador *> *Nodojugador;
-          imprimirCartasJugador<sCarta *>(auxi1->dato->cartas);
+          imprimirCartasJugador<sCarta *>(normalJugadores->dato->cartas);
           cout << "                                                  CARTA QUE VAS A SACAR ES: ";
           cin >> numcarta;
+
           if (numcarta == 109)
           {
             //system("cls");
             cout << "tam de la baraja de cartas a tomar es: " << pila.size() << endl;
-            comerCartasJugador(auxi1->dato->cartas, pila, 1);
+            comerCartasJugador(normalJugadores->dato->cartas, pila, 1);
             numcarta = 0;
             aceptada = false;
           }
           else
           {
-            cartajug = BuscarCartas(auxi1->dato->cartas, numcarta);
+            cartajug = BuscarCartas(normalJugadores->dato->cartas, numcarta);
             colordelacartajugador = cartajug->dato->color;
             if (cartasCentro == 0)
             {
@@ -454,14 +452,14 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                 cartajug = CambioDeColor(cartajug);
                 color = cartajug->dato->color;
                 cartasDelCentro.push(cartajug->dato);
-                eliminarCarta(auxi1->dato->cartas, numcarta);
+                eliminarCarta(normalJugadores->dato->cartas, numcarta);
                 aceptada = true;
               }
               if (strcmp(cartajug->dato->valor, "BQ") == 0)
               {
                 cartasDelCentro.push(cartajug->dato);
                 color = cartajug->dato->color;
-                eliminarCarta(auxi1->dato->cartas, numcarta);
+                eliminarCarta(normalJugadores->dato->cartas, numcarta);
                 aceptada = true;
                 bloqueo = true;
               }
@@ -469,9 +467,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
               {
                 color = cartajug->dato->color;
                 cartasDelCentro.push(cartajug->dato);
-                eliminarCarta(auxi1->dato->cartas, numcarta);
+                eliminarCarta(normalJugadores->dato->cartas, numcarta);
                 comecartas = 2;
-                Nodojugador = BuscarSiguienteJugador(auxi1);
+                Nodojugador = BuscarSiguienteJugador(normalJugadores);
                 comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                 aceptada = true;
               }
@@ -480,16 +478,16 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                 cartajug = CambioDeColor(cartajug);
                 color = cartajug->dato->color;
                 cartasDelCentro.push(cartajug->dato);
-                eliminarCarta(auxi1->dato->cartas, numcarta);
+                eliminarCarta(normalJugadores->dato->cartas, numcarta);
                 comecartas = 4;
-                Nodojugador = BuscarSiguienteJugador(auxi1);
+                Nodojugador = BuscarSiguienteJugador(normalJugadores);
                 comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                 aceptada = true;
               }
               if (!aceptada)
               {
                 cartasDelCentro.push(cartajug->dato);
-                eliminarCarta(auxi1->dato->cartas, numcarta);
+                eliminarCarta(normalJugadores->dato->cartas, numcarta);
                 color = cartajug->dato->color;
                 aceptada = true;
               }
@@ -504,46 +502,52 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
 
               if (cartavalidada)
               {
-                cout << "hola papa" << endl;
                 if (strcmp(cartajug->dato->valor, "RT") == 0)
                 {
                   if (!sentido)
                   {
+                    cout<<"la carta esta aca loco"<<endl;
                     cartasDelCentro.push(cartajug->dato);
-                    eliminarCarta(auxi1->dato->cartas, numcarta);
-                    sentido = true;
+                    eliminarCarta(normalJugadores->dato->cartas, numcarta);
+                    sentidonuevo = true;
                     aceptada = true;
                   }
                   if (sentido)
                   {
                     cartasDelCentro.push(cartajug->dato);
-                    eliminarCarta(auxi1->dato->cartas, numcarta);
-                    sentido = false;
+                    eliminarCarta(normalJugadores->dato->cartas, numcarta);
+                    sentidonuevo = false;
                     aceptada = true;
+                  }
+                  if(sentidonuevo){
+                    sentido = true;
+                  }
+                  if(!sentidonuevo){
+                    sentido = false;
                   }
                 }
                 if (strcmp(cartajug->dato->valor, "BQ") == 0)
                 {
-                  Nodojugador = BuscarSiguienteJugador(auxi1);
+                  Nodojugador = BuscarSiguienteJugador(normalJugadores);
                   cartasDelCentro.push(cartajug->dato);
-                  eliminarCarta(auxi1->dato->cartas, numcarta);
-                  auxi1->sig = Nodojugador;
+                  eliminarCarta(normalJugadores->dato->cartas, numcarta);
+                  normalJugadores->sig = Nodojugador;
                   aceptada = true;
                   bloqueo = true;
                 }
                 if (strcmp(cartajug->dato->valor, "M2") == 0)
                 {
                   cartasDelCentro.push(cartajug->dato);
-                  eliminarCarta(auxi1->dato->cartas, numcarta);
+                  eliminarCarta(normalJugadores->dato->cartas, numcarta);
                   comecartas = 2;
-                  Nodojugador = BuscarSiguienteJugador(auxi1);
+                  Nodojugador = BuscarSiguienteJugador(normalJugadores);
                   comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                   aceptada = true;
                 }
                 if (!aceptada)
                 {
                   cartasDelCentro.push(cartajug->dato);
-                  eliminarCarta(auxi1->dato->cartas, numcarta);
+                  eliminarCarta(normalJugadores->dato->cartas, numcarta);
                   aceptada = true;
                 }
               }
@@ -554,7 +558,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                   cartajug = CambioDeColor(cartajug);
                   strcpy(color, cartajug->dato->color);
                   cartasDelCentro.push(cartajug->dato);
-                  eliminarCarta(auxi1->dato->cartas, numcarta);
+                  eliminarCarta(normalJugadores->dato->cartas, numcarta);
                   aceptada = true;
                 }
 
@@ -563,9 +567,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
                   cartajug = CambioDeColor(cartajug);
                   color = cartajug->dato->color;
                   cartasDelCentro.push(cartajug->dato);
-                  eliminarCarta(auxi1->dato->cartas, numcarta);
+                  eliminarCarta(normalJugadores->dato->cartas, numcarta);
                   comecartas = 4;
-                  Nodojugador = BuscarSiguienteJugador(auxi1);
+                  Nodojugador = BuscarSiguienteJugador(normalJugadores);
                   comerCartasJugador(Nodojugador->dato->cartas, pila, comecartas);
                   aceptada = true;
                 }
@@ -576,30 +580,41 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, int 
               }
             }
           }
-        } while (!aceptada);
+        } while (aceptada == false);
 
         cout << "                                               LA CARTA QUE ESTA EN EL CENTRO ES: "
              << " COLOR: " << cartasDelCentro.top()->color << " VALOR: " << cartasDelCentro.top()->valor << " taman: " << cartasDelCentro.size() << endl;
         cout << endl;
-        if (bloqueo)
+        if (bloqueo && !sentido)
         {
           sNodo<sJugador *> *Nodojugador;
-          Nodojugador = BuscarSiguienteJugador(auxi1);
-          auxi1->sig = Nodojugador;
-          auxi1 = auxi1->sig;
+          Nodojugador = BuscarSiguienteJugador(normalJugadores);
+          normalJugadores->sig = Nodojugador;
+          normalJugadores = normalJugadores->sig;
           bloqueo = false;
-          //auxi1->cab = auxi1->cola;
-          //auxi1->cab->dato->cartas->cab = auxi1->cab->dato->cartas->cab;
         }
-        if (!bloqueo)
+        if (!bloqueo && !sentido)
         {
-          auxi1 = auxi1->sig;
+          cout<<"el sentido va hacia la derecha"<<endl;
+          normalJugadores = normalJugadores->sig;
+        }
+           if (bloqueo && sentido)
+        {
+          sNodo<sJugador *> *Nodojugador;
+          Nodojugador = BuscarSiguienteJugador(normalJugadores);
+          normalJugadores->atrs = Nodojugador;
+          normalJugadores = normalJugadores->atrs;
+          bloqueo = false;
+        }
+        if (!bloqueo && sentido)
+        {
+          cout<<"el sentido va hacia la izqui"<<endl;
+          normalJugadores = normalJugadores->atrs;
         }
         bloqueo = false;
-
         cartasCentro++;
       }
-    }
+    //}
   } while (ganador != true);
 }
 
@@ -629,17 +644,12 @@ void comerCartasJugador(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila
 //Funcion validar jugadas
 bool validarjugadas(sNodo<sCarta *> *cartaJugadores, char *color)
 {
-  cout << "hola putita 1" << endl;
-  cout << cartaJugadores->dato->color << endl;
-  cout << color << endl;
   if (strcmp(cartaJugadores->dato->color, color) == 0)
   {
-    cout << "hola putita 2" << endl;
     return true;
   }
   else
   {
-    cout << "hola putita 3" << endl;
     return false;
   }
   return false;
@@ -807,11 +817,12 @@ sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug)
   }
   return NULL;
 }
+
+// Esta funcion busca al siguiente jugador para bloquear o sumar cartas
 sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores)
 {
   if (jugadores->sig == NULL)
   {
-    cout << "el siguiente es null pendejo" << endl;
     return jugadores;
   }
   else
