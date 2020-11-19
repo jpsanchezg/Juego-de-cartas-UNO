@@ -90,6 +90,9 @@ void advertencia();
 
 int main()
 {
+  //Crear archivo donde se guardarán las jugadas
+  ofstream jugadas("Jugadas.txt", ios::app);
+  jugadas << "Jugador" << '\t'<<'\t' << "Jugada" << endl;
 
   sLista<sJugador *> *jugadores = crearLista<sJugador *>();
   sLista<sCarta *> *baraja = crearLista<sCarta *>();
@@ -830,4 +833,80 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores)
     return jugadores->sig;
   }
   return NULL;
+}
+
+//Archivo donde irá la tabla con la info de la puntuación de cada jugador
+void crearArchivoHtml(){
+    ifstream binario("Datos jugadores.bin", ios::in|ios::binary);
+    ofstream html("Resultados.html", ios::out|ios::app|ios::binary);
+    sJugador dato;
+    char titulo[250];
+    strcpy(titulo,"Resultados del juego");
+
+    binario.seekg(0,ios::end);
+    int nr=binario.tellg()/sizeof(sJugador);
+    html << "<html>";
+    html << "<title>" <<titulo<<"</title>";
+    html << "</html>";
+    html << "<body>";
+    html << "<table style=""width:100%"">";
+    html << "<tr> <th>" << "Nombre" << "</th><th> " << "Apellido" << "</th> <th> " << "Puntos" << "</th> </tr>";
+    for(int i=0;i<nr;i++){
+      binario.seekg(i*sizeof(sJugador),ios::beg);
+      binario.read((char*)&dato,sizeof(sJugador));
+      html << "<tr> <th>" << dato.nombre << "</th> <th> " << dato.apellido << "</th> <th> " << dato.puntos << "</th> </tr>";
+    }
+    html << "</table></body>";
+    html.close();
+}
+
+//Archivo binario
+void crearArchivoBinario(sLista<sJugador *> *jugadores){
+  sNodo<sJugador *>* nodoJugador =  jugadores -> cab;
+  ofstream puntuacion("Datos jugadores.bin", ios::app|ios::binary);
+  for(int i=0;i<jugadores -> tam;i++){
+    puntuacion.seekp(0,ios::end);
+    puntuacion.write((char*) nodoJugador, sizeof(sJugador));
+    nodoJugador =  nodoJugador -> sig;
+  puntuacion.close();
+  }
+}
+
+//Llena archivo texto
+void llenarArchivoJugadas(ofstream jugadas,sNodo<sJugador *> * jugador,sNodo<sCarta*>* jugada){
+   jugadas << jugador -> dato -> nombre << " " << jugador -> dato -> apellido << " \t\t" << jugada -> dato -> color << ", " << jugada -> dato -> valor << endl;
+}
+
+/*Cuenta los puntos del ganador de la ronda, devuelve un bool por si ya alcanzó los 500 puntos.
+Deberíamos poner un while que me diga si ya se acaba el juego cuando se llegue a 500.*/
+bool contarPuntos(sLista<sJugador *> *jugadores,sNodo<sJugador *> * ganador){
+  sNodo<sJugador *>* nodoJugador =  jugadores -> cab;
+  for (int i=0;i<(jugadores -> tam)-1;i++){
+    if (nodoJugador != ganador){
+      sNodo<sCarta*>* nodoCartas = nodoJugador -> dato -> cartas -> cab;
+      while(nodoCartas != NULL || ganador -> dato -> puntos < 500){
+        if (strcmp(nodoCartas -> dato -> valor, "M2") == 0){
+          ganador -> dato -> puntos = (ganador -> dato -> puntos) + 20;
+        }
+        else if(strcmp(nodoCartas -> dato -> valor, "RT") == 0){
+          ganador -> dato -> puntos = (ganador -> dato -> puntos) + 20;
+        }
+        else if(strcmp(nodoCartas -> dato -> valor, "BQ")==0){
+          ganador -> dato -> puntos = (ganador -> dato -> puntos) + 20;
+        }
+        else if(strcmp(nodoCartas -> dato -> valor, "CC")==0){
+          ganador -> dato -> puntos = (ganador -> dato -> puntos) + 50;
+        }
+        else if(strcmp(nodoCartas -> dato -> valor, "M4")==0){
+          ganador -> dato -> puntos = (ganador -> dato -> puntos) + 50;
+        }
+        nodoCartas = nodoCartas -> sig;
+      }
+      if(ganador -> dato -> puntos >= 500){
+        return true;
+      }
+    }
+    nodoJugador = nodoJugador -> sig; 
+  }
+  return false;
 }
