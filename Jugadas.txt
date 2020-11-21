@@ -1,2 +1,49 @@
 Jugador		Jugada
-lorenzo qawqwe 		Azul, 4
+Jugador		Jugada
+qwe qwe 		Verde, 3
+asd asd 		Azul, 0
+qwe qwe 		Azul, RT
+qwe qwe 		Azul, BQ
+asd asd 		Amarillo, 6
+qwe qwe 		Amarillo, BQ
+qwe qwe 		Amarillo, 2
+asd asd 		Verde, CC
+qwe qwe 		Verde, 3
+asd asd 		Rojo, CC
+qwe qwe 		Rojo, RT
+qwe qwe 		Rojo, 9
+Jugador		Jugada
+qwe qwe 		Verde, 7
+asd asd 		Verde, 6
+qwe qwe 		Verde, RT
+qwe qwe 		Verde, 5
+asd asd 		Rojo, CC
+qwe qwe 		Rojo, 3
+asd asd 		Rojo, 5
+Jugador		Jugada
+pedro pedro 		Azul, 4
+juan juan 		Azul, 6
+pedro pedro 		Azul, RT
+pedro pedro 		Verde, CC
+juan juan 		Verde, 7
+pedro pedro 		Verde, 2
+juan juan 		Verde, 9
+pedro pedro 		Verde, 5
+Jugador		Jugada
+pedro pedro 		Verde, BQ
+pedro pedro 		Verde, 2
+asd asd 		Verde, 8
+pedro pedro 		Verde, 1
+Jugador		Jugada
+qwe qwe 		Rojo, 2
+asd asd 		Rojo, 4
+qwe qwe 		Azul, CC
+asd asd 		Azul, 1
+qwe qwe 		Azul, 8
+asd asd 		Azul, BQ
+asd asd 		Azul, RT
+qwe qwe 		Azul, M2
+Jugador		Jugada
+pedrop pedrop 		Azul, 2
+juani juani 		Azul, 4
+pedrop pedrop 		Azul, 3

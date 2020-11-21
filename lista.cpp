@@ -55,6 +55,7 @@ void insertarNodoCartas(sLista<T> *lista, T valor)
   }
   lista->tam++;
 }
+
 template <class T>
 void imprimirListaCartas(sLista<T> *lista)
 {
