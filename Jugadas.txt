@@ -1,49 +1,322 @@
 Jugador		Jugada
+pedro pedro 		Verde, 6
+juan juano 		Azul, 6
+pedro pedro 		Amarillo, 6
+juan juano 		Amarillo, 5
+pedro pedro 		CambColor, CC
 Jugador		Jugada
-qwe qwe 		Verde, 3
-asd asd 		Azul, 0
-qwe qwe 		Azul, RT
-qwe qwe 		Azul, BQ
-asd asd 		Amarillo, 6
-qwe qwe 		Amarillo, BQ
-qwe qwe 		Amarillo, 2
-asd asd 		Verde, CC
-qwe qwe 		Verde, 3
-asd asd 		Rojo, CC
-qwe qwe 		Rojo, RT
-qwe qwe 		Rojo, 9
-Jugador		Jugada
-qwe qwe 		Verde, 7
-asd asd 		Verde, 6
-qwe qwe 		Verde, RT
-qwe qwe 		Verde, 5
-asd asd 		Rojo, CC
-qwe qwe 		Rojo, 3
-asd asd 		Rojo, 5
-Jugador		Jugada
+pedro pedro 		Rojo, 7
+juan juan 		Amarillo, M4
+pedro pedro 		Amarillo, 5
+juan juan 		Amarillo, 8
+pedro pedro 		Azul, M4
+juan juan 		Azul, 8
+pedro pedro 		Azul, BQ
+pedro pedro 		Azul, 9
+juan juan 		Azul, 9
+pedro pedro 		Azul, 2
+juan juan 		Azul, 0
+pedro pedro 		Azul, M2
+juan juan 		Azul, RT
 pedro pedro 		Azul, 4
-juan juan 		Azul, 6
-pedro pedro 		Azul, RT
-pedro pedro 		Verde, CC
-juan juan 		Verde, 7
-pedro pedro 		Verde, 2
-juan juan 		Verde, 9
-pedro pedro 		Verde, 5
 Jugador		Jugada
-pedro pedro 		Verde, BQ
-pedro pedro 		Verde, 2
+pedro pedro 		Rojo, RT
+Jugador		Jugada
+Jugador		Jugada
+qwe qwe 		Rojo, RT
+qwe qwe 		Rojo, 6
+Jugador		Jugada
+qwe qwe 		Azul, RT
+Jugador		Jugada
+qwe qwe 		Azul, 3
+asd asd 		Azul, RT
+qwe qwe 		Azul, BQ
+qwe qwe 		Azul, 5
+Jugador		Jugada
+qwe qwe 		Azul, RT
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+qwe qwee 		Amarillo, RT
+Jugador		Jugada
+Jugador		Jugada
+qwe qwe 		Amarillo, RT
+qwe qwe 		Amarillo, 0
+asd awsds 		Rojo, CC
+qwe qwe 		Rojo, BQ
+qwe qwe 		Rojo, 1
+asd awsds 		Rojo, RT
+qwe qwe 		Rojo, 7
+Jugador		Jugada
+2 2 		Verde, RT
+2 2 		Azul, CC
+qwe qwe 		Azul, 7
+asd asd 		Amarillo, M4
+Jugador		Jugada
+qwe qwe 		Verde, RT
+qwe qwe 		Verde, 7
 asd asd 		Verde, 8
-pedro pedro 		Verde, 1
+Jugador		Jugada
+qwe qwe 		Amarillo, 7
+asd asd 		Amarillo, 1
+qwe qwe 		Amarillo, BQ
+qwe qwe 		Amarillo, 8
+Jugador		Jugada
+qwe qwe 		Rojo, 0
+asd asd 		Rojo, 1
+qwe qwe 		Rojo, RT
+Jugador		Jugada
+qwe qwe 		Azul, 5
+asd asd 		Azul, BQ
+asd asd 		Azul, 9
+Jugador		Jugada
+Jugador		Jugada
+qwe qwe 		Rojo, RT
+Jugador		Jugada
+qwe qwe 		Azul, RT
+Jugador		Jugada
+qwe qwe 		Azul, 3
+asd asd 		Azul, BQ
+asd asd 		Azul, 8
+qwe qwe 		Rojo, CC
+asd asd 		Rojo, 8
+qwe qwe 		Rojo, RT
+qwe qwe 		Rojo, RT
+Jugador		Jugada
+qwe qwe 		Azul, RT
+qwe qwe 		CambColor, CC
+asd asd 		Amarillo, 3
+Jugador		Jugada
+qwe qwe 		Amarillo, 6
+asd asd 		Amarillo, 4
+qwe qwe 		Amarillo, RT
+qwe qwe 		Amarillo, 8
+asd asd 		Rojo, CC
+qwe qwe 		Azul, 8
+asd asd 		Rojo, M2
+Jugador		Jugada
+qwe qwe 		Azul, 1
+Jugador		Jugada
+qwe qwe 		Verde, 8
+asd asd 		Rojo, 7
+qwe qwe 		Verde, RT
+qwe qwe 		Rojo, CC
+Jugador		Jugada
+qwe qwe 		Verde, 6
+asd asd 		Verde, 1
+qwe qwe 		Amarillo, 6
+Jugador		Jugada
+Jugador		Jugada
+qwe qwe 		Azul, 5
+asd asd 		Azul, 5
+qwe qwe 		Azul, RT
+Jugador		Jugada
+qwe qwe 		Azul, BQ
+qwe qwe 		Azul, 3
+asd asd 		Rojo, CC
+qwe qwe 		Rojo, 1
+asd asd 		Rojo, RT
+Jugador		Jugada
+qwe qwe 		Amarillo, 6
+asd asd 		Amarillo, 1
+qwe qwe 		Amarillo, RT
+Jugador		Jugada
+qwe qwe 		Azul, 5
+asd asd 		Azul, 3
+qwe qwe 		Azul, RT
 Jugador		Jugada
 qwe qwe 		Rojo, 2
-asd asd 		Rojo, 4
-qwe qwe 		Azul, CC
-asd asd 		Azul, 1
-qwe qwe 		Azul, 8
-asd asd 		Azul, BQ
-asd asd 		Azul, RT
-qwe qwe 		Azul, M2
+asd asd 		Verde, RT
+qwe qwe 		Rojo, RT
 Jugador		Jugada
-pedrop pedrop 		Azul, 2
-juani juani 		Azul, 4
-pedrop pedrop 		Azul, 3
+qwe qwe 		Verde, 3
+asd asd 		Verde, 7
+qwe qwe 		Verde, RT
+Jugador		Jugada
+qse qse 		Verde, RT
+qwe qwe 		Verde, 0
+Jugador		Jugada
+3 3 		Amarillo, 4
+2 2 		Amarillo, 4
+asd asd 		Amarillo, 9
+Jugador		Jugada
+3 3 		Azul, RT
+3 3 		Amarillo, M4
+Jugador		Jugada
+3 3 		Azul, 6
+2 2 		Azul, 4
+1 1 		Azul, RT
+Jugador		Jugada
+3 3 		Azul, 5
+2 2 		Azul, 9
+1 1 		Azul, 0
+3 3 		Azul, 1
+2 2 		Azul, 3
+Jugador		Jugada
+3 3 		Azul, BQ
+1 1 		Azul, RT
+2 2 		Amarillo, M4
+Jugador		Jugada
+3 3 		Azul, M2
+2 2 		Azul, M2
+1 1 		Azul, RT
+Jugador		Jugada
+3 3 		Azul, 7
+2 2 		Azul, 2
+1 1 		Azul, RT
+2 2 		Azul, 2
+3 3 		Azul, 6
+Jugador		Jugada
+3 3 		Azul, BQ
+1 1 		Azul, 0
+Jugador		Jugada
+3 3 		Azul, 1
+2 2 		Azul, 4
+1 1 		Azul, RT
+2 2 		Amarillo, M4
+Jugador		Jugada
+3 3 		Azul, 6
+2 2 		Azul, 9
+1 1 		Azul, RT
+2 2 		Azul, 8
+3 3 		Azul, 2
+1 1 		Azul, 7
+Jugador		Jugada
+3 3 		Azul, 5
+2 2 		Azul, 1
+1 1 		Azul, RT
+2 2 		Azul, 0
+Jugador		Jugada
+3 3 		Azul, 1
+2 2 		Azul, 0
+Jugador		Jugada
+c c 		Amarillo, 9
+n n 		Azul, 5
+Jugador		Jugada
+3 3 		Azul, 1
+2 2 		Azul, 3
+Jugador		Jugada
+3 3 		Rojo, 0
+Jugador		Jugada
+3 3 		Verde, BQ
+1 1 		Verde, RT
+2 2 		Amarillo, 7
+Jugador		Jugada
+3 3 		Rojo, BQ
+1 1 		Amarillo, 1
+3 3 		Rojo, 9
+2 2 		Rojo, 4
+Jugador		Jugada
+3 3 		Rojo, 1
+2 2 		Amarillo, 9
+1 1 		Amarillo, M2
+3 3 		Amarillo, BQ
+Jugador		Jugada
+3 3 		Azul, 1
+2 2 		Azul, 0
+1 1 		Rojo, CC
+3 3 		Rojo, 8
+2 2 		Rojo, CC
+1 1 		Rojo, RT
+Jugador		Jugada
+3 3 		Azul, 6
+2 2 		Azul, 9
+1 1 		Azul, RT
+2 2 		Azul, 7
+Jugador		Jugada
+3 3 		Azul, 4
+2 2 		Azul, 5
+3 3 		Azul, 2
+Jugador		Jugada
+3 3 		Azul, BQ
+2 2 		Verde, 2
+3 3 		Azul, 1
+1 1 		Azul, 3
+2 2 		Rojo, CC
+3 3 		Rojo, 2
+1 1 		Rojo, 7
+2 2 		Rojo, RT
+2 2 		Rojo, 4
+3 3 		Rojo, BQ
+2 2 		Rojo, 5
+Jugador		Jugada
+qse qse 		Azul, 6
+Jugador		Jugada
+qse qse 		Azul, 1
+Jugador		Jugada
+qse qse 		Azul, 2
+qwe qwe 		Azul, 9
+asd asd 		Azul, RT
+qwe qwe 		Azul, 3
+qse qse 		Azul, 4
+asd asd 		Azul, 4
+qwe qwe 		Amarillo, CC
+Jugador		Jugada
+3 3 		Amarillo, 1
+2 2 		Amarillo, 5
+1 1 		Rojo, 6
+3 3 		Verde, 3
+2 2 		Verde, 5
+1 1 		Verde, RT
+2 2 		Verde, BQ
+Jugador		Jugada
+3 3 		Azul, 2
+2 2 		Azul, 9
+1 1 		Azul, RT
+2 2 		Azul, 0
+3 3 		Amarillo, 4
+3 3 		Amarillo, 7
+Jugador		Jugada
+3 3 		Azul, 8
+2 2 		Rojo, 7
+1 1 		Verde, CC
+3 3 		Verde, 5
+2 2 		Verde, 6
+1 1 		Verde, RT
+2 2 		Verde, M2
+Jugador		Jugada
+3 3 		Rojo, 7
+2 2 		Rojo, 8
+1 1 		Rojo, RT
+1 1 		Rojo, M2
+Jugador		Jugada
+3 3 		Amarillo, M4
+2 2 		Amarillo, 0
+1 1 		Amarillo, 4
+3 3 		Amarillo, 9
+2 2 		Amarillo, 2
+1 1 		Rojo, CC
+Jugador		Jugada
+3 3 		Azul, 6
+2 2 		Verde, 4
+1 1 		Verde, CC
+3 3 		Azul, 1
+2 2 		Amarillo, RT
+Jugador		Jugada
+3 3 		Rojo, 5
+2 2 		Rojo, 2
+1 1 		Azul, CC
+3 3 		Azul, 1
+2 2 		Azul, 2
+3 3 		Azul, RT
+1 1 		Azul, BQ
+Jugador		Jugada
+3 3 		Azul, 0
+2 2 		Azul, 6
+1 1 		Verde, 6
+3 3 		Verde, 6
+2 2 		Azul, BQ
+3 3 		Verde, RT
+1 1 		Verde, 8
+2 2 		Verde, 4
+3 3 		Azul, CC
+1 1 		Verde, 8
+Jugador		Jugada
+3 3 		Azul, 1
+2 2 		Azul, 5
+3 3 		Azul, RT
+1 1 		Azul, 1
+Jugador		Jugada
+3 3 		Azul, 2
+2 2 		Amarillo, 9
+3 3 		Amarillo, RT

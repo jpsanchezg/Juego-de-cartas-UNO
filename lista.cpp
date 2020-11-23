@@ -46,7 +46,6 @@ void insertarNodoCartas(sLista<T> *lista, T valor)
   {
     lista->cab = nodo;
     lista->cola = nodo;
-    nodo->atrs = NULL;
   }
   else
   {
@@ -54,6 +53,31 @@ void insertarNodoCartas(sLista<T> *lista, T valor)
     lista->cola = nodo;
   }
   lista->tam++;
+}
+
+template <class H>
+bool insertarNodoCartasaJugador(sLista<H> *lista, H valor)
+{
+  sNodo<H> *nodo = crearNodo(valor);
+  cout<<"estoy daentro del insertart broaso   "<<nodo->dato->color <<endl;
+  if (listaVacia(lista) == true)
+  {
+    lista->cab = nodo;
+    lista->cola = nodo;
+    lista->tam++;
+    return true;
+  }
+  else
+  {
+    
+    lista->cola->sig = nodo;
+    lista->cola = nodo;
+    cout<<"color de la carta en la lista"<<lista->cola->dato->color<<endl;
+    lista->tam++;
+    return true;
+  }
+  
+  return false;
 }
 
 template <class T>
@@ -138,7 +162,7 @@ void imprimirCartasJugador(sLista<T> *auxi2)
   cartas = auxi2->cab;
   while (cartas != NULL)
   {
-    cout << "                                               Carta: " << cartas->dato->color << "     Valor: " << cartas->dato->valor << " Numero: " << cartas->dato->numero << endl;
+    cout << "                                               Carta: " << cartas->dato->color << "          Valor: " << cartas->dato->valor << " Numero: " << cartas->dato->numero << endl;
     cartas = cartas->sig;
   }
 }

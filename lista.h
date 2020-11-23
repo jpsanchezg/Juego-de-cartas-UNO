@@ -54,6 +54,7 @@ void crearPilas (sNodo<T> nodo);
 template<typename T>
 void imprimirCartasJugador(sLista<T> *auxi2);
 
-
+template <class H>
+bool insertarNodoCartasaJugador(sLista<H> *lista, H valor);
 
 #endif // CARTAS_H_INCLUDED
