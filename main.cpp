@@ -88,7 +88,7 @@ void crearArchivoBinario(sLista<sJugador *> *jugadores);
 
 //funciones prototipo
 void imprimirCartasJugadors(sLista<sCarta *> *auxi2);
-void cambiarpos(sLista<sJugador *> *&auxi2);
+void cambiarpos(sLista<sJugador *> *&auxi2, int numjug);
 
 //Validacion de numeros repetidos
 bool numerosRepetidos(int *arreglo, int num, int tam);
@@ -523,8 +523,12 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                 color = cartajug->dato->color;
                 eliminarCarta(normalJugadores->dato->cartas, numcarta);
                 sentido = true;
-                sentidoint = 1;
-
+                sentidoint = 3;
+                sNodo<sJugador *> *Nodojugador;
+                Nodojugador = normalJugadores;
+                cout << "numeroooo...................." << Nodojugador->dato->numjug << endl;
+                cambiarpos(listajugadores, Nodojugador->dato->numjug);
+                cout << "numeroooo...................." << Nodojugador->dato->numjug << endl;
                 aceptada = true;
               }
               if (!aceptada)
@@ -564,7 +568,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                     sentido = true;
                     sNodo<sJugador *> *Nodojugador;
                     Nodojugador = normalJugadores;
-                    cambiarpos(listajugadores);
+                    cambiarpos(listajugadores, Nodojugador->dato->numjug);
                     normalJugadores = listajugadores->cab;
                     normalJugadores = Nodojugador;
                     indi = 0;
@@ -572,11 +576,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                   if (!sentidonuevo)
                   {
                     sentido = false;
-                    sNodo<sJugador *> *Nodojugador;
                     Nodojugador = normalJugadores;
                     listajugadores = jugadores;
                     normalJugadores = listajugadores->cab;
-                    normalJugadores = Nodojugador;
                     sentidoint = 1;
                     indi = 0;
                   }
@@ -709,7 +711,15 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
             normalJugadores = listajugadores->cab;
             normalJugadores = Nodojugador;
           }*/
-          normalJugadores = normalJugadores->sig;
+          if (sentidoint == 3)
+          {
+            normalJugadores = listajugadores->cab;
+            sentidoint=0;
+          }
+          else
+          {
+            normalJugadores = normalJugadores->sig;
+          }
           aceptada = false;
         }
         bloqueo = false;
@@ -738,6 +748,7 @@ void comerCartasJugador(sNodo<sJugador *> *jugadoresCartas, stack<sCarta *> &pil
     }
     else
     {
+      cout << "nombre del jugador que va a comer las cartas..... " << jugadoresCartas->dato->nombre << endl;
       verificador = insertarNodoCartasaJugador<sCarta *>(jugadoresCartas->dato->cartas, carta);
       pila.pop();
     }
@@ -931,17 +942,17 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
   }
   else
   {
-    cout<<endl;
-    cout<<endl;
+    cout << endl;
+    cout << endl;
     cout << "nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->sig->dato->nombre << endl;
-    cout<<endl;
-    cout<<endl;
+    cout << endl;
+    cout << endl;
     return jugadores->sig;
   }
   return NULL;
 }
 
-void cambiarpos(sLista<sJugador *> *&auxi2)
+void cambiarpos(sLista<sJugador *> *&auxi2, int numjug)
 {
   sNodo<sJugador *> *actual, *siguiente;
   int t = 0, punt = 0;
@@ -949,27 +960,50 @@ void cambiarpos(sLista<sJugador *> *&auxi2)
   char *tempape;
   sLista<sCarta *> *tempcart;
   actual = auxi2->cab;
+  cout << "numero del jugador es:  ....  ... . " << numjug << endl;
   while (actual->sig != NULL)
   {
     siguiente = actual->sig;
 
     while (siguiente != NULL)
     {
-      if (actual->dato->numjug > siguiente->dato->numjug)
+      if (numjug < 3)
       {
-        t = siguiente->dato->numjug;
-        tempnomb = siguiente->dato->nombre;
-        tempape = siguiente->dato->apellido;
-        tempcart = siguiente->dato->cartas;
-        siguiente->dato->numjug = actual->dato->numjug;
-        siguiente->dato->nombre = actual->dato->nombre;
-        siguiente->dato->apellido = actual->dato->apellido;
-        siguiente->dato->cartas = actual->dato->cartas;
-        actual->dato->numjug = t;
-        actual->dato->nombre = tempnomb;
-        actual->dato->apellido = tempape;
-        actual->dato->cartas = tempcart;
+        if (actual->dato->numjug > siguiente->dato->numjug)
+        {
+          t = siguiente->dato->numjug;
+          tempnomb = siguiente->dato->nombre;
+          tempape = siguiente->dato->apellido;
+          tempcart = siguiente->dato->cartas;
+          siguiente->dato->numjug = actual->dato->numjug;
+          siguiente->dato->nombre = actual->dato->nombre;
+          siguiente->dato->apellido = actual->dato->apellido;
+          siguiente->dato->cartas = actual->dato->cartas;
+          actual->dato->numjug = t;
+          actual->dato->nombre = tempnomb;
+          actual->dato->apellido = tempape;
+          actual->dato->cartas = tempcart;
+        }
       }
+      else if (numjug >= 3)
+      {
+        if (siguiente->dato->numjug < actual->dato->numjug)
+        {
+          t = siguiente->dato->numjug;
+          tempnomb = siguiente->dato->nombre;
+          tempape = siguiente->dato->apellido;
+          tempcart = siguiente->dato->cartas;
+          siguiente->dato->numjug = actual->dato->numjug;
+          siguiente->dato->nombre = actual->dato->nombre;
+          siguiente->dato->apellido = actual->dato->apellido;
+          siguiente->dato->cartas = actual->dato->cartas;
+          actual->dato->numjug = t;
+          actual->dato->nombre = tempnomb;
+          actual->dato->apellido = tempape;
+          actual->dato->cartas = tempcart;
+        }
+      }
+
       siguiente = siguiente->sig;
     }
     actual = actual->sig;
