@@ -1,1 +1,195 @@
 
+Jugador		Jugada
+4 4 		Azul, 4
+3 3 		Azul, M2
+3 3 		Azul, RT
+Jugador		Jugada
+4 4 		Rojo, 2
+3 3 		Amarillo, M4
+3 3 		Amarillo, RT
+Jugador		Jugada
+4 4 		Rojo, 3
+3 3 		Rojo, 8
+3 3 		Rojo, RT
+Jugador		Jugada
+4 4 		Amarillo, 8
+3 3 		Amarillo, 6
+3 3 		Amarillo, RT
+Jugador		Jugada
+4 4 		Azul, 2
+3 3 		Azul, 8
+2 2 		Azul, 9
+Jugador		Jugada
+4 4 		Azul, 2
+3 3 		Azul, 3
+3 3 		Azul, RT
+2 2 		Rojo, M2
+3 3 		Amarillo, M4
+4 4 		Azul, M4
+1 1 		Azul, M2
+2 2 		Azul, 5
+3 3 		Azul, 4
+Jugador		Jugada
+4 4 		Azul, 5
+3 3 		Azul, 4
+Jugador		Jugada
+4 4 		Azul, 9
+3 3 		Azul, 4
+2 2 		Azul, 2
+1 1 		Azul, 8
+1 1 		Azul, RT
+1 1 		Azul, 3
+Jugador		Jugada
+1 1 		Azul, RT
+2 2 		Amarillo, M4
+3 3 		Amarillo, 6
+4 4 		Amarillo, 4
+Jugador		Jugada
+1 1 		Azul, RT
+1 1 		Amarillo, CC
+2 2 		Amarillo, M2
+3 3 		Rojo, M4
+4 4 		Amarillo, M4
+1 1 		Amarillo, 6
+2 2 		Amarillo, 5
+3 3 		Amarillo, 2
+1 1 		Amarillo, RT
+Jugador		Jugada
+1 1 		Azul, RT
+1 1 		Azul, BQ
+3 3 		Amarillo, CC
+4 4 		Amarillo, M2
+1 1 		Amarillo, RT
+Jugador		Jugada
+1 1 		Verde, RT
+1 1 		Verde, 6
+2 2 		Verde, 7
+3 3 		Azul, CC
+4 4 		Azul, 5
+1 1 		Azul, RT
+Jugador		Jugada
+4 4 		Azul, 4
+3 3 		Amarillo, M4
+2 2 		Amarillo, 5
+1 1 		Azul, CC
+4 4 		Azul, BQ
+2 2 		Azul, 8
+4 4 		Azul, RT
+Jugador		Jugada
+4 4 		Azul, M2
+3 3 		Azul, 8
+3 3 		Azul, RT
+Jugador		Jugada
+4 4 		Rojo, 9
+3 3 		Rojo, M2
+2 2 		Rojo, 4
+4 4 		Rojo, RT
+Jugador		Jugada
+4 4 		Azul, 3
+3 3 		Azul, M2
+2 2 		Azul, 9
+4 4 		Azul, RT
+Jugador		Jugada
+1 1 		Rojo, RT
+1 1 		Azul, M4
+2 2 		Rojo, CC
+3 3 		Rojo, 0
+4 4 		Rojo, 4
+1 1 		Rojo, M2
+2 2 		Rojo, 6
+Jugador		Jugada
+4 4 		Rojo, 7
+3 3 		Rojo, 8
+2 2 		Azul, CC
+1 1 		Azul, 3
+4 4 		Azul, 2
+3 3 		Azul, M4
+3 3 		Azul, RT
+3 3 		Azul, 8
+4 4 		Azul, BQ
+4 4 		Azul, RT
+Jugador		Jugada
+4 4 		Azul, BQ
+2 2 		Azul, M4
+1 1 		Azul, BQ
+Jugador		Jugada
+4 4 		Azul, 5
+3 3 		Azul, 8
+2 2 		Verde, 2
+Jugador		Jugada
+4 4 		Azul, BQ
+2 2 		Azul, BQ
+4 4 		Azul, 3
+3 3 		Azul, 0
+2 2 		Azul, 6
+1 1 		Rojo, CC
+4 4 		Rojo, BQ
+2 2 		Rojo, 7
+1 1 		Rojo, BQ
+Jugador		Jugada
+4 4 		Azul, 8
+3 3 		Amarillo, CC
+2 2 		Amarillo, 8
+Jugador		Jugada
+4 4 		Amarillo, 2
+3 3 		Amarillo, M2
+2 2 		Azul, M4
+1 1 		Verde, CC
+4 4 		Verde, 8
+3 3 		Verde, 8
+2 2 		Verde, 4
+1 1 		Verde, BQ
+Jugador		Jugada
+4 4 		Azul, 9
+3 3 		Azul, 5
+2 2 		Azul, 6
+1 1 		Rojo, CC
+4 4 		Rojo, 3
+3 3 		Rojo, 5
+2 2 		Rojo, 3
+1 1 		Rojo, BQ
+Jugador		Jugada
+4 4 		Azul, 7
+3 3 		Azul, BQ
+1 1 		Rojo, CC
+4 4 		Rojo, BQ
+2 2 		Amarillo, M2
+1 1 		Rojo, BQ
+Jugador		Jugada
+4 4 		Azul, 1
+3 3 		Rojo, CC
+2 2 		Rojo, M4
+1 1 		Amarillo, M4
+4 4 		Amarillo, 8
+3 3 		Amarillo, BQ
+1 1 		Amarillo, BQ
+3 3 		Amarillo, 5
+2 2 		Amarillo, 8
+1 1 		Azul, CC
+4 4 		Azul, 4
+3 3 		Azul, 3
+2 2 		Azul, 2
+Jugador		Jugada
+4 4 		Azul, M4
+3 3 		Azul, 5
+2 2 		Rojo, M4
+Jugador		Jugada
+4 4 		Verde, 4
+3 3 		Verde, 1
+2 2 		Verde, 2
+Jugador		Jugada
+4 4 		Rojo, M4
+3 3 		Rojo, BQ
+1 1 		Rojo, 7
+4 4 		Rojo, 1
+3 3 		Azul, 3
+2 2 		Azul, 9
+1 1 		Azul, BQ
+Jugador		Jugada
+4 4 		Verde, 9
+3 3 		Verde, 7
+2 2 		Rojo, RT
+1 1 		Verde, 9
+4 4 		Verde, 5
+3 3 		Verde, 8
+Jugador		Jugada

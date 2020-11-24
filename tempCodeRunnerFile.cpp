@@ -1,1 +1,1 @@
-Nodojugador
+sentido
