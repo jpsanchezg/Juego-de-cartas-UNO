@@ -59,7 +59,7 @@ template <class H>
 bool insertarNodoCartasaJugador(sLista<H> *lista, H valor)
 {
   sNodo<H> *nodo = crearNodo(valor);
-  cout<<"estoy daentro del insertart broaso   "<<nodo->dato->color <<endl;
+  cout << "estoy daentro del insertart broaso   " << nodo->dato->color << endl;
   if (listaVacia(lista) == true)
   {
     lista->cab = nodo;
@@ -69,14 +69,14 @@ bool insertarNodoCartasaJugador(sLista<H> *lista, H valor)
   }
   else
   {
-    
+
     lista->cola->sig = nodo;
     lista->cola = nodo;
-    cout<<"color de la carta en la lista"<<lista->cola->dato->color<<endl;
+    cout << "color de la carta en la lista" << lista->cola->dato->color << endl;
     lista->tam++;
     return true;
   }
-  
+
   return false;
 }
 
@@ -119,26 +119,30 @@ void imprimirListaJugadoresCarta(sLista<I> *lista)
   }
 }
 template <class T>
-void imprimirListaJugadoresColas(sNodo<T> *lista)
+void imprimirListaJugadoresColas(sLista<T> *lista)
 {
-  sNodo<T> *aux = lista;
-  /*sNodo<T> *aux2 = lista->cab;
-  while (aux2 != NULL)
+  int i = 0;
+  sNodo<T> *node = lista->cola;
+/*
+  if (lista)
+    if (lista->cab)
+      node = lista->cola;
+    else
+      return;
+  else
+    return;
+*/
+  while (node != NULL)
   {
-    aux = aux2;
-    aux2 = aux2->sig;
-  }*/
-  while (aux != NULL)
-  {
-    cout << " 222 " << aux->dato->nombre << " " << aux->dato->apellido << "" << endl;
-    aux = aux->atrs;
+    cout << "222  " << node->dato->nombre << node->dato->apellido << endl;
+    node = node->atrs;
   }
 }
 template <typename V>
 void insertarNodojugador(sLista<V> *lista, V valor)
 {
 
-  sNodo<V> *new_node = crearNodo(valor);
+  /*sNodo<V> *new_node = crearNodo(valor);
 
   new_node->sig = lista->cab;
   new_node->atrs = NULL;
@@ -146,14 +150,54 @@ void insertarNodojugador(sLista<V> *lista, V valor)
     lista->cab->atrs = new_node;
   lista->cab = new_node;
   lista->cola = new_node;
+
+  sNodo<V> *node = crearNodo(valor);
+  sNodo<V> *tmp;
+
+  if (lista->cab == NULL)
+  {
+    lista->cab = node;
+    lista->cola = node;
+  }
+  else
+  {
+    tmp = lista->cola;
+    lista->cola = node;
+    node->sig = NULL;
+    node->atrs = tmp;
+    tmp->sig = node;
+  }*/
+
+  sNodo<V> *newNode  = crearNodo(valor);
+    //If list is empty  
+    if(lista->cab == NULL) {  
+        //Both head and tail will point to newNode  
+        lista->cab = lista->cola = newNode;  
+        //head's previous will point to NULL  
+        lista->cab->sig = NULL;  
+        //tail's next will point to NULL, as it is the last node of the list  
+        lista->cola->sig = NULL;  
+    }  
+    else {  
+        //newNode will be added after tail such that tail's next will point to newNode  
+        lista->cola->sig = newNode;  
+        //newNode's previous will point to tail  
+        newNode->atrs = lista->cola;  
+        //newNode will become new tail  
+        lista->cola = newNode;  
+        //As it is last node, tail's next will point to NULL  
+        lista->cola->sig = NULL;  
+    }  
 }
 
-template <typename X>
-void insertarNodoFinal(sLista<X> *lista, X valor)
-{
-  sNodo<X> *nodo = crearNodo(valor);
-  sNodo<X> *aux = lista->cab;
-}
+/*template <typename V>
+void insertarPrimerjugador(sLista<V> *lista, V valor){
+  	sNodo<V>* temp = crearNodo(valor);
+    lista->cab = nodo;
+    lista->cola = nodo;
+    lista->tam++;
+    return true;
+}*/
 
 template <typename T>
 void imprimirCartasJugador(sLista<T> *auxi2)
@@ -166,4 +210,3 @@ void imprimirCartasJugador(sLista<T> *auxi2)
     cartas = cartas->sig;
   }
 }
-

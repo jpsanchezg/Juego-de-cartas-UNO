@@ -163,19 +163,6 @@ int main()
           }
         }
       } while (nojug == false);
-      //}
-      /*if (numjug > 0 )
-      {
-        cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
-        cout << "                                             1. si" << endl;
-        cout << "                                             2. no" << endl;
-        cout << "                                             ";
-        cin >> opi;
-        if (opi == 1)
-        {
-          comenzarJuego(baraja, jugadores, numjug);
-        }
-      }*/
     }
     if (op == 2)
     {
@@ -192,7 +179,7 @@ int main()
     if (op == 3)
     {
       cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ATRAS " << endl;
-      //imprimirListaJugadoresColas<sJugador *>(jugadores);
+      imprimirListaJugadoresColas<sJugador *>(jugadores);
       cout << endl;
       cout << "                                             IMPRIMIENDO LISTA DE JUGADORES QUE VAN A ESTAR EN EN EL JUEGO HACIA ADELANTE " << endl;
       imprimirListaJugadoresCabezas<sJugador *>(jugadores);
@@ -410,7 +397,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
   stack<sCarta *> cartasDelCentro;
   stack<sCarta *> barajaEnJuego;
   sNodo<sJugador *> *normalJugadores;
-
+  sNodo<sJugador *> *sentidojugadores;
   sLista<sCarta *> *auxi2;
   sLista<sJugador *> *listajugadores;
   sLista<sJugador *> *copiasegura;
@@ -441,18 +428,18 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
     if (!sentido)
     {
       //listajugadores = jugadores;
+      cout << "hola" << endl;
       normalJugadores = listajugadores->cab;
-      cout << "hola como  estasqweqweqwe" << endl;
     }
-    else
+    if (sentido)
     {
-      cout << "hola como  estas" << endl;
       //cambiarpos(listajugadores);
-      normalJugadores = listajugadores->cab;
-      indi++;
+      cout << "hola2" << endl;
+      normalJugadores = listajugadores->cola;
     }
     while (normalJugadores != NULL)
     {
+
       /*if (cabeza)
       {
         normalJugadores = normalJugadores->sig;
@@ -487,6 +474,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
             else
             {
               cout << "                                                  YA SE ACABARON LAS CARTAS PARA TOMAR";
+              cout << "                                                  SE VAN A TOMAR LAS CARTAS DEL CENTRO";
             }
             aceptada = false;
           }
@@ -539,11 +527,8 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                 cartasDelCentro.push(cartajug->dato);
                 color = cartajug->dato->color;
                 eliminarCarta(normalJugadores->dato->cartas, numcarta);
+                sentidoint = 1;
                 sentido = true;
-                sentidoint = 3;
-                sNodo<sJugador *> *Nodojugador;
-                Nodojugador = normalJugadores;
-                cambiarposiz(listajugadores, Nodojugador->dato->numjug);
                 aceptada = true;
               }
               if (!aceptada)
@@ -579,24 +564,24 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                   if (sentidonuevo)
                   {
                     sentido = true;
-                    sNodo<sJugador *> *Nodojugador;
+                    /*sNodo<sJugador *> *Nodojugador;
                     Nodojugador = normalJugadores;
                     cambiarposiz(listajugadores, Nodojugador->dato->numjug);
                     cambio = true;
                     sentidoint = 4;
-                    indi = 0;
+                    indi = 0;*/
                   }
                   if (!sentidonuevo)
                   {
                     sentido = false;
-                    Nodojugador = normalJugadores;
+                    /*Nodojugador = normalJugadores;
                     listajugadores = copiasegura;
                     cambiarposder(listajugadores, Nodojugador->dato->numjug);
                     imprimirListaJugadoresCabezas<sJugador *>(copiasegura);
                     normalJugadores = listajugadores->cab;
                     cambio = true;
                     sentidoint = 1;
-                    indi = 0;
+                    indi = 0;*/
                   }
                 }
                 if (strcmp(cartajug->dato->valor, "BQ") == 0)
@@ -695,8 +680,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
         {
           sNodo<sJugador *> *Nodojugador;
           Nodojugador = BuscarSiguienteJugador(normalJugadores, listajugadores, sentido);
-          cout << "JUGADOR BLOQUEADO ES: " << Nodojugador->dato->nombre << endl;
-          system("pause");
+          cout << "                                               JUGADOR BLOQUEADO ES: " << Nodojugador->dato->nombre << endl;
           normalJugadores->sig = Nodojugador;
           normalJugadores = normalJugadores->sig;
           bloqueo = false;
@@ -712,7 +696,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
         {
           sNodo<sJugador *> *Nodojugador;
           Nodojugador = BuscarSiguienteJugador(normalJugadores, listajugadores, sentido);
+          cout << "                                               JUGADOR BLOQUEADO ES: " << Nodojugador->dato->nombre << endl;
           normalJugadores->atrs = Nodojugador;
+
           normalJugadores = normalJugadores->atrs;
           aceptada = false;
           bloqueo = false;
@@ -720,9 +706,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
         if (!bloqueo && sentido)
         {
 
-          if (sentidoint == 3)
+          if (sentidoint == 1)
           {
-            normalJugadores = listajugadores->cab;
+            normalJugadores = listajugadores->cola;
             sentidoint = 0;
             cambio = true;
           }
@@ -730,12 +716,10 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
           {
             normalJugadores = normalJugadores->atrs;
             sentidoint = 0;
-
-            cambio = false;
           }
           if (!cambio)
           {
-            normalJugadores = normalJugadores->sig;
+            normalJugadores = normalJugadores->atrs;
           }
           cambio = false;
           aceptada = false;
@@ -954,19 +938,39 @@ sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug)
 // Esta funcion busca al siguiente jugador para bloquear o sumar cartas
 sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<sJugador *> *auxi2, bool sentido)
 {
-  if (jugadores->sig == NULL)
+  if (!sentido)
   {
-    return auxi2->cab;
+    if (jugadores->sig == NULL)
+    {
+      return auxi2->cab;
+    }
+    else
+    {
+      cout << endl;
+      cout << endl;
+      cout << "nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->sig->dato->nombre << endl;
+      cout << endl;
+      cout << endl;
+      return jugadores->sig;
+    }
   }
-  else
+  else if (sentido)
   {
-    cout << endl;
-    cout << endl;
-    cout << "nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->sig->dato->nombre << endl;
-    cout << endl;
-    cout << endl;
-    return jugadores->sig;
+    if (jugadores->atrs == NULL)
+    {
+      return auxi2->cola;
+    }
+    else
+    {
+      cout << endl;
+      cout << endl;
+      cout << "nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->atrs->dato->nombre << endl;
+      cout << endl;
+      cout << endl;
+      return jugadores->atrs;
+    }
   }
+
   return NULL;
 }
 
@@ -1006,65 +1010,6 @@ void cambiarposiz(sLista<sJugador *> *&auxi2, int numjug)
       else if (numjug >= 4)
       {
         if (siguiente->dato->numjug < actual->dato->numjug)
-        {
-          t = siguiente->dato->numjug;
-          tempnomb = siguiente->dato->nombre;
-          tempape = siguiente->dato->apellido;
-          tempcart = siguiente->dato->cartas;
-          siguiente->dato->numjug = actual->dato->numjug;
-          siguiente->dato->nombre = actual->dato->nombre;
-          siguiente->dato->apellido = actual->dato->apellido;
-          siguiente->dato->cartas = actual->dato->cartas;
-          actual->dato->numjug = t;
-          actual->dato->nombre = tempnomb;
-          actual->dato->apellido = tempape;
-          actual->dato->cartas = tempcart;
-        }
-      }
-
-      siguiente = siguiente->sig;
-    }
-    actual = actual->sig;
-    siguiente = actual->sig;
-  }
-}
-
-void cambiarposder(sLista<sJugador *> *&auxi2, int numjug)
-{
-  sNodo<sJugador *> *actual, *siguiente;
-  int t = 0, punt = 0;
-  char *tempnomb;
-  char *tempape;
-  sLista<sCarta *> *tempcart;
-  actual = auxi2->cab;
-  cout << "numero del jugador es:  ....  ... . " << numjug << endl;
-  while (actual->sig != NULL)
-  {
-    siguiente = actual->sig;
-
-    while (siguiente != NULL)
-    {
-      if (numjug < 4)
-      {
-        if (siguiente->dato->numjug > actual->dato->numjug)
-        {
-          t = siguiente->dato->numjug;
-          tempnomb = siguiente->dato->nombre;
-          tempape = siguiente->dato->apellido;
-          tempcart = siguiente->dato->cartas;
-          siguiente->dato->numjug = actual->dato->numjug;
-          siguiente->dato->nombre = actual->dato->nombre;
-          siguiente->dato->apellido = actual->dato->apellido;
-          siguiente->dato->cartas = actual->dato->cartas;
-          actual->dato->numjug = t;
-          actual->dato->nombre = tempnomb;
-          actual->dato->apellido = tempape;
-          actual->dato->cartas = tempcart;
-        }
-      }
-      else if (numjug >= 4)
-      {
-        if (actual->dato->numjug < siguiente->dato->numjug)
         {
           t = siguiente->dato->numjug;
           tempnomb = siguiente->dato->nombre;
