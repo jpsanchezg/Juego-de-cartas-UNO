@@ -9,9 +9,17 @@
 #include <windows.h>
 #include <cstdlib>
 #include "lista.cpp"
+
+#define ANSI_COLOR_RED "\x1b[31m"
+#define ANSI_COLOR_GREEN "\x1b[32m"
+#define ANSI_COLOR_YELLOW "\x1b[33m"
+#define ANSI_COLOR_BLUE "\x1b[34m"
+#define ANSI_COLOR_MAGENTA "\x1b[35m"
+#define ANSI_COLOR_CYAN "\x1b[36m"
+
+#define ANSI_COLOR_RESET "\x1b[0m"
 //#include "cartas.cpp"
 
-#include <queue>
 #include <stack>
 
 using namespace std;
@@ -35,26 +43,27 @@ struct sJugador
 //menu
 void menu()
 {
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  ......     %%%%%%%%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%...     ,/*        %%%%%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/%%%%%%%.    *%%%%%###%/  ... %%%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%(,.... %%%%&,    ,&%%%%&&&@##%/.... %%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&((,     %%&&*   .%%%%%%%%%%&%&/,.,, %%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%,....   %%%%%&&##,     %%%*    .%%%%%%%%%%&&&,,,,.%%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%..... &((,          %%%&%%*    .@%(/.... %%%%%%%%%&&.,,,,,%%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%((,     &((,    ,       .&%%*.....#/(*,,*,,  %%%%%  ,,,,,,%%%%" << endl;
-  cout << "                  %%%%%%  ..,%%%%%%%&((,     &((,    .(**  .... (*,,,,.&////*,,,,*,,,,,,,,,/&%%%%%" << endl;
-  cout << "                  %%%%#*,   .,%%%%%%%&##,     &##,  .,.(((#/*,,,,,,,,,,.&&(###(((/,,,*//#&&%%%%%%%" << endl;
-  cout << "                  %%%&%#,,   ,/%%%%%%&&##,     &#%,..., &&###%#/,,,,,*,*.%&&&&%%%%%&&&&&%%%%%%%%%%" << endl;
-  cout << "                  %%%%&##,..  ,(%%%%%%&&%%*. ,..&%%,,,,, %%&&&%%%%//,,,,,,%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%&##,..  .(%%%%%%&&%&/,,,,/&%%,,,,, %%%%&&&&%%%%%#%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%%&##*,....%%%%%%%&&%,,,,,*&&%%*,,,,.%%%%%%%&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%%%&#//,,,,, %%%%%  ,,,,,,%%&&%%/(%%&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%%%%&/((/,,,,,,,,,,,,,,*&%%%%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%%%%%&&##%///,,,,*///&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%%%%%%%&&&&%&&%&&&&&&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
-  cout << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_RESET << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_YELLOW << "ooooooooooooo" << ANSI_COLOR_RED << "%%%%%%%%%" << ANSI_COLOR_RESET << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_YELLOW << "%ooooooooooooooooooo" << ANSI_COLOR_RED << "%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%/%%%%%%" << ANSI_COLOR_YELLOW << "%.oooo*" << ANSI_COLOR_RED << "%%%%%###%" << ANSI_COLOR_YELLOW << "ooooooo" << ANSI_COLOR_RED << "%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_BLUE << "%NNNNNNN" << ANSI_COLOR_RED << "%%%%" << ANSI_COLOR_YELLOW << "&oooooo&" << ANSI_COLOR_RED << "%%%%&&&@##%" << ANSI_COLOR_YELLOW << "oooooo" << ANSI_COLOR_RED << "%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_BLUE << "&&NNNNNNN" << ANSI_COLOR_RED << "%%&&" << ANSI_COLOR_YELLOW << "ooooo" << ANSI_COLOR_RED << "%%%%%%%%%%&%&" << ANSI_COLOR_YELLOW << "/ooooo" << ANSI_COLOR_RED << "%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_BLUE << "%NNNNNNNN" << ANSI_COLOR_RED << "%%%%%&&" << ANSI_COLOR_BLUE << "##NNNNNN" << ANSI_COLOR_RED << "%%%" << ANSI_COLOR_YELLOW << "oooooo" << ANSI_COLOR_RED << "%%%%%%%%%%&&&" << ANSI_COLOR_YELLOW << "ooooo" << ANSI_COLOR_RED << "%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_GREEN << "UUUUUU&" << ANSI_COLOR_RED << "((" << ANSI_COLOR_BLUE << "NNNNNNNNNNN" << ANSI_COLOR_RED << "%%%&%%" << ANSI_COLOR_BLUE << "NNNNNN" << ANSI_COLOR_RED << "@%(" << ANSI_COLOR_YELLOW << "oooooo" << ANSI_COLOR_RED << "%%%%%%%%%&&" << ANSI_COLOR_YELLOW << "oooooo" << ANSI_COLOR_RED << "%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%" << ANSI_COLOR_GREEN << "(UUUUUUU" << ANSI_COLOR_RED << "&(" << ANSI_COLOR_BLUE << "NNNNNNNNNNNNNNN&" << ANSI_COLOR_RED << "%%" << ANSI_COLOR_BLUE << "NNNNNN" << ANSI_COLOR_RED << "#/(" << ANSI_COLOR_YELLOW << "oooooooo" << ANSI_COLOR_RED << "%%%%%" << ANSI_COLOR_YELLOW << "oooooooo" << ANSI_COLOR_RED << "%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%" << ANSI_COLOR_GREEN << "UUUUU" << ANSI_COLOR_RED << "%%%%%%%%%" << ANSI_COLOR_GREEN << "UUUUUUU" << ANSI_COLOR_RED << "&((" << ANSI_COLOR_BLUE << "NNNNNNNNNNNNNNNNNNNNNNN" << ANSI_COLOR_RED << "&////" << ANSI_COLOR_YELLOW << "oooooooooooooooo" << ANSI_COLOR_RED << "&%%%%%" << ANSI_COLOR_RESET << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%" << ANSI_COLOR_GREEN << "#UUUUUUU" << ANSI_COLOR_RED << "%%%%%%%&" << ANSI_COLOR_GREEN << "#UUUUUUU" << ANSI_COLOR_RED << "&##" << ANSI_COLOR_BLUE << "NNNNNN" << ANSI_COLOR_RED << "(((#/" << ANSI_COLOR_BLUE << "NNNNNNNNNNNN" << ANSI_COLOR_RED << "&&(##" << ANSI_COLOR_YELLOW << "oooooooooooooo" << ANSI_COLOR_RED << "%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%" << ANSI_COLOR_CYAN << "%&%#" << ANSI_COLOR_GREEN << "UUUUUUU" << ANSI_COLOR_RED << "%%%%%%" << ANSI_COLOR_CYAN << "&&##" << ANSI_COLOR_GREEN << "UUUUUU" << ANSI_COLOR_RED << "&#%" << ANSI_COLOR_BLUE << "NNNNNN" << ANSI_COLOR_RED << "&&###%#" << ANSI_COLOR_BLUE << "NNNNNNNNNN" << ANSI_COLOR_RED << "%&&&&%%%%" << ANSI_COLOR_YELLOW << "oooooo" << ANSI_COLOR_RED << "%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%" << ANSI_COLOR_CYAN << "&##," << ANSI_COLOR_GREEN << "UUUUUU" << ANSI_COLOR_RED << "%%%%%%%%%%" << ANSI_COLOR_GREEN << "UUUUUU" << ANSI_COLOR_CYAN << "&%%" << ANSI_COLOR_BLUE << "NNNNNN" << ANSI_COLOR_RED << "%%%%%%%%%%" << ANSI_COLOR_BLUE << "NNNNNNN" << ANSI_COLOR_RED << "%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%" << ANSI_COLOR_CYAN << "%&##," << ANSI_COLOR_GREEN << "UUUUUU" << ANSI_COLOR_RED << "%%%%%%%%%" << ANSI_COLOR_GREEN << "&UUUUUU" << ANSI_COLOR_CYAN << "&" << ANSI_COLOR_RED << "%%" << ANSI_COLOR_BLUE << "NNNNNN" << ANSI_COLOR_RED << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%" << ANSI_COLOR_CYAN << "&##*" << ANSI_COLOR_GREEN << "UUUUU" << ANSI_COLOR_RED << "%%%%%%%&&" << ANSI_COLOR_GREEN << "UUUUUUU" << ANSI_COLOR_CYAN << "&&" << ANSI_COLOR_RED << "%%" << ANSI_COLOR_BLUE << "NNNNNN" << ANSI_COLOR_RED << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%" << ANSI_COLOR_CYAN << "%&#/" << ANSI_COLOR_GREEN << "UUUUUUU" << ANSI_COLOR_RED << "%%%%%" << ANSI_COLOR_GREEN << "UUUUUUUU" << ANSI_COLOR_RED << "%%&&%%/(%%&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%" << ANSI_COLOR_CYAN << "&/(" << ANSI_COLOR_GREEN << "UUUUUUUUUUUUUUUUUU" << ANSI_COLOR_RED << "%%%%" << ANSI_COLOR_CYAN << "&&&&&&" << ANSI_COLOR_RED << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%" << ANSI_COLOR_CYAN << "&&#" << ANSI_COLOR_GREEN << "UUUUUUUUUUUUUU" << ANSI_COLOR_RED << "&%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%" << ANSI_COLOR_CYAN << "&&&&%&&%&&&&&&" << ANSI_COLOR_RED << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
+  cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_RESET << endl;
   cout << endl;
   cout << "                                             MENU DE JUEGO UNO" << endl;
   cout << "                                             [1] Jugar" << endl;
@@ -85,6 +94,7 @@ void llenarArchivoJugadas(ofstream &jugadas, sNodo<sJugador *> *jugador, sNodo<s
 bool contarPuntos(sLista<sJugador *> *jugadores, sNodo<sJugador *> *ganador);
 void crearArchivoHtml();
 void crearArchivoBinario(sLista<sJugador *> *jugadores);
+void limpiarJugadores(sLista<sJugador *> *&jugadores);
 
 //funciones prototipo
 void imprimirCartasJugadors(sLista<sCarta *> *auxi2);
@@ -166,7 +176,7 @@ int main()
     }
     if (op == 2)
     {
-      archi.open("archivos/reglas.txt", ios::in);
+      archi.open("UNO.txt", ios::in);
       while (!archi.eof())
       {
         getline(archi, texto);
@@ -359,6 +369,95 @@ void llenarListaCartasEspeciales(sLista<sCarta *> *baraja, int i, int u)
   return;
 }
 
+void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
+{
+  cout << "                                             BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
+  cout << endl;
+  cout << "                                             REPARTIENDO CARTAS A LOS JUGADORES" << endl;
+  cout << endl;
+  bool final = false;
+  sNodo<sCarta *> *auxi;
+  auxi = baraja->cab;
+  int numeros[108];
+  int num;
+  srand(time(NULL));
+  int insertados = 0;
+  bool repetido;
+  int cartastot = 108;
+
+  while (insertados != 108)
+  {
+    num = rand() % 108;
+    repetido = numerosRepetidos(numeros, num, insertados);
+    if (repetido == false)
+    {
+      numeros[insertados] = num;
+      insertados++;
+    }
+  }
+  int agregado = 0;
+  while (agregado != 108)
+  {
+    if (numeros[agregado] == auxi->dato->numero)
+    {
+      pila.push(auxi->dato);
+      agregado++;
+      auxi = baraja->cab;
+    }
+    else
+    {
+      auxi = auxi->sig;
+    }
+  }
+}
+
+//Funcion que mira los numeros repetidos que saca el numero random
+bool numerosRepetidos(int *arreglo, int num, int tam)
+{
+  if (tam == 0)
+  {
+    return false;
+  }
+  else
+  {
+    for (int i = 0; i < tam; i++)
+    {
+      if (num == arreglo[i])
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+
+//Funcion de repartir cartas
+void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila)
+{
+  int i = 0;
+  sNodo<sJugador *> *jugador = jugadores->cab;
+  sCarta *carta;
+  while (jugador != NULL)
+  {
+    while (jugador->dato->cartas->tam < 7)
+    {
+
+      carta = pila.top();
+      if (jugador->dato->cartas->cab == NULL)
+      {
+        insertarNodoCartas<sCarta *>(jugador->dato->cartas, carta);
+        pila.pop();
+      }
+      else
+      {
+        insertarNodoCartas<sCarta *>(jugador->dato->cartas, carta);
+        pila.pop();
+      }
+    }
+    jugador = jugador->sig;
+  }
+}
+
 //Funcion llenar jugadores
 void llenarJugadores(sLista<sJugador *> *jugadores, int numjug)
 {
@@ -384,11 +483,12 @@ void advertencia()
 //Funcion principal del juego aca esta toda la logica del juego
 void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
 {
+  system("cls");
   cout << "                                             VA A COMENZAR EL JUEGO PREPARENCE JUGADORES" << endl;
-
-  cout << "                                             SE VAN A REPARTIR LAS CARTAS" << endl;
+  Sleep(2000);
 
   ofstream jugadas("Jugadas.txt", ios::app);
+  ifstream grito;
   jugadas << "Jugador" << '\t' << '\t' << "Jugada" << endl;
   bool ganador = false;
   bool cartavalidada;
@@ -405,7 +505,12 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
   listajugadores = jugadores;
   sNodo<sCarta *> *cartajug;
   barajarMasoCartas(baraja, barajaEnJuego);
+  cout << "                                             SE VAN A REPARTIR LAS CARTAS" << endl;
   repartir_cartas(jugadores, barajaEnJuego);
+  Beep(1000, 10);
+
+  Sleep(2500);
+  system("cls");
 
   int numcarta = 0, cartasCentro = 0, comecartas = 0, sentidoint = 0;
   bool bloqueo = false;
@@ -424,29 +529,16 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
   {
 
     aceptada = false;
-    //normalJugadores = jugadores->cab;
     if (!sentido)
     {
-      //listajugadores = jugadores;
-      cout << "hola" << endl;
       normalJugadores = listajugadores->cab;
     }
     if (sentido)
     {
-      //cambiarpos(listajugadores);
-      cout << "hola2" << endl;
       normalJugadores = listajugadores->cola;
     }
     while (normalJugadores != NULL)
     {
-
-      /*if (cabeza)
-      {
-        normalJugadores = normalJugadores->sig;
-        cabeza = false;
-      }*/
-      //cout << "IMPRIMIENDO LISTA COMO SEA..." << endl;
-      //imprimirListaJugadoresCabezas<sJugador *>(listajugadores);
       cout << "                                               JUGADOR " << normalJugadores->dato->nombre << " ES SU TURNO " << endl;
       cout << "                                               QUE CARTA QUIERE SACAR" << endl;
       cout << "                                               RECUERDA... SACAS CON EL NUMERO DE LA CARTA" << endl;
@@ -564,24 +656,10 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                   if (sentidonuevo)
                   {
                     sentido = true;
-                    /*sNodo<sJugador *> *Nodojugador;
-                    Nodojugador = normalJugadores;
-                    cambiarposiz(listajugadores, Nodojugador->dato->numjug);
-                    cambio = true;
-                    sentidoint = 4;
-                    indi = 0;*/
                   }
                   if (!sentidonuevo)
                   {
                     sentido = false;
-                    /*Nodojugador = normalJugadores;
-                    listajugadores = copiasegura;
-                    cambiarposder(listajugadores, Nodojugador->dato->numjug);
-                    imprimirListaJugadoresCabezas<sJugador *>(copiasegura);
-                    normalJugadores = listajugadores->cab;
-                    cambio = true;
-                    sentidoint = 1;
-                    indi = 0;*/
                   }
                 }
                 if (strcmp(cartajug->dato->valor, "BQ") == 0)
@@ -640,12 +718,20 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
             if (normalJugadores->dato->cartas->tam == 1)
             {
               string opc;
-              cout << "GRITA UNO YA!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl; //Diseño aparece el logo uno en ascci todo bonito
+              char *linea;
+              grito.open("grita.txt", ios::out);
+              while (grito.eof())
+              {
+                grito.getline(linea, 500);
+                cout << linea << endl;
+              }
+              grito.close();
+
               cin >> opc;
               if (opc == "uno" || opc == "UNO")
               {
                 aceptada = true;
-              }
+              } //recordar si no grita uno se tiene que comer dos cartas
             }
             if (normalJugadores->dato->cartas->tam == 0)
             {
@@ -661,6 +747,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
               {
                 cout << " SE VA A JUGAR OTRA RONDA ASI QUE SE VA A REINICIAR TODO" << endl;
                 comenzarJuego(baraja, jugadores);
+                limpiarJugadores(jugadores);
               }
               //se reinicia la ronda?
               aceptada = true;
@@ -690,7 +777,6 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
         {
           normalJugadores = normalJugadores->sig;
           aceptada = false;
-          cout << "VA NORMAL" << endl;
         }
         if (bloqueo && sentido)
         {
@@ -711,11 +797,6 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
             normalJugadores = listajugadores->cola;
             sentidoint = 0;
             cambio = true;
-          }
-          if (sentidoint == 4)
-          {
-            normalJugadores = normalJugadores->atrs;
-            sentidoint = 0;
           }
           if (!cambio)
           {
@@ -750,7 +831,6 @@ void comerCartasJugador(sNodo<sJugador *> *jugadoresCartas, stack<sCarta *> &pil
     }
     else
     {
-      cout << "nombre del jugador que va a comer las cartas..... " << jugadoresCartas->dato->nombre << endl;
       verificador = insertarNodoCartasaJugador<sCarta *>(jugadoresCartas->dato->cartas, carta);
       pila.pop();
     }
@@ -794,96 +874,6 @@ void eliminarCarta(sLista<sCarta *> *&cartasJug, int numcarta)
 }
 
 //Funcion barajar cartastot
-void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
-{
-  cout << "                                             BARAJANDO LAS CARTAS PARA EL JUEGO" << endl;
-  cout << endl;
-  cout << "                                             REPARTIENDO CARTAS A LOS JUGADORES" << endl;
-  cout << endl;
-  bool final = false;
-  sNodo<sCarta *> *auxi;
-  auxi = baraja->cab;
-  int numeros[108];
-  int num;
-  srand(time(NULL));
-  int insertados = 0;
-  bool repetido;
-  int cartastot = 108;
-
-  while (insertados != 108)
-  {
-    num = rand() % 108;
-    repetido = numerosRepetidos(numeros, num, insertados);
-    if (repetido == false)
-    {
-      numeros[insertados] = num;
-      insertados++;
-      //cout<<num<<endl;
-    }
-  }
-  int agregado = 0;
-  while (agregado != 108)
-  {
-    if (numeros[agregado] == auxi->dato->numero)
-    {
-      pila.push(auxi->dato);
-      agregado++;
-      auxi = baraja->cab;
-    }
-    else
-    {
-      auxi = auxi->sig;
-    }
-  }
-}
-
-//Funcion que mira los numeros repetidos que saca el numero random
-bool numerosRepetidos(int *arreglo, int num, int tam)
-{
-  if (tam == 0)
-  {
-    return false;
-  }
-  else
-  {
-    for (int i = 0; i < tam; i++)
-    {
-      if (num == arreglo[i])
-      {
-        return true;
-      }
-    }
-    return false;
-  }
-}
-
-//Funcion de repartir cartas
-void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila)
-{
-  int i = 0;
-  sNodo<sJugador *> *jugador = jugadores->cab;
-  sCarta *carta;
-  while (jugador != NULL)
-  {
-    while (jugador->dato->cartas->tam < 7)
-    {
-
-      carta = pila.top();
-      if (jugador->dato->cartas->cab == NULL)
-      {
-        insertarNodoCartas<sCarta *>(jugador->dato->cartas, carta);
-        pila.pop();
-      }
-      else
-      {
-        insertarNodoCartas<sCarta *>(jugador->dato->cartas, carta);
-        pila.pop();
-      }
-    }
-
-    jugador = jugador->sig;
-  }
-}
 
 //funcion que busca la carta corresponiente al numero que se le puso
 sNodo<sCarta *> *BuscarCartas(sLista<sCarta *> *auxi2, int numcarta)
@@ -906,10 +896,10 @@ sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug)
 {
   int op = 0;
   cout << "                                               A QUE COLOR QUIERES CAMBIAR...." << endl;
-  cout << "                                               [1] ROJO" << endl;
-  cout << "                                               [2] AMARILLO" << endl;
-  cout << "                                               [3] AZUL" << endl;
-  cout << "                                               [4] VERDE" << endl;
+  cout << "                                               " << ANSI_COLOR_RED << "      [1] ROJO" << ANSI_COLOR_RESET << endl;
+  cout << "                                               " << ANSI_COLOR_YELLOW << "      [2] AMARILLO" << ANSI_COLOR_RESET << endl;
+  cout << "                                               " << ANSI_COLOR_BLUE << "      [3] AZUL" << ANSI_COLOR_RESET << endl;
+  cout << "                                               " << ANSI_COLOR_GREEN << "      [4] VERDE" << ANSI_COLOR_RESET << endl;
   cout << "                                               ESCOGE UNA OPCION:";
   cin >> op;
   switch (op)
@@ -948,7 +938,7 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
     {
       cout << endl;
       cout << endl;
-      cout << "nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->sig->dato->nombre << endl;
+      cout << "                                               Nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->sig->dato->nombre << endl;
       cout << endl;
       cout << endl;
       return jugadores->sig;
@@ -964,7 +954,7 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
     {
       cout << endl;
       cout << endl;
-      cout << "nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->atrs->dato->nombre << endl;
+      cout << "                                               Nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->atrs->dato->nombre << endl;
       cout << endl;
       cout << endl;
       return jugadores->atrs;
@@ -972,65 +962,6 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
   }
 
   return NULL;
-}
-
-void cambiarposiz(sLista<sJugador *> *&auxi2, int numjug)
-{
-  sNodo<sJugador *> *actual, *siguiente;
-  int t = 0, punt = 0;
-  char *tempnomb;
-  char *tempape;
-  sLista<sCarta *> *tempcart;
-  actual = auxi2->cab;
-  cout << "numero del jugador es:  ....  ... . " << numjug << endl;
-  while (actual->sig != NULL)
-  {
-    siguiente = actual->sig;
-
-    while (siguiente != NULL)
-    {
-      if (numjug < 4)
-      {
-        if (actual->dato->numjug > siguiente->dato->numjug)
-        {
-          t = siguiente->dato->numjug;
-          tempnomb = siguiente->dato->nombre;
-          tempape = siguiente->dato->apellido;
-          tempcart = siguiente->dato->cartas;
-          siguiente->dato->numjug = actual->dato->numjug;
-          siguiente->dato->nombre = actual->dato->nombre;
-          siguiente->dato->apellido = actual->dato->apellido;
-          siguiente->dato->cartas = actual->dato->cartas;
-          actual->dato->numjug = t;
-          actual->dato->nombre = tempnomb;
-          actual->dato->apellido = tempape;
-          actual->dato->cartas = tempcart;
-        }
-      }
-      else if (numjug >= 4)
-      {
-        if (siguiente->dato->numjug < actual->dato->numjug)
-        {
-          t = siguiente->dato->numjug;
-          tempnomb = siguiente->dato->nombre;
-          tempape = siguiente->dato->apellido;
-          tempcart = siguiente->dato->cartas;
-          siguiente->dato->numjug = actual->dato->numjug;
-          siguiente->dato->nombre = actual->dato->nombre;
-          siguiente->dato->apellido = actual->dato->apellido;
-          siguiente->dato->cartas = actual->dato->cartas;
-          actual->dato->numjug = t;
-          actual->dato->nombre = tempnomb;
-          actual->dato->apellido = tempape;
-          actual->dato->cartas = tempcart;
-        }
-      }
-
-      siguiente = siguiente->sig;
-    }
-    actual = actual->sig;
-    siguiente = actual->sig;
-  }
 }
 
 //funcion agregar jugada al archivo texto
@@ -1145,5 +1076,13 @@ void imprimirCartasJugadors(sLista<sCarta *> *auxi2)
   {
     cout << "                                               Carta: " << cartas->dato->color << "          Valor: " << cartas->dato->valor << " Numero: " << cartas->dato->numero << endl;
     cartas = cartas->sig;
+  }
+}
+void limpiarJugadores(sLista<sJugador *> *&jugadores)
+{
+  while (jugadores != NULL)
+  {
+    jugadores->cab->dato->cartas = crearLista<sCarta *>();
+    jugadores->cab = jugadores->cab->sig;
   }
 }

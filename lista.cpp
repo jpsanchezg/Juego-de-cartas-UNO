@@ -4,6 +4,8 @@
 #include "lista.h"
 #include <stack>
 
+
+
 using namespace std;
 
 template <class T>
@@ -123,81 +125,32 @@ void imprimirListaJugadoresColas(sLista<T> *lista)
 {
   int i = 0;
   sNodo<T> *node = lista->cola;
-/*
-  if (lista)
-    if (lista->cab)
-      node = lista->cola;
-    else
-      return;
-  else
-    return;
-*/
   while (node != NULL)
   {
     cout << "222  " << node->dato->nombre << node->dato->apellido << endl;
     node = node->atrs;
   }
 }
+
 template <typename V>
 void insertarNodojugador(sLista<V> *lista, V valor)
 {
-
-  /*sNodo<V> *new_node = crearNodo(valor);
-
-  new_node->sig = lista->cab;
-  new_node->atrs = NULL;
-  if (lista->cab != NULL)
-    lista->cab->atrs = new_node;
-  lista->cab = new_node;
-  lista->cola = new_node;
-
-  sNodo<V> *node = crearNodo(valor);
-  sNodo<V> *tmp;
+  sNodo<V> *newNode = crearNodo(valor);
 
   if (lista->cab == NULL)
   {
-    lista->cab = node;
-    lista->cola = node;
+    lista->cab = lista->cola = newNode;
+    lista->cab->sig = NULL;
+    lista->cola->sig = NULL;
   }
   else
   {
-    tmp = lista->cola;
-    lista->cola = node;
-    node->sig = NULL;
-    node->atrs = tmp;
-    tmp->sig = node;
-  }*/
-
-  sNodo<V> *newNode  = crearNodo(valor);
-    //If list is empty  
-    if(lista->cab == NULL) {  
-        //Both head and tail will point to newNode  
-        lista->cab = lista->cola = newNode;  
-        //head's previous will point to NULL  
-        lista->cab->sig = NULL;  
-        //tail's next will point to NULL, as it is the last node of the list  
-        lista->cola->sig = NULL;  
-    }  
-    else {  
-        //newNode will be added after tail such that tail's next will point to newNode  
-        lista->cola->sig = newNode;  
-        //newNode's previous will point to tail  
-        newNode->atrs = lista->cola;  
-        //newNode will become new tail  
-        lista->cola = newNode;  
-        //As it is last node, tail's next will point to NULL  
-        lista->cola->sig = NULL;  
-    }  
+    lista->cola->sig = newNode;
+    newNode->atrs = lista->cola;
+    lista->cola = newNode;
+    lista->cola->sig = NULL;
+  }
 }
-
-/*template <typename V>
-void insertarPrimerjugador(sLista<V> *lista, V valor){
-  	sNodo<V>* temp = crearNodo(valor);
-    lista->cab = nodo;
-    lista->cola = nodo;
-    lista->tam++;
-    return true;
-}*/
 
 template <typename T>
 void imprimirCartasJugador(sLista<T> *auxi2)
