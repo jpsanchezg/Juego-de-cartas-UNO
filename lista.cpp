@@ -59,7 +59,6 @@ template <class H>
 bool insertarNodoCartasaJugador(sLista<H> *lista, H valor)
 {
   sNodo<H> *nodo = crearNodo(valor);
-  cout<<"estoy daentro del insertart broaso   "<<nodo->dato->color <<endl;
   if (listaVacia(lista) == true)
   {
     lista->cab = nodo;
@@ -72,7 +71,7 @@ bool insertarNodoCartasaJugador(sLista<H> *lista, H valor)
     
     lista->cola->sig = nodo;
     lista->cola = nodo;
-    cout<<"color de la carta en la lista"<<lista->cola->dato->color<<endl;
+    cout<<"color de la carta en la lista "<<lista->cola->dato->color<<endl;
     lista->tam++;
     return true;
   }
