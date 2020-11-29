@@ -176,7 +176,7 @@ int main()
     }
     if (op == 2)
     {
-      archi.open("UNO.txt", ios::in);
+      archi.open("archivos/reglas.txt", ios::in);
       while (!archi.eof())
       {
         getline(archi, texto);
@@ -682,6 +682,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                 }
                 if (!aceptada)
                 {
+                  
                   cartasDelCentro.push(cartajug->dato);
                   eliminarCarta(normalJugadores->dato->cartas, numcarta);
                   aceptada = true;
