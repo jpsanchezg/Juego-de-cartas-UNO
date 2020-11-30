@@ -1,5 +1,5 @@
-#ifndef CARTAS_H_INCLUDED
-#define CARTAS_H_INCLUDED
+#ifndef LISTAS_H_INCLUDED
+#define LISTAS_H_INCLUDED
 
 template <class T>
 struct sNodo

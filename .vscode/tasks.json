@@ -8,7 +8,9 @@
                 "-g",
                 "${file}",
                 "-o",
+                "-lwinmm",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                
             ],
             "options": {
                 "cwd": "C:\\MinGW\\bin"
