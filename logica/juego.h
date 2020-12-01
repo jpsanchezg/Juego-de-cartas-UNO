@@ -18,3 +18,4 @@ bool contarPuntos(sLista<sJugador *> *jugadores, sNodo<sJugador *> *ganador);
 void crearArchivoHtml();
 
 void crearArchivoBinario(sLista<sJugador *> *jugadores);
+

@@ -89,7 +89,16 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
 
             if (cartasDelCentro.empty())
             {
-                cartasDelCentro.push(barajaEnJuego.top());
+                sCarta *primcarta = barajaEnJuego.top();
+                if (strcmp(primcarta->color, "CambColor") == 0)
+                {
+                    strcpy(primcarta->color, "Rojo");
+                }
+                if (strcmp(primcarta->color, "mas 4") == 0)
+                {
+                    strcpy(primcarta->color, "Verde");
+                }
+                cartasDelCentro.push(primcarta);
                 barajaEnJuego.pop();
                 cout << "                                               LA CARTA QUE ESTA EN EL CENTRO ES: "
                      << " COLOR: " << cartasDelCentro.top()->color << " VALOR: " << cartasDelCentro.top()->valor << " taman: " << cartasDelCentro.size() << endl;
@@ -117,7 +126,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                         //system("cls");
                         if (!barajaEnJuego.empty())
                         {
-                            comerCartasJugador(normalJugadores, barajaEnJuego, 1);
+                            sacarUnaCarta(normalJugadores->dato->cartas, barajaEnJuego, sentido);
                             sacocarta = true;
                         }
                         else
@@ -129,7 +138,6 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                     }
                     else
                     {
-                        cout << "hello there 2" << endl;
                         cartajug = BuscarCartas(normalJugadores->dato->cartas, numcarta);
                         colordelacartajugador = cartajug->dato->color;
                         if (cartasCentro == 0 && !aceptada)
@@ -142,7 +150,6 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                                 cartasDelCentro.push(cartajug->dato);
                                 eliminarCarta(normalJugadores->dato->cartas, numcarta);
                                 aceptada = true;
-                                cartasCentro++;
                             }
                             if (strcmp(cartajug->dato->valor, "BQ") == 0)
                             {
@@ -151,7 +158,6 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                                 eliminarCarta(normalJugadores->dato->cartas, numcarta);
                                 aceptada = true;
                                 bloqueo = true;
-                                cartasCentro++;
                             }
                             if (strcmp(cartajug->dato->valor, "M2") == 0)
                             {
@@ -185,13 +191,23 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                                 sentido = true;
                                 aceptada = true;
                             }
-                            if (!aceptada)
+                            cartavalidada = validarjugadas(cartajug, cartasDelCentro);
+                            if (cartavalidada)
                             {
-                                cartasDelCentro.push(cartajug->dato);
-                                eliminarCarta(normalJugadores->dato->cartas, numcarta);
-                                cout << "TAM DE LAS CARTAS DE ESTE JUGADOR : " << normalJugadores->dato->cartas->tam << endl;
-                                color = cartajug->dato->color;
-                                aceptada = true;
+                                if (!aceptada)
+                                {
+                                    cartasDelCentro.push(cartajug->dato);
+                                    eliminarCarta(normalJugadores->dato->cartas, numcarta);
+                                    color = cartajug->dato->color;
+                                    aceptada = true;
+                                }
+                            }
+                            if (!cartavalidada && !aceptada)
+                            {
+                                cout << "la carta es invalida por el color que tomaste escoge otra...." << endl;
+                                cout << "                                               LA CARTA QUE ESTA EN EL CENTRO ES: "
+                                     << " COLOR: " << cartasDelCentro.top()->color << " VALOR: " << cartasDelCentro.top()->valor << " taman: " << cartasDelCentro.size() << endl;
+                                cout << endl;
                             }
                         }
                         if (cartasCentro > 0)
@@ -234,7 +250,6 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                                 }
                                 if (strcmp(cartajug->dato->valor, "M2") == 0)
                                 {
-                                    color = cartajug->dato->color;
                                     cartasDelCentro.push(cartajug->dato);
                                     eliminarCarta(normalJugadores->dato->cartas, numcarta);
                                     bloqueo = true;
@@ -277,7 +292,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                             }
                             if (!cartavalidada && !aceptada)
                             {
-                                cout << "la carta es invalida por el color que tomaste escoge otra...." << endl;
+                                cout << "                                               la carta es invalida por el color que tomaste escoge otra...." << endl;
                                 cout << "                                               LA CARTA QUE ESTA EN EL CENTRO ES: "
                                      << " COLOR: " << cartasDelCentro.top()->color << " VALOR: " << cartasDelCentro.top()->valor << " taman: " << cartasDelCentro.size() << endl;
                                 cout << endl;
@@ -287,19 +302,32 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                         {
                             string opc;
                             char *linea;
-                            grito.open("grita.txt", ios::out);
+                            grito.open("archivos/grita.txt", ios::out);
                             while (grito.eof())
                             {
                                 grito.getline(linea, 500);
                                 cout << linea << endl;
                             }
                             grito.close();
-
                             cin >> opc;
                             if (opc == "uno" || opc == "UNO")
                             {
+                                grito.open("archivos/UNO.txt", ios::out);
+                                while (grito.eof())
+                                {
+                                    grito.getline(linea, 500);
+                                    cout << linea << endl;
+                                }
+                                grito.close();
                                 aceptada = true;
-                            } //recordar si no grita uno se tiene que comer dos cartas
+                            }
+                            Sleep(1000);
+                            if (!aceptada)
+                            {
+                                cout << "                                               NO GRITASTE UNO ASI QUE VAS A COMER 2 CARTAS" << endl;
+                                comerCartasJugador(Nodojugador, barajaEnJuego, 2);
+                            }
+                            //recordar si no grita uno se tiene que comer dos cartas
                         }
                         if (normalJugadores->dato->cartas->tam == 0)
                         {
@@ -307,17 +335,27 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                             puntos = contarPuntos(jugadores, normalJugadores);
                             if (puntos == true)
                             {
-                                cout << "el ganador de esta partida es: " << normalJugadores->dato->nombre << endl;
+                                char *linea;
+
+                                cout << endl;
+                                cout << "                                               EL GANADOR DE ESTA PARTIDA UNO ES: " << normalJugadores->dato->nombre << endl;
+                                cout << endl;
+                                grito.open("archivos/ganador.txt", ios::out);
+                                while (grito.eof())
+                                {
+                                    grito.getline(linea, 500);
+                                    cout << linea << endl;
+                                }
+                                grito.close();
                                 crearArchivoBinario(jugadores);
                                 crearArchivoHtml();
                             }
                             else
                             {
-                                cout << " SE VA A JUGAR OTRA RONDA ASI QUE SE VA A REINICIAR TODO" << endl;
-                                comenzarJuego(baraja, jugadores);
+                                cout << "                                               SE VA A JUGAR OTRA RONDA ASI QUE SE VA A REINICIAR TODO" << endl;
                                 limpiarJugadores(jugadores);
+                                comenzarJuego(baraja, jugadores);
                             }
-                            //se reinicia la ronda?
                             aceptada = true;
                             ganador = true;
                         }
@@ -349,6 +387,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                     sNodo<sJugador *> *Nodojugador;
                     Nodojugador = BuscarSiguienteJugador(normalJugadores, jugadores, sentido);
                     cout << "                                               JUGADOR BLOQUEADO ES: " << Nodojugador->dato->nombre << endl;
+                    cout << endl;
                     normalJugadores->sig = Nodojugador;
                     normalJugadores = normalJugadores->sig;
                     bloqueo = false;
@@ -364,6 +403,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                     sNodo<sJugador *> *Nodojugador;
                     Nodojugador = BuscarSiguienteJugador(normalJugadores, jugadores, sentido);
                     cout << "                                               JUGADOR BLOQUEADO ES: " << Nodojugador->dato->nombre << endl;
+                    cout << endl;
                     normalJugadores->atrs = Nodojugador;
 
                     normalJugadores = normalJugadores->atrs;

@@ -1,3 +1,1 @@
-Jugador		Jugada
-Jugador		Jugada
-1 1 		Verde, 9
+

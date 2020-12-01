@@ -37,12 +37,12 @@ void comerCartasJugador(sNodo<sJugador *> *jugadoresCartas, stack<sCarta *> &pil
         carta = pila.top();
         if (jugadoresCartas->dato->cartas->cab == NULL)
         {
-            verificador = insertarNodoCartasaJugador<sCarta *>(jugadoresCartas->dato->cartas, carta);
+            insertarNodoCartasaJugador<sCarta *>(jugadoresCartas->dato->cartas, carta);
             pila.pop();
         }
         else
         {
-            verificador = insertarNodoCartasaJugador<sCarta *>(jugadoresCartas->dato->cartas, carta);
+            insertarNodoCartasaJugador<sCarta *>(jugadoresCartas->dato->cartas, carta);
             pila.pop();
         }
     }
@@ -55,20 +55,10 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
     {
         if (jugadores->sig == NULL)
         {
-            cout << endl;
-            cout << endl;
-            cout << "                                               Nombre del siguiente jugador al que se va a comer las cartas es: " << auxi2->cab->dato->nombre << endl;
-            cout << endl;
-            cout << endl;
             return auxi2->cab;
         }
         else
         {
-            cout << endl;
-            cout << endl;
-            cout << "                                               Nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->sig->dato->nombre << endl;
-            cout << endl;
-            cout << endl;
             return jugadores->sig;
         }
     }
@@ -76,20 +66,10 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
     {
         if (jugadores->atrs == NULL)
         {
-            cout << endl;
-            cout << endl;
-            cout << "                                               Nombre del siguiente jugador al que se va a comer las cartas es: " << auxi2->cola->dato->nombre << endl;
-            cout << endl;
-            cout << endl;
             return auxi2->cola;
         }
         else
         {
-            cout << endl;
-            cout << endl;
-            cout << "                                               Nombre del siguiente jugador al que se va a comer las cartas es: " << jugadores->atrs->dato->nombre << endl;
-            cout << endl;
-            cout << endl;
             return jugadores->atrs;
         }
     }
@@ -99,9 +79,19 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
 //esta funcion limpia los masos de los jugadores como si no hubiera pasado nada
 void limpiarJugadores(sLista<sJugador *> *&jugadores)
 {
-  while (jugadores != NULL)
-  {
-    jugadores->cab->dato->cartas = crearLista<sCarta *>();
-    jugadores->cab = jugadores->cab->sig;
-  }
+    while (jugadores != NULL)
+    {
+        jugadores->cab->dato->cartas = crearLista<sCarta *>();
+        jugadores->cab = jugadores->cab->sig;
+    }
+}
+
+//funcion para que coma una sola carta cada jugador
+void sacarUnaCarta(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila, bool sentido)
+{
+    int i = 0;
+    sCarta *carta;
+    carta = pila.top();
+    insertarNodoCartasaJugador<sCarta *>(jugadoresCartas, carta);
+    pila.pop();
 }
