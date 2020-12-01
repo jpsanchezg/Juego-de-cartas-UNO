@@ -364,8 +364,8 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                 if (sacocarta)
                 {
                     sCarta *dat;
-                    dat->color = "SacoCarta";
-                    dat->valor = "SC";
+                    strcpy(dat->color ,"SacoCarta");
+                    strcpy(dat->valor ,"SC");
                     dat->numero = 109;
                     cartajug = crearNodo<sCarta *>(dat);
                 }

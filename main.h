@@ -1,7 +1,7 @@
 #include "logica/lista.cpp"
 #include "stack"
 
-//estructuras
+//estructuras del juego 
 struct sCarta
 {
     char *color;
@@ -17,7 +17,5 @@ struct sJugador
     sLista<sCarta *> *cartas;
 };
 
-//funciones prototipo
-void imprimirCartasJugadors(sLista<sCarta *> *auxi2);
 
 

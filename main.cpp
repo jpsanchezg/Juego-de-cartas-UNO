@@ -19,13 +19,11 @@
 using namespace std;
 
 //Main....
-
 int main()
 {
 
   sLista<sJugador *> *jugadores = crearLista<sJugador *>();
   sLista<sCarta *> *baraja = crearLista<sCarta *>();
-
   bool salir = false;
   bool nojug = false;
   int op = 0, numjug = 0, opi = 0;
@@ -38,25 +36,23 @@ int main()
     menu();
     cout << "                                             OPCION:  ";
     cin >> op;
-
     if (op == 1)
     {
 
       advertencia();
       do
       {
-        //lenar jugadores
         opi = 1;
-
         while (opi == 1)
         {
           numjug++;
-          llenarJugadores(jugadores, numjug);
-
+          system("cls");
+          llenarJugadores(jugadores, numjug); //Aca se llenan los jugadores
           cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
           cout << "                                             1. si" << endl;
           cout << "                                             2. no" << endl;
-          cout << "                                             ";
+          cout << "                                             PON EL NUMERO COMO RESPUESTA" << endl;
+          cout << "                                             OPCION: ";
           cin >> opi;
         }
         if (opi == 2)
@@ -64,7 +60,7 @@ int main()
           cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
           cout << "                                             1. si" << endl;
           cout << "                                             2. no" << endl;
-          cout << "                                             ";
+          cout << "                                             OPCION:";
           cin >> opi;
           if (opi == 1)
           {
@@ -74,7 +70,9 @@ int main()
             }
             else
             {
+
               cout << "                                             NO PUEDES JUGAR, TIENE QUE HABER 2 O MAS PERSONAS PARA PODER JUGAR" << endl;
+              system("pause");
             }
           }
           else if (opi == 1)
@@ -102,7 +100,7 @@ int main()
     }
     if (op == 2)
     {
-      archi.open("archivos/reglas.txt", ios::in);
+      archi.open("archivos/ganador.txt", ios::in);
       while (!archi.eof())
       {
         getline(archi, texto);
@@ -131,17 +129,4 @@ int main()
     }
   } while (salir == false);
   cout << "                                             JUEGO FINALIZADO EXITOSAMENTE" << endl;
-}
-
-//Funcion principal del juego aca esta toda la logica del juego
-
-void imprimirCartasJugadors(sLista<sCarta *> *auxi2)
-{
-  sNodo<sCarta *> *cartas;
-  cartas = auxi2->cab;
-  while (cartas != NULL)
-  {
-    cout << "                                               Carta: " << cartas->dato->color << "          Valor: " << cartas->dato->valor << " Numero: " << cartas->dato->numero << endl;
-    cartas = cartas->sig;
-  }
 }

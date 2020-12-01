@@ -22,7 +22,7 @@ Para saber mas acerca del juego aca esta la documentacion:
 
 <div>
   <p align="center">
-  <img src="assets/logo/muestra1.png" alt="UNO-logo" width="520px" height="476px"/>
+  <img src="assets/logo/muestra1.jpg" alt="UNO-logo" width="520px" height="476px"/>
   <br>
   <i>Pantalla principal del juego</i>
   <br>
@@ -31,22 +31,6 @@ Para saber mas acerca del juego aca esta la documentacion:
 
 [contributing]: CONTRIBUTING.md
 [reglas]: assets/documentacion/reglas.pdf
-[changelog]: CHANGELOG.md
-[ng]: https://angular.io
 [documentation]: https://angular.io/docs
-[angularmaterial]: https://material.angular.io/
-[cli]: https://cli.angular.io/
 [enunciado]: assets/documentacion/enunciado.pdf
-[componentstemplates]: https://angular.io/guide/displaying-data
-[forms]: https://angular.io/guide/forms-overview
-[api]: https://angular.io/api
-[angularelements]: https://angular.io/guide/elements
-[ssr]: https://angular.io/guide/universal
-[schematics]: https://angular.io/guide/schematics
-[lazyloading]: https://angular.io/guide/lazy-loading-ngmodules
-[node.js]: https://nodejs.org/
-[npm]: https://www.npmjs.com/get-npm
-[codeofconduct]: CODE_OF_CONDUCT.md
-[twitter]: https://www.twitter.com/angular
-[gitter]: https://gitter.im/angular/angular
-[meetup]: https://www.meetup.com/find/?keywords=angular"
+

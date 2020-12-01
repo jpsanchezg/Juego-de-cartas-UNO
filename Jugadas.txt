@@ -1,1 +1,4 @@
 
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
