@@ -31,6 +31,7 @@ int main()
   string texto;
   llenarListaCartas(baraja, 0, 0);
   llenarListaCartasEspeciales(baraja, 0, 0);
+  ofstream jugadas("Jugadas.txt", ios::app);
   do
   {
     menu();
@@ -66,7 +67,7 @@ int main()
           {
             if (numjug >= 2)
             {
-              comenzarJuego(baraja, jugadores);
+              comenzarJuego(baraja, jugadores,jugadas);
             }
             else
             {

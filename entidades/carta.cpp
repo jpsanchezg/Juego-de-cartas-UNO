@@ -185,6 +185,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
     int insertados = 0;
     bool repetido;
     int cartastot = 108;
+    int agregado = 0;
 
     while (insertados != 108)
     {
@@ -196,7 +197,7 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
             insertados++;
         }
     }
-    int agregado = 0;
+
     while (agregado != 108)
     {
         if (numeros[agregado] == auxi->dato->numero)
@@ -209,6 +210,10 @@ void barajarMasoCartas(sLista<sCarta *> *baraja, stack<sCarta *> &pila)
         {
             auxi = auxi->sig;
         }
+    }
+    for (int i = 0; i <= 108; i++)
+    {
+        numeros[i] = 0;
     }
 }
 
@@ -257,4 +262,9 @@ void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila)
         }
         jugador = jugador->sig;
     }
+}
+
+void llenarArchivoJugadas(ofstream &jugadas, sNodo<sJugador *> *jugador, sNodo<sCarta *> *jugada)
+{
+    jugadas << jugador->dato->nombre << " " << jugador->dato->apellido << " \t\t" << jugada->dato->color << ", " << jugada->dato->valor << endl;
 }

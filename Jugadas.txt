@@ -2,3 +2,64 @@
 Jugador		Jugada
 Jugador		Jugada
 Jugador		Jugada
+Jugador		Jugada
+1 1 		Amarillo, M4
+3 3 		Amarillo, 4
+1 1 		Amarillo, 3
+2 2 		Amarillo, 6
+Jugador		Jugada
+1 1 		Verde, 9
+2 2 		Verde, 3
+Jugador		Jugada
+1 1 		Rojo, 3
+Jugador		Jugada
+1 1 		Rojo, 6
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Rojo, 8
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Rojo, 8
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Azul, 3
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Verde, 6
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Rojo, 1
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Rojo, RT
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Azul, 5
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+1 1 		SacoCarta, SC
+Jugador		Jugada
+1 1 		Amarillo, 8
+Jugador		Jugada
+Jugador		Jugada
+1 1 		Amarillo, 8
+Jugador		Jugada
+1 1 		Azul, 9
+1 1 		Azul, 4
+1 1 		Amarillo, 3
+1 1 		Rojo, CC
+1 1 		Amarillo, 3
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+1 1 		SC, Jugador		Jugada
+1 1 		SC, Jugador		Jugada
+1 1 		Amarillo, 9
+Jugador		Jugada

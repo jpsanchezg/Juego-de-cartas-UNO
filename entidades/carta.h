@@ -11,3 +11,5 @@ void repartir_cartas(sLista<sJugador *> *jugadores, stack<sCarta *> &pila);
 //Validacion de numeros repetidos
 bool numerosRepetidos(int *arreglo, int num, int tam);
 
+void llenarArchivoJugadas(ofstream &jugadas, sNodo<sJugador *> *jugador, sNodo<sCarta *> *jugada);
+

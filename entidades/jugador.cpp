@@ -77,12 +77,17 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
 }
 
 //esta funcion limpia los masos de los jugadores como si no hubiera pasado nada
-void limpiarJugadores(sLista<sJugador *> *&jugadores)
+void limpiarJugadores(sNodo<sJugador *> *&jugadores)
 {
+    cout << "1" << endl;
     while (jugadores != NULL)
     {
-        jugadores->cab->dato->cartas = crearLista<sCarta *>();
-        jugadores->cab = jugadores->cab->sig;
+        cout << "2" << endl;
+
+        jugadores->dato->cartas = crearLista<sCarta *>();
+        cout << "3" << endl;
+        jugadores = jugadores->sig;
+        cout << "4" << endl;
     }
 }
 
@@ -94,4 +99,5 @@ void sacarUnaCarta(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila, boo
     carta = pila.top();
     insertarNodoCartasaJugador<sCarta *>(jugadoresCartas, carta);
     pila.pop();
+    cout<<"helloo"<<endl;
 }

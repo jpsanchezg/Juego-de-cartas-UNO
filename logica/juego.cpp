@@ -22,14 +22,11 @@
 
 using namespace std;
 
-void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
+void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores, ofstream &jugadas)
 {
     system("cls");
     cout << "                                             VA A COMENZAR EL JUEGO PREPARENCE JUGADORES" << endl;
     Sleep(2000);
-
-    ofstream jugadas("Jugadas.txt", ios::app);
-
     jugadas << "Jugador" << '\t' << '\t' << "Jugada" << endl;
     ifstream grito;
     bool ganador = false;
@@ -41,13 +38,15 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
     sNodo<sJugador *> *normalJugadores;
     sNodo<sJugador *> *sentidojugadores;
     sLista<sCarta *> *auxi2;
-    sLista<sJugador *> *listajugadores;
-    sLista<sJugador *> *copiasegura;
-
-    copiasegura = jugadores;
-    listajugadores = jugadores;
+    int dev = 0;
     sNodo<sCarta *> *cartajug;
     sNodo<sCarta *> *cartajugs;
+
+    if (barajaEnJuego.empty())
+    {
+        cout << "la baraja esta vasia" << endl;
+        system("pause");
+    }
 
     barajarMasoCartas(baraja, barajaEnJuego);
     cout << "                                             SE VAN A REPARTIR LAS CARTAS" << endl;
@@ -72,9 +71,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
     int indi = 0;
     //normalJugadores = jugadores->cab;
     cout << "                                                JUGADORES PREPARENCE QUE EL JUEGO VA A COMENZAR" << endl;
+
     do
     {
-
         aceptada = false;
         if (!sentido)
         {
@@ -121,11 +120,21 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                     cout << endl;
                     cout << "                                                  CARTA QUE VAS A SACAR ES: ";
                     cin >> numcarta;
-                    if (numcarta == 109)
+                    if (numcarta == 200)
+                    {
+                        cout << "prueba" << endl;
+                        normalJugadores = jugadores->cab;
+                        limpiarJugadores(normalJugadores);
+                        system("pause");
+                        cout << "hello there" << endl;
+                        comenzarJuego(baraja, jugadores, jugadas);
+                    }
+                    else if (numcarta == 109)
                     {
                         //system("cls");
                         if (!barajaEnJuego.empty())
                         {
+                            cout << "heloooo" << endl;
                             sacarUnaCarta(normalJugadores->dato->cartas, barajaEnJuego, sentido);
                             sacocarta = true;
                         }
@@ -134,6 +143,7 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                             cout << "                                                  YA SE ACABARON LAS CARTAS PARA TOMAR" << endl;
                             cout << "                                                  SE VAN A TOMAR LAS CARTAS DEL CENTRO" << endl;
                         }
+                        cout << "como" << endl;
                         aceptada = true; //esto significa que ya el jugador no puede seguir sacando cartas no hay necesidad de bloquear al siguiente jugador cada vez que saca un jugador una carta
                     }
                     else
@@ -353,8 +363,9 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                             else
                             {
                                 cout << "                                               SE VA A JUGAR OTRA RONDA ASI QUE SE VA A REINICIAR TODO" << endl;
-                                limpiarJugadores(jugadores);
-                                comenzarJuego(baraja, jugadores);
+                                normalJugadores = jugadores->cab;
+                                limpiarJugadores(normalJugadores);
+                                comenzarJuego(baraja, jugadores, jugadas);
                             }
                             aceptada = true;
                             ganador = true;
@@ -363,9 +374,17 @@ void comenzarJuego(sLista<sCarta *> *baraja, sLista<sJugador *> *jugadores)
                 }
                 if (sacocarta)
                 {
-                    sCarta *dat;
-                    strcpy(dat->color ,"SacoCarta");
-                    strcpy(dat->valor ,"SC");
+                    cout << "hola?" << endl;
+                    //cuando el compilador esta bobo hay que quitar esto y si se mata igual
+                    /*sCarta *dat;
+                    dat->color = "SacoCarta";
+                    dat->valor = "SC";
+                    dat->numero = 109;*/
+                    sCarta *dat = new sCarta;
+                    dat->color = new char[20];
+                    dat->valor = new char[20];
+                    strcpy(dat->color, "SacoCarta");
+                    strcpy(dat->valor, "SC");
                     dat->numero = 109;
                     cartajug = crearNodo<sCarta *>(dat);
                 }
@@ -522,12 +541,6 @@ sNodo<sCarta *> *CambioDeColor(sNodo<sCarta *> *&cartaJug)
         break;
     }
     return NULL;
-}
-
-//funcion agregar jugada al archivo texto
-void llenarArchivoJugadas(ofstream &jugadas, sNodo<sJugador *> *jugador, sNodo<sCarta *> *jugada)
-{
-    jugadas << jugador->dato->nombre << " " << jugador->dato->apellido << " \t\t" << jugada->dato->color << ", " << jugada->dato->valor << endl;
 }
 
 //Funcion crear archivo binario

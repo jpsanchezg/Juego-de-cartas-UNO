@@ -7,6 +7,6 @@ void comerCartasJugador(sNodo<sJugador *> *jugadoresCartas, stack<sCarta *> &pil
 
 sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<sJugador *> *auxi2, bool sentido);
 
-void limpiarJugadores(sLista<sJugador *> *&jugadores);
+void limpiarJugadores(sNodo<sJugador *> *&jugadores);
 
 void sacarUnaCarta(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila, bool sentido);
