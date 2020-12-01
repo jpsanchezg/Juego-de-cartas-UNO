@@ -18,19 +18,15 @@ Para saber mas acerca del juego aca esta la documentacion:
 - [Enunciado del proyecto][enunciado]
 
 
-## Imagenes de muestra
+## Pagina web
 
-<div>
-  <p align="center">
-  <img src="assets/logo/muestra1.jpg" alt="UNO-logo" width="520px" height="476px"/>
-  <br>
-  <i>Pantalla principal del juego</i>
-  <br>
-</p>
-</div>
+En la pagina web vas a encontrar todo lo relacionado con como jugar y las reglas del juego tambien esta la demostracion del juego
+
+- [Paguina Web del proyecto][pag]
 
 [contributing]: CONTRIBUTING.md
 [reglas]: assets/documentacion/reglas.pdf
 [documentation]: https://angular.io/docs
 [enunciado]: assets/documentacion/enunciado.pdf
+[pag]:https://lordcidiak.github.io/Juego-de-cartas-UNO/MANUAL/index.html
 
