@@ -63,3 +63,313 @@ Jugador		Jugada
 1 1 		SC, Jugador		Jugada
 1 1 		Amarillo, 9
 Jugador		Jugada
+Jugador		Jugada
+1 1 		SacoCarta, SC
+Jugador		Jugada
+1 1 		Rojo, 2
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		Azul, CC
+3 3 		Azul, BQ
+2 2 		Azul, 5
+3 3 		Azul, 7
+1 1 		Azul, 8
+2 2 		Azul, 4
+3 3 		SacoCarta, SC
+1 1 		Azul, 1
+2 2 		Azul, 3
+3 3 		Azul, 9
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		Azul, RT
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		Rojo, BQ
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		Azul, BQ
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		Rojo, 3
+2 2 		SacoCarta, SC
+3 3 		Rojo, 9
+1 1 		Verde, 9
+2 2 		Verde, RT
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		Verde, RT
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		Verde, 6
+Jugador		Jugada
+Jugador		Jugada
+juan sanchez 		SacoCarta, SC
+pedro sanchez 		Rojo, 5
+juan sanchez 		Rojo, 4
+pedro sanchez 		Rojo, 0
+juan sanchez 		Verde, M2
+juan sanchez 		Amarillo, 2
+pedro sanchez 		SacoCarta, SC
+juan sanchez 		Amarillo, 5
+pedro sanchez 		Azul, CC
+juan sanchez 		Azul, 2
+pedro sanchez 		Azul, RT
+juan sanchez 		Azul, 6
+pedro sanchez 		SacoCarta, SC
+juan sanchez 		SacoCarta, SC
+pedro sanchez 		Azul, 2
+juan sanchez 		SacoCarta, SC
+pedro sanchez 		SacoCarta, SC
+juan sanchez 		SacoCarta, SC
+Jugador		Jugada
+1 1 		Amarillo, 1
+2 2 		Verde, CC
+3 3 		Verde, 1
+1 1 		SacoCarta, SC
+2 2 		Verde, RT
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		Verde, 9
+3 3 		Verde, 5
+2 2 		Amarillo, CC
+1 1 		Verde, 6
+2 2 		Amarillo, 6
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		Amarillo, M2
+3 3 		SacoCarta, SC
+2 2 		Amarillo, RT
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		Amarillo, BQ
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		Amarillo, 3
+1 1 		Azul, M4
+3 3 		Azul, 9
+1 1 		Azul, 1
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		Amarillo, 6
+2 2 		Amarillo, 8
+3 3 		SacoCarta, SC
+1 1 		Amarillo, 4
+2 2 		Verde, CC
+3 3 		Verde, RT
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		Verde, 6
+1 1 		Verde, 7
+3 3 		Verde, 9
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		Verde, 7
+Jugador		Jugada
+1 1 		Amarillo, 4
+2 2 		SacoCarta, SC
+3 3 		Amarillo, RT
+2 2 		SacoCarta, SC
+1 1 		Rojo, CC
+3 3 		Rojo, 5
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		Rojo, 3
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		Azul, 8
+2 2 		Rojo, BQ
+1 1 		Amarillo, 8
+2 2 		Amarillo, 7
+3 3 		Amarillo, RT
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		Amarillo, 7
+1 1 		Amarillo, M2
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		Amarillo, 6
+2 2 		Rojo, CC
+1 1 		Rojo, RT
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		Rojo, 0
+3 3 		Rojo, 3
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		Rojo, 6
+2 2 		Rojo, 8
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		Rojo, 1
+1 1 		SacoCarta, SC
+2 2 		Verde, 1
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		Verde, 0
+3 3 		SacoCarta, SC
+1 1 		Verde, 3
+2 2 		SacoCarta, SC
+3 3 		Verde, 7
+1 1 		Verde, 9
+Jugador		Jugada
+1 1 		Azul, RT
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+Jugador		Jugada
+1 1 		Amarillo, 4
+3 3 		Azul, 4
+1 1 		Azul, 8
+2 2 		SacoCarta, SC
+3 3 		Azul, CC
+1 1 		Azul, 9
+2 2 		Azul, 3
+3 3 		SacoCarta, SC
+1 1 		Azul, BQ
+3 3 		Azul, RT
+2 2 		Azul, 6
+3 3 		SacoCarta, SC
+1 1 		Azul, RT
+3 3 		SacoCarta, SC
+2 2 		Azul, 3
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		Azul, 1
+3 3 		SacoCarta, SC
+2 2 		Amarillo, CC
+1 1 		Amarillo, 1
+3 3 		SacoCarta, SC
+2 2 		Amarillo, 5
+1 1 		Amarillo, 2
+3 3 		Amarillo, RT
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+3 3 		SacoCarta, SC
+1 1 		SacoCarta, SC
+2 2 		SacoCarta, SC
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		Amarillo, 4
+3 3 		Amarillo, 2
+2 2 		Verde, 6
+1 1 		Rojo, M2
+3 3 		Azul, 7
+1 1 		Azul, RT
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		Azul, 5
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+Jugador		Jugada
+1 1 		Amarillo, 1
+3 3 		SacoCarta, SC
+1 1 		Rojo, RT
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		SacoCarta, SC
+3 3 		Rojo, 4
+2 2 		Amarillo, M4
+3 3 		Amarillo, 8
+2 2 		Amarillo, 1
+1 1 		SacoCarta, SC
+3 3 		SacoCarta, SC
+2 2 		SacoCarta, SC
+1 1 		Amarillo, 6
+3 3 		Amarillo, RT
+1 1 		SacoCarta, SC
+2 2 		Amarillo, 9
+3 3 		SacoCarta, SC
+1 1 		Amarillo, BQ
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+Jugador		Jugada
+1 1 		SacoCarta, SC
+Jugador		Jugada
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		Amarillo, M4
+Jugador		Jugada
+Jugador		Jugada
+1 1 		SacoCarta, SC
+Jugador		Jugada
+1 1 		Amarillo, BQ
+Jugador		Jugada
+1 1 		Azul, 0
+2 2 		Azul, 8
+Jugador		Jugada
+Jugador		Jugada
+1 1 		SacoCarta, SC
+2 2 		Verde, 7
+Jugador		Jugada
+1 1 		SacoCarta, SC
+Jugador		Jugada
+1 1 		Verde, 9
+2 2 		Verde, 9
+1 1 		SacoCarta, SC

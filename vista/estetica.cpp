@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include "estetica.h"
 
 #define ANSI_COLOR_RED "\x1b[31m"
@@ -35,12 +36,12 @@ void menu()
     cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%" << ANSI_COLOR_CYAN << "&&&&%&&%&&&&&&" << ANSI_COLOR_RED << "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << endl;
     cout << ANSI_COLOR_RED << "                  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << ANSI_COLOR_RESET << endl;
     cout << endl;
-    cout << "                                             MENU DE JUEGO UNO" << endl;
-    cout << "                                             [1] Jugar" << endl;
-    cout << "                                             [2] Ver instrucciones de juego" << endl;
-    cout << "                                             [3] Imprimir lista de jugadores" << endl;
-    cout << "                                             [4] Imprimir lista de cartas" << endl;
-    cout << "                                             [5] salir" << endl;
+    cout << setw(65) << "MENU DE JUEGO UNO" << endl;
+    cout << setfill(' ') << setw(60) << "[1] Jugar" << endl;
+    cout << setfill(' ') << setw(81) << "[2] Ver instrucciones de juego"  << endl;
+    cout << setfill(' ') << setw(82) << "[3] Imprimir lista de jugadores"  << endl;
+    cout << setfill(' ') << setw(79) << "[4] Imprimir lista de cartas" << endl;
+    cout << setfill(' ') << setw(60) << "[5] salir" << endl;
 }
 
 void advertencia()

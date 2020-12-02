@@ -2,12 +2,10 @@
 #include <string.h>
 #include <fstream>
 #include <time.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <iomanip>
 #include <string>
 #include <windows.h>
-#include <cstdlib>
 #include <stack>
 #include "main.h"
 #include "logica/lista.h"
@@ -49,25 +47,28 @@ int main()
           numjug++;
           system("cls");
           llenarJugadores(jugadores, numjug); //Aca se llenan los jugadores
-          cout << "                                             VAS A INGRESAR OTRO JUGADOR?" << endl;
-          cout << "                                             1. si" << endl;
-          cout << "                                             2. no" << endl;
-          cout << "                                             PON EL NUMERO COMO RESPUESTA" << endl;
+          cout << setw(70) << "VAS A INGRESAR OTRO JUGADOR?" << endl;
+          cout << setw(60) << "[1] si" << endl;
+          cout << setw(60) << "[2] no" << endl;
+          cout << setw(72) << "PON EL NUMERO COMO RESPUESTA" << endl;
           cout << "                                             OPCION: ";
           cin >> opi;
         }
         if (opi == 2)
         {
+          system("cls");
           cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
-          cout << "                                             1. si" << endl;
-          cout << "                                             2. no" << endl;
+          cout << setw(60) << "[1] si" << endl;
+          cout << setw(60) << "[2] no" << endl;
           cout << "                                             OPCION:";
           cin >> opi;
+          
           if (opi == 1)
           {
             if (numjug >= 2)
             {
-              comenzarJuego(baraja, jugadores,jugadas);
+              system("cls");
+              comenzarJuego(baraja, jugadores, jugadas);
             }
             else
             {
@@ -82,7 +83,7 @@ int main()
           }
           else
           {
-            cout << "Comando inválido\n"
+            cout << "                                             Comando inválido\n"
                  << endl;
             cout << "                                             QUIERES COMENZAR A JUGAR?" << endl;
             cout << "                                             1. si" << endl;
@@ -93,7 +94,7 @@ int main()
         }
         else
         {
-          cout << "Comando inválido\n"
+          cout << "                                             Comando inválido\n"
                << endl;
           opi = 1;
         }
@@ -101,7 +102,7 @@ int main()
     }
     if (op == 2)
     {
-      archi.open("archivos/ganador.txt", ios::in);
+      archi.open("archivos/grita.txt", ios::in);
       while (!archi.eof())
       {
         getline(archi, texto);

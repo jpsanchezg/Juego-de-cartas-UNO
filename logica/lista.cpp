@@ -156,7 +156,8 @@ void imprimirCartasJugador(sLista<T> *auxi2)
   cartas = auxi2->cab;
   while (cartas != NULL)
   {
-    cout << "                                               Carta: " << cartas->dato->color << "          Valor: " << cartas->dato->valor << " Numero: " << cartas->dato->numero << endl;
+    cout << "                                                Carta: "<< setw(9) << cartas->dato->color << setw(10)<< "Valor:"<< setw(5) << cartas->dato->valor <<setw(10)<< "Numero: " << cartas->dato->numero << endl;
     cartas = cartas->sig;
+    
   }
 }

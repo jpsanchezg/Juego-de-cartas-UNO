@@ -2,7 +2,6 @@
 #include <string>
 #include <string.h>
 #include "jugador.h"
-//#include "lista.cpp"
 #include <stack>
 
 using namespace std;
@@ -79,25 +78,20 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
 //esta funcion limpia los masos de los jugadores como si no hubiera pasado nada
 void limpiarJugadores(sNodo<sJugador *> *&jugadores)
 {
-    cout << "1" << endl;
     while (jugadores != NULL)
     {
-        cout << "2" << endl;
-
         jugadores->dato->cartas = crearLista<sCarta *>();
-        cout << "3" << endl;
         jugadores = jugadores->sig;
-        cout << "4" << endl;
+
     }
 }
 
 //funcion para que coma una sola carta cada jugador
-void sacarUnaCarta(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila, bool sentido)
+void sacarUnaCarta(sNodo<sJugador *> *&jugadoresCartas, stack<sCarta *> &pila, bool sentido)
 {
     int i = 0;
     sCarta *carta;
     carta = pila.top();
-    insertarNodoCartasaJugador<sCarta *>(jugadoresCartas, carta);
+    insertarNodoCartas<sCarta *>(jugadoresCartas->dato->cartas, carta);
     pila.pop();
-    cout<<"helloo"<<endl;
 }

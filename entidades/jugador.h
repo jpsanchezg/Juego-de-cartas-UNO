@@ -9,4 +9,4 @@ sNodo<sJugador *> *BuscarSiguienteJugador(sNodo<sJugador *> *&jugadores, sLista<
 
 void limpiarJugadores(sNodo<sJugador *> *&jugadores);
 
-void sacarUnaCarta(sLista<sCarta *> *jugadoresCartas, stack<sCarta *> &pila, bool sentido);
+void sacarUnaCarta(sNodo<sJugador *> *&jugadoresCartas, stack<sCarta *> &pila, bool sentido);
