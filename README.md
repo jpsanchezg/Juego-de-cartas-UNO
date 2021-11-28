@@ -28,5 +28,5 @@ En la pagina web vas a encontrar todo lo relacionado con como jugar y las reglas
 [reglas]: assets/documentacion/reglas.pdf
 [documentation]: https://angular.io/docs
 [enunciado]: assets/documentacion/enunciado.pdf
-[pag]:https://lordcidiak.github.io/Juego-de-cartas-UNO/MANUAL/index.html
+[pag]:https://jpsanchezg.github.io/Juego-de-cartas-UNO/MANUAL/index.html
 
